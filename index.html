@@ -48,7 +48,7 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
       
                     <article id="content">
                       <h1 id="verana-app-specification"><a class="toc-anchor" href="#verana-app-specification" >§</a> Verana App Specification</h1>
-<p><strong>Specification Status:</strong> <a path-0="github.com"path-1="decentralized-identity"path-2="org"path-3="blob"path-4="master"path-5="work-item-lifecycle.md"href="https://github.com/decentralized-identity/org/blob/master/work-item-lifecycle.md" >Pre-Draft</a></p>
+<p><strong>Specification Status:</strong> Pre-Draft</p>
 <p><strong>Latest Draft:</strong> <a path-0="github.com"path-1="verana-labs"path-2="verana-app-specs"href="https://github.com/verana-labs/verana-app-specs" >verana-labs/verana-app-specs</a></p>
 <dl>
 <dt><strong>Editors:</strong></dt>
@@ -68,6 +68,73 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 </dd>
 </dl>
 <hr>
+<h2 id="about-this-document"><a class="toc-anchor" href="#about-this-document" >§</a> About this Document</h2>
+<p>In order to fully understand the concepts developed in this document, you should have some basic knowledge of <a class="term-reference" href="#term:trust-registry">trust registry</a>, <a class="term-reference" href="#term:pubic-trust-registry">pubic trust registry</a>, <a class="term-reference" href="#term:didcomm">DIDComm</a>, <a class="term-reference" href="#term:dts">DTS</a>, ledger-based applications, and more generally, all terms present in the <a href="#terminology" >Terminology</a> section.</p>
+<h2 id="introduction"><a class="toc-anchor" href="#introduction" >§</a> Introduction</h2>
+<p>The Verana App provides:</p>
+<ul>
+<li>interaction with the verana blockchain, by querying the ledger and post transactions;</li>
+<li>DTS management, including their lifecycle, deployments, credentials, backup.</li>
+<li>statistics (ecosystem, blockchain, DTSs).</li>
+</ul>
+<h2 id="terminology"><a class="toc-anchor" href="#terminology" >§</a> Terminology</h2>
+<dl>
+<dt><span id="term:accounts"><span id="term:account">account</span></span>:</dt>
+<dd>A <a class="term-reference" href="#term:public-trust-registry">public trust registry</a> account.</dd>
+<dt><span id="term:applicants"><span id="term:applicant">applicant</span></span>:</dt>
+<dd>A <a class="term-reference" href="#term:controller">controller</a> that starts a <a class="term-reference" href="#term:validation-process">validation process</a>.</dd>
+<dt><span id="term:controllers"><span id="term:controller">controller</span></span>:</dt>
+<dd>An <a class="term-reference" href="#term:account">account</a> which is the controller of a specific resource in an <a class="term-reference" href="#term:ptr">PTR</a>.</dd>
+<dt><span id="term:credential-schemas"><span id="term:credential-schema">credential schema</span></span>:</dt>
+<dd>An <a class="term-reference" href="#term:ptr">PTR</a> resource which represents a verifiable credential definition and the associated permissions and business rules for issuing, verifying or holding a credential linked to this credential schema.</dd>
+<dt><span id="term:dids"><span id="term:did"><span id="term:decentralized-identifier">decentralized identifier</span></span></span>:</dt>
+<dd>A decentralized identifier, as specified in [<a class="spec-reference" href="#ref:DID-CORE">DID-CORE</a>].</dd>
+<dt><span id="term:didcomm"><span id="term:decentralized-identifier-communication">decentralized identifier communication</span></span>:</dt>
+<dd><a path-0="identity.foundation"path-1="didcomm-messaging"path-2="spec"path-3=""href="https://identity.foundation/didcomm-messaging/spec/" >DIDComm</a> uses <a class="term-reference" href="#term:dids">DIDs</a> to establish confidential, ongoing connections.</dd>
+<dt><span id="term:did-documents"><span id="term:did-document"><span id="term:decentralized-identifier-document">decentralized identifier document</span></span></span>:</dt>
+<dd>A DID Document, as specified in [<a class="spec-reference" href="#ref:DID-CORE">DID-CORE</a>].</dd>
+<dt><span id="term:dtss"><span id="term:dts"><span id="term:decentralized-trust-service">decentralized trust service</span></span></span>:</dt>
+<dd>A service, usually provided using <a class="term-reference" href="#term:didcomm">DIDComm</a>, that can be deployed anywhere by its owner, and that is using the decentralized trust layer provided by an <a class="term-reference" href="#term:ptr">PTR</a>, and has a resolvable <a class="term-reference" href="#term:proof-of-trust">proof of trust</a>.</dd>
+<dt><span id="term:dtuas"><span id="term:dtua"><span id="term:decentralized-trust-user-agent">decentralized trust user agent</span></span></span>:</dt>
+<dd>A user agent for accessing and using <a class="term-reference" href="#term:dtss">DTSs</a>. To be considered as a <a class="term-reference" href="#term:dtua">DTUA</a>, a user agent must implement an <a class="term-reference" href="#term:ptr">PTR</a> trust layer and use a trust resolution using use the <a class="term-reference" href="#term:essential-credential-schema">essential credential schema</a> of a given trust registry for providing a <a class="term-reference" href="#term:proof-of-trust">proof of trust</a> to users so that user clearly identifies <a class="term-reference" href="#term:dts">DTS</a> and <a class="term-reference" href="#term:dtua">DTUA</a> providers and decides to connect or not.</dd>
+<dt><span id="term:did-directory"><span id="term:did-directory">DID Directory</span></span>:</dt>
+<dd>A repository of DIDs in an PTR.</dd>
+<dt><span id="term:essential-credential-schemas"><span id="term:essential-credential-schema">essential credential schema</span></span>:</dt>
+<dd>Default <a class="term-reference" href="#term:credential-schema">credential schema</a>, owned by a <a class="term-reference" href="#term:trust-registry">trust registry</a>, that provide the basis for a trust layer to exist in the ecosystem so that <a class="term-reference" href="#term:dtua">DTUA</a> can generate a <a class="term-reference" href="#term:proof-of-trust">proof of trust</a>.</dd>
+<dt><span id="term:holders"><span id="term:holder">holder</span></span>:</dt>
+<dd>A role an entity might perform by possessing one or more verifiable credentials and generating verifiable presentations from them. A holder is often, but not always, a <a class="term-reference" href="#term:subject">subject</a> of the verifiable credentials they are holding. Holders store their credentials in credential repositories. Example holders include organizations, persons, things.</dd>
+<dt><span id="term:issuers"><span id="term:issuer">issuer</span></span>:</dt>
+<dd>A role an entity can perform by asserting claims about one or more <a class="term-reference" href="#term:subjects">subjects</a>, creating a verifiable credential from these claims, and transmitting the verifiable credential to a <a class="term-reference" href="#term:holder">holder</a>. Example issuers include corporations, non-profit organizations, trade associations, governments, and individuals.</dd>
+<dt><span id="term:json-schemas"><span id="term:json-schema">json schema</span></span>:</dt>
+<dd>A json schema as defined in <a path-0="json-schema.org"href="https://json-schema.org" >JSON-SCHEMA</a>.</dd>
+<dt><span id="term:json-schema-credentials"><span id="term:json-schema-credential">json schema credential</span></span>:</dt>
+<dd>A json schema credential as defined in [<a class="spec-reference" href="#ref:VC-JSON-SCHEMA">VC-JSON-SCHEMA</a>].</dd>
+<dt><span id="term:linked-vp">linked-vp</span>:</dt>
+<dd>A presentation of a <a class="term-reference" href="#term:verifiable-credential">verifiable credential</a> as specified in <a path-0="identity.foundation"path-1="linked-vp"path-2=""href="https://identity.foundation/linked-vp/" >LINKED-VP</a>.</dd>
+<dt><span id="term:participants"><span id="term:participant">participant</span></span>:</dt>
+<dd>An entity that uses an <a class="term-reference" href="#term:ptr">PTR</a> and its trust layer to provide or use services.</dd>
+<dt><span id="term:proof-of-trust">proof of trust</span>:</dt>
+<dd>Visual representation using <a class="term-reference" href="#term:essential-credential-schemas">essential credential schemas</a> of a <a class="term-reference" href="#term:trust-resolution">trust resolution</a> process of a <a class="term-reference" href="#term:dts">DTS</a>, for identifying the <a class="term-reference" href="#term:dts">DTS</a>, its owner, and the <a class="term-reference" href="#term:issuer">issuer</a> of the verifiable credential of its owner.</dd>
+<dt><span id="term:ptr"><span id="term:public-trust-registry">public trust registry</span></span>:</dt>
+<dd>a decentralized, ledger-based network, which provides: trust registry features that can be used by all its <a class="term-reference" href="#term:participants">participants</a>; and a tokenized business model allows charging <a class="term-reference" href="#term:participants">participants</a> for trust fees that are transferred to other <a class="term-reference" href="#term:participants">participants</a>, or locked into <a class="term-reference" href="#term:trust-deposits">trust deposits</a>.</dd>
+<dt><span id="term:subjects"><span id="term:subject">subject</span></span>:</dt>
+<dd>A thing about which claims are made. Example subjects include human beings, animals, things, and organization, a <a class="term-reference" href="#term:did">DID</a>…</dd>
+<dt><span id="term:trust-deposits"><span id="term:trust-deposit">trust deposit</span></span>:</dt>
+<dd>A financial deposit that is used as a trust guarantee. For a given <a class="term-reference" href="#term:controller">controller</a>, its trust deposit is increased when running validation process (either as an <a class="term-reference" href="#term:applicant">applicant</a> or as a <a class="term-reference" href="#term:validator">validator</a>), or when registering <a class="term-reference" href="#term:did">DID</a> in the DID directory.</dd>
+<dt><span id="term:trust-registries"><span id="term:trust-registry">trust registry</span></span></dt>
+<dd>An approved list of <a class="term-reference" href="#term:issuers">issuers</a> and <a class="term-reference" href="#term:verifiers">verifiers</a> that are authorized to issue/verify certain credentials in an ecosystem.</dd>
+<dt><span id="term:trust-resolution">trust resolution</span>:</dt>
+<dd>Process run by, for example a <a class="term-reference" href="#term:dtua">DTUA</a>, which purpose is to recursively resolve <a class="term-reference" href="#term:did">DID</a> by digging into <a class="term-reference" href="#term:did-documents">DID Documents</a> and look for <a class="term-reference" href="#term:linked-vp">linked-vp</a> entries and their <a class="term-reference" href="#term:issuer">issuer</a> <a class="term-reference" href="#term:dids">DIDs</a>, and <a path-0="trustoverip.github.io"path-1="tswg-trust-registry-protocol"path-2=""href="https://trustoverip.github.io/tswg-trust-registry-protocol/" >trust registry</a> entries to gather whether the service provided by the <a class="term-reference" href="#term:did">DID</a> is trustable (and legitimate), or not.</dd>
+<dt><span id="term:validation-process">validation process</span>:</dt>
+<dd>A process run by <a class="term-reference" href="#term:applicants">applicants</a> that want to, for a specific <a class="term-reference" href="#term:credential-schema">credential schema</a>, be a <a class="term-reference" href="#term:issuer">issuer</a>, be a <a class="term-reference" href="#term:verifier">verifier</a>, or simply hold a verifiable credential linked to the <a class="term-reference" href="#term:credential-schema">credential schema</a>.</dd>
+<dt><span id="term:validator">validator</span>:</dt>
+<dd>A role an entity performs by participating in validation processes with <a class="term-reference" href="#term:applicants">applicants</a> in order to register them as <a class="term-reference" href="#term:issuer">issuer</a>, or <a class="term-reference" href="#term:verifier">verifier</a> of a <a class="term-reference" href="#term:credential-schema">credential schema</a>, or to deliver a verifiable credential to them.</dd>
+<dt><span id="term:verifiers"><span id="term:verifier">verifier</span></span>:</dt>
+<dd>A role an entity performs by receiving one or more verifiable credentials, optionally inside a verifiable presentation for processing. Example verifiers include service providers.</dd>
+<dt><span id="term:verifiable-credentials"><span id="term:verifiable-credential">verifiable credential</span></span>:</dt>
+<dd>A verifiable credential as defined in [<a class="spec-reference" href="#ref:VC-DATA-MODEL">VC-DATA-MODEL</a>].</dd>
+</dl>
+<h2 id="specification"><a class="toc-anchor" href="#specification" >§</a> Specification</h2>
 
                     </article>    
       
@@ -91,7 +158,13 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
                         <span panel-toggle="toc">✕</span>
                       </header>
                       <div id="toc_list">
-                        
+                        <ul class="toc">
+<li><a href="#about-this-document" >About this Document</a></li>
+<li><a href="#introduction" >Introduction</a></li>
+<li><a href="#terminology" >Terminology</a></li>
+<li><a href="#specification" >Specification</a></li>
+</ul>
+
                       </div>
                     </slide-panel>
                     
