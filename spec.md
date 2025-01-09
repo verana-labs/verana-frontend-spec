@@ -6,7 +6,7 @@
 
 **Editors:**
 
-~ [Fabrice Rochette](https://www.linkedin.com/in/fabricerochette) (2060.io, The Verana Foundation)
+~ [Fabrice Rochette](https://www.linkedin.com/in/fabricerochette) (The Verana Foundation, 2060.io)
 
 <!-- -->
 
@@ -29,7 +29,6 @@ In order to fully understand the concepts developed in this document, you should
 The Verana App provides:
 
 - interaction with the verana network, by querying the ledger and post transactions;
-- VSs and VUAs credentials and DID Documents management.
 - statistics (ecosystem, blockchain, DTSs).
 
 ## Terminology
@@ -116,14 +115,6 @@ The Verana App provides:
 ~ A verifiable credential as defined in [[spec-norm:VC-DATA-MODEL]].
 
 ## Specification
-
-### Top Menu
-
-### Left Menu
-
-- Entities I control
-   - Trust Registries
-   - Credential Schemas
 
 ### Crypto Wallet Integration
 
