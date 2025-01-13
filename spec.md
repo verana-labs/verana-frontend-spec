@@ -116,7 +116,83 @@ The Verana App provides:
 
 ## Specification
 
+### [GENERAL] General
+
+#### [GENERAL-ENV] General - Container Variables
+
+
+| Type                           |Variable                               | Description                    | Default Value                    |
+|--------------------------------|---------------------------------------|----------------------------------|----------------------------------|
+| Network Configuration          | MAINNET_API_ENDPOINT                  |                                  | https://api.verana.network       |
+|                                | MAINNET_RPC_ENDPOINT                  |                                  | https://rpc.verana.network       |
+|                                | MAINNET_IDX_ENDPOINT                  |                                  | https://idx.verana.network       |
+|                                | MAINNET_CHAIN_ID                      |                                  | vna-mainnet-1       |
+|                                | TESTNET_API_ENDPOINT                  |                                  | https://api.testnet.verana.network       |
+|                                | TESTNET_RPC_ENDPOINT                  |                                  | https://rpc.testnet.verana.network       |
+|                                | TESTNET_IDX_ENDPOINT                  |                                  | https://idx.testnet.verana.network       |
+|                                | TESTNET_CHAIN_ID                      |                                  | vna-testnet-1       |
+|                                | DEVNET_API_ENDPOINT                   |                                  | https://api.vna-devnet-main.devnet.verana.network       |
+|                                | DEVNET_RPC_ENDPOINT                   |                                  | https://rpc.vna-devnet-main.devnet.verana.network       |
+|                                | DEVNET_IDX_ENDPOINT                   |                                  | https://idx.vna-devnet-main.devnet.verana.network       |
+|                                | DEVNET_CHAIN_ID                       |                                  | vna-devnet-main       |
+|                                | DEFAULT_NETWORK                       |                                  | vna-testnet-1       |
+| Internationalization           | DEFAULT_LOCALE                        |                                  | en_US       |
+| Internationalization           | SUPPORTED_LOCALES                        |                                  | en_US, fr_FR, en:en_US, fr:fr_FR       |
+
+#### [GENERAL-SETTINGS] General - Settings
+
+All settings MUST be persisted in browser session.
+
+[GENERAL-SETTINGS-NETWORK-DEFAULT] When a new session is created, default selected network MUST be set to `DEFAULT_NETWORK`.
+
+[GENERAL-SETTINGS-NETWORK-MANAGE] In Settings/Network, user can see pre-configured networks and their endpoints (Mainnet, Testnet, Devnet). Additionally, user CAN add custom networks and save. Custom networks MUST be persisted in session.
+
+[GENERAL-SETTINGS-NETWORK-SELECT] User CAN select a network. Network list MUST show Mainnet, Testnet, Devnet, and custom networks.
+
+[GENERAL-SETTINGS-NETWORK-SELECTED] If selected network is not Mainnet, its name MUST appear in App header.
+
+[GENERAL-SETTINGS-LOCALE-SELECT] Default to user agent presented locale "Browser Default" which sets `settings.locale` to  NULL (undefined). User can force a locale here and store it to `settings.locale`. Locale list MUST contain all supported locales.
+
+#### [GENERAL-I18N] General - Internationalization
+
+[GENERAL-I18N-DEFAULT]
+
+[GENERAL-I18N-LOCALE-DATA] All texts, labels, rollover texts, images with texts, videos, sounds, text icons MUST be centralized in a directory per locale
+
+[GENERAL-I18N-CONTENT-KEY] Each content MUST be identified by its key, `content_key`.
+
+[GENERAL-I18N-RENDER-CONTENT] Render content from `content_key`:
+
+Get `locale` from `settings.locale` from user settings. If null, use `locale` from user agent.
+
+- find content with its `content_key` for locale `locale`
+- if not found, try to use the default locale for the same language. So if `locale` is equal to `en_GB`, use mapper to get default locale for `en`.
+- else fallback to `DEFAULT_LOCALE` (usually `en_US`).
+
+:::Note
+At least the content of the default language MUST be provided by development/design team.
+Default language for development MUST be english.
+:::
+
+:::Warn
+Right to left text (like Arabic) MUST be supported.
+:::
+
+#### [GENERAL-I18N] General - Layout
+
+[GENERAL-LAYOUT-RESPONSIVE] App MUST be usable from any device, layout MUST be responsive.
+
+[GENERAL-LAYOUT-HEADER] Header MUST include the Verana App logo and name on the left, the setting icon, a dark/light mode, and an account zone.
+
 ### Crypto Wallet Integration
+
+#### [CW-GENERAL]
+
+Use a kit such as the [cosmos-kit repo](https://github.com/cosmology-tech/cosmos-kit) to easily integrate any wallet to the Verana App.
+
+### [CW-CONNECT-WALLET]
+
+![alt text](image.png)
 
 #### [CW-KEPLR] Keplr Integration
 
