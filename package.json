@@ -2,18 +2,18 @@
   "dependencies": {
     "spec-up": "^0.10.8"
   },
-  "name": "verana-app-specs",
+  "name": "verana-app-spec",
   "version": "1.0",
   "description": "Decentralized Trust Specification",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/verana-labs/verana-app-specs.git"
+    "url": "git+https://github.com/verana-labs/verana-app-spec.git"
   },
   "license": "Apache 2",
-  "homepage": "https://github.com/verana-labs/verana-app-specs",
+  "homepage": "https://github.com/verana-labs/verana-app-spec",
   
   "bugs": {
-    "url": "https://github.com/verana-labs/verana-app-specs/issues"
+    "url": "https://github.com/verana-labs/verana-app-spec/issues"
   },
   "scripts": {
     "render": "npm run build",
