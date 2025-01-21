@@ -75,7 +75,7 @@ The Verana App MUST be delivered as a container.
 
 
 
-#### [GENERAL-SETTINGS] General - Settings
+#### General - Settings
 
 All settings MUST be persisted in browser session.
 
@@ -89,7 +89,7 @@ All settings MUST be persisted in browser session.
 
 [GENERAL-SETTINGS-LOCALE-SELECT] Default to user agent presented locale "Browser Default" which sets `settings.locale` to  NULL (undefined). User can force a locale here and store it to `settings.locale`. Locale list MUST contain all supported locales.
 
-#### [GENERAL-I18N] General - Internationalization
+#### General - Internationalization
 
 [GENERAL-I18N-DEFAULT]
 
@@ -152,13 +152,13 @@ Right to left text (like Arabic) MUST be supported.
 
 ### Crypto Wallet Integration
 
-#### [CW-GENERAL]
+#### Crypto Wallet Integration - General
 
-[CW-GENERAL-KIT] Use a kit such as the [cosmos-kit repo](https://github.com/cosmology-tech/cosmos-kit) to easily integrate any wallet to the Verana App.
+[CW-GENERAL-KIT]  Use a kit such as the [cosmos-kit repo](https://github.com/cosmology-tech/cosmos-kit) to easily integrate any wallet to the Verana App.
 
- If user reaches the App through any URL of the App, and if a detected installed wallet is found and it has been already granted, App MUST connect to it immediately with no user intervention. (same will happen if I am connected and I reload the page in my browser).
+[CW-CONNECT-WALLET]
 
-#### [CW-CONNECT-WALLET]
+If user reaches the App through any URL of the App, and if a detected installed wallet is found and it has been already granted, App MUST connect to it immediately with no user intervention. (same will happen if I am connected and I reload the page in my browser).
 
 - read the doc of cosmos-kit or any other library you want to use
 - detect any installed wallet extension, and put them in the "Detected Installed Wallets" section.
@@ -167,25 +167,33 @@ Right to left text (like Arabic) MUST be supported.
 
 ![connect wallet](assets/cw-main.png)
 
-#### [CW-CONNECT-WALLET-EXT]
+#### Crypto Wallet - Browser Extension
+
+[CW-CONNECT-WALLET-EXT]
 
 Follow kit instructions and be inventive. Example mockup:
 
 ![connect wallet ext](assets/cw-connect-ext.png)
 
-#### [CW-CONNECT-WALLET-MOB]
+#### Crypto Wallet - Connect with Mobile
+
+[CW-CONNECT-WALLET-MOB]
 
 Follow kit instructions and be inventive. Example mockup:
 
 ![connect wallet mobile](assets/cw-connect-mobile.png)
 
-#### [CW-CONNECT-WALLET-CONNECTED]
+#### Crypto Wallet - Connected
+
+[CW-CONNECT-WALLET-CONNECTED]
 
 Redirect user to where he was before connecting.
 
-![just connected](image.png)
+![just connected](assets/cw-justconnected.png)
 
-### [ACCOUNT] Account
+### Account
+
+[ACCOUNT-MAIN]
 
 Account shows balances:
 
@@ -200,25 +208,27 @@ and 3 use cases:
 
 ![account](assets/account.png)
 
-#### [ACCOUNT-GET-VNA]
+#### Account - Get VNA
 
 Present a list of services to top-up my verana account.
 
-The list of the services is configurable in variable `VNA-TOPUP-VS`. Use this list of service to generate a radio button type select. Selected Verifiable Service MUST be trust resolved to get service name (service credential) and organization name (organization credential) shown in service description text, and MUST show a QR code for connecting to it and passing the vna account address as a parameter. User then scans the service with Hologram and follow instructions to top-up his/her account.
+The list of the services is configurable in variable `VNA-TOPUP-VS`. Use this list of service to generate a radio button type select. 
 
-For now, ignore the credit card icon. We'll later find a declarative way in service credential(s) to show accepted payment methods.
+- [ACCOUNT-GET-VNA-RESOLVE-VS] Selected Verifiable Service MUST be trust resolved to get service name (service credential) and organization name (organization credential) shown in service description text, and get supported payment methods to show related icons.
+
+- [ACCOUNT-GET-VNA-QR] MUST show a QR code for connecting to it and passing the vna account address as a parameter. User then scans the service with Hologram and follow instructions to top-up his/her account.
 
 ![account](assets/account-get-vna.png)
 
-#### [ACCOUNT-TD-CLAIM-INTERESTS]
+#### Account - Claim Interests
 
-If interests are available, user sees the text and the cancel / confirm buttons like in mockup. Else, show text "You do not have interests to claim yet." with no buttons.
+[ACCOUNT-TD-CLAIM-INTERESTS] If interests are available, user sees the text and the cancel / confirm buttons like in mockup. Else, show text "You do not have interests to claim yet." with no buttons.
 
 ![account](assets/account-claim.png)
 
-#### [ACCOUNT-TD-RECLAIM]
+#### Account - reclaim TD
 
-If reclaimable trust deposit is not equal to 0, user sees the text, confirm check, and the cancel / confirm buttons like in mockup. Else, show text "You do not have reclaimable trust deposit." with no check box and no buttons.
+[ACCOUNT-TD-RECLAIM] If reclaimable trust deposit is not equal to 0, user sees the text, confirm check, and the cancel / confirm buttons like in mockup. Else, show text "You do not have reclaimable trust deposit." with no check box and no buttons.
 
 ![account](assets/account-reclaim.png)
 

@@ -260,10 +260,10 @@ Right to left text (like Arabic) MUST be supported.
 <p>[GENERAL-LAYOUT-CONTENT] The content zone.</p>
 <p><img src="assets/layout-content-zone.png" alt="content zone"></p>
 <h3 id="crypto-wallet-integration"><a class="toc-anchor" href="#crypto-wallet-integration" >§</a> Crypto Wallet Integration</h3>
-<h4 id="cw-general"><a class="toc-anchor" href="#cw-general" >§</a> [CW-GENERAL]</h4>
-<p>[CW-GENERAL-KIT] Use a kit such as the <a path-0="github.com"path-1="cosmology-tech"path-2="cosmos-kit"href="https://github.com/cosmology-tech/cosmos-kit" >cosmos-kit repo</a> to easily integrate any wallet to the Verana App.</p>
+<h4 id="crypto-wallet-integration-general"><a class="toc-anchor" href="#crypto-wallet-integration-general" >§</a> Crypto Wallet Integration - General</h4>
+<p>[CW-GENERAL-KIT]  Use a kit such as the <a path-0="github.com"path-1="cosmology-tech"path-2="cosmos-kit"href="https://github.com/cosmology-tech/cosmos-kit" >cosmos-kit repo</a> to easily integrate any wallet to the Verana App.</p>
+<p>[CW-CONNECT-WALLET]</p>
 <p>If user reaches the App through any URL of the App, and if a detected installed wallet is found and it has been already granted, App MUST connect to it immediately with no user intervention. (same will happen if I am connected and I reload the page in my browser).</p>
-<h4 id="cw-connect-wallet"><a class="toc-anchor" href="#cw-connect-wallet" >§</a> [CW-CONNECT-WALLET]</h4>
 <ul>
 <li>read the doc of cosmos-kit or any other library you want to use</li>
 <li>detect any installed wallet extension, and put them in the “Detected Installed Wallets” section.</li>
@@ -271,16 +271,20 @@ Right to left text (like Arabic) MUST be supported.
 <li>show available non mobile wallets not detected, in the “Other Wallets” section</li>
 </ul>
 <p><img src="assets/cw-main.png" alt="connect wallet"></p>
-<h4 id="cw-connect-wallet-ext"><a class="toc-anchor" href="#cw-connect-wallet-ext" >§</a> [CW-CONNECT-WALLET-EXT]</h4>
+<h4 id="crypto-wallet-browser-extension"><a class="toc-anchor" href="#crypto-wallet-browser-extension" >§</a> Crypto Wallet - Browser Extension</h4>
+<p>[CW-CONNECT-WALLET-EXT]</p>
 <p>Follow kit instructions and be inventive. Example mockup:</p>
 <p><img src="assets/cw-connect-ext.png" alt="connect wallet ext"></p>
-<h4 id="cw-connect-wallet-mob"><a class="toc-anchor" href="#cw-connect-wallet-mob" >§</a> [CW-CONNECT-WALLET-MOB]</h4>
+<h4 id="crypto-wallet-connect-with-mobile"><a class="toc-anchor" href="#crypto-wallet-connect-with-mobile" >§</a> Crypto Wallet - Connect with Mobile</h4>
+<p>[CW-CONNECT-WALLET-MOB]</p>
 <p>Follow kit instructions and be inventive. Example mockup:</p>
 <p><img src="assets/cw-connect-mobile.png" alt="connect wallet mobile"></p>
-<h4 id="cw-connect-wallet-connected"><a class="toc-anchor" href="#cw-connect-wallet-connected" >§</a> [CW-CONNECT-WALLET-CONNECTED]</h4>
+<h4 id="crypto-wallet-connected"><a class="toc-anchor" href="#crypto-wallet-connected" >§</a> Crypto Wallet - Connected</h4>
+<p>[CW-CONNECT-WALLET-CONNECTED]</p>
 <p>Redirect user to where he was before connecting.</p>
-<p><img src="image.png" alt="just connected"></p>
-<h3 id="account-account"><a class="toc-anchor" href="#account-account" >§</a> [ACCOUNT] Account</h3>
+<p><img src="assets/cw-justconnected.png" alt="just connected"></p>
+<h3 id="account"><a class="toc-anchor" href="#account" >§</a> Account</h3>
+<p>[ACCOUNT-MAIN]</p>
 <p>Account shows balances:</p>
 <ul>
 <li>Main balance</li>
@@ -293,16 +297,23 @@ Right to left text (like Arabic) MUST be supported.
 <li>Trust Deposit &gt; reclaim deposit: to get back claimable deposit, if any. Use [MOD-TD-MSG-3] from verifiable-trust-vpr-spec.</li>
 </ul>
 <p><img src="assets/account.png" alt="account"></p>
-<h4 id="account-get-vna"><a class="toc-anchor" href="#account-get-vna" >§</a> [ACCOUNT-GET-VNA]</h4>
+<h4 id="account-get-vna"><a class="toc-anchor" href="#account-get-vna" >§</a> Account - Get VNA</h4>
 <p>Present a list of services to top-up my verana account.</p>
-<p>The list of the services is configurable in variable <code>VNA-TOPUP-VS</code>. Use this list of service to generate a radio button type select. Selected Verifiable Service MUST be trust resolved to get service name (service credential) and organization name (organization credential) shown in service description text, and MUST show a QR code for connecting to it and passing the vna account address as a parameter. User then scans the service with Hologram and follow instructions to top-up his/her account.</p>
-<p>For now, ignore the credit card icon. We’ll later find a declarative way in service credential(s) to show accepted payment methods.</p>
+<p>The list of the services is configurable in variable <code>VNA-TOPUP-VS</code>. Use this list of service to generate a radio button type select.</p>
+<ul>
+<li>
+<p>[ACCOUNT-GET-VNA-RESOLVE-VS] Selected Verifiable Service MUST be trust resolved to get service name (service credential) and organization name (organization credential) shown in service description text, and get supported payment methods to show related icons.</p>
+</li>
+<li>
+<p>[ACCOUNT-GET-VNA-QR] MUST show a QR code for connecting to it and passing the vna account address as a parameter. User then scans the service with Hologram and follow instructions to top-up his/her account.</p>
+</li>
+</ul>
 <p><img src="assets/account-get-vna.png" alt="account"></p>
-<h4 id="account-td-claim-interests"><a class="toc-anchor" href="#account-td-claim-interests" >§</a> [ACCOUNT-TD-CLAIM-INTERESTS]</h4>
-<p>If interests are available, user sees the text and the cancel / confirm buttons like in mockup. Else, show text “You do not have interests to claim yet.” with no buttons.</p>
+<h4 id="account-claim-interests"><a class="toc-anchor" href="#account-claim-interests" >§</a> Account - Claim Interests</h4>
+<p>[ACCOUNT-TD-CLAIM-INTERESTS] If interests are available, user sees the text and the cancel / confirm buttons like in mockup. Else, show text “You do not have interests to claim yet.” with no buttons.</p>
 <p><img src="assets/account-claim.png" alt="account"></p>
-<h4 id="account-td-reclaim"><a class="toc-anchor" href="#account-td-reclaim" >§</a> [ACCOUNT-TD-RECLAIM]</h4>
-<p>If reclaimable trust deposit is not equal to 0, user sees the text, confirm check, and the cancel / confirm buttons like in mockup. Else, show text “You do not have reclaimable trust deposit.” with no check box and no buttons.</p>
+<h4 id="account-reclaim-td"><a class="toc-anchor" href="#account-reclaim-td" >§</a> Account - reclaim TD</h4>
+<p>[ACCOUNT-TD-RECLAIM] If reclaimable trust deposit is not equal to 0, user sees the text, confirm check, and the cancel / confirm buttons like in mockup. Else, show text “You do not have reclaimable trust deposit.” with no check box and no buttons.</p>
 <p><img src="assets/account-reclaim.png" alt="account"></p>
 <h3 id="did-directory"><a class="toc-anchor" href="#did-directory" >§</a> DID Directory</h3>
 <h4 id="list-my-entries"><a class="toc-anchor" href="#list-my-entries" >§</a> List my entries</h4>
@@ -350,18 +361,17 @@ Right to left text (like Arabic) MUST be supported.
 </li>
 <li><a href="#crypto-wallet-integration" >Crypto Wallet Integration</a>
 <ul>
-<li><a href="#cw-general" >[CW-GENERAL]</a></li>
-<li><a href="#cw-connect-wallet" >[CW-CONNECT-WALLET]</a></li>
-<li><a href="#cw-connect-wallet-ext" >[CW-CONNECT-WALLET-EXT]</a></li>
-<li><a href="#cw-connect-wallet-mob" >[CW-CONNECT-WALLET-MOB]</a></li>
-<li><a href="#cw-connect-wallet-connected" >[CW-CONNECT-WALLET-CONNECTED]</a></li>
+<li><a href="#crypto-wallet-integration-general" >Crypto Wallet Integration - General</a></li>
+<li><a href="#crypto-wallet-browser-extension" >Crypto Wallet - Browser Extension</a></li>
+<li><a href="#crypto-wallet-connect-with-mobile" >Crypto Wallet - Connect with Mobile</a></li>
+<li><a href="#crypto-wallet-connected" >Crypto Wallet - Connected</a></li>
 </ul>
 </li>
-<li><a href="#account-account" >[ACCOUNT] Account</a>
+<li><a href="#account" >Account</a>
 <ul>
-<li><a href="#account-get-vna" >[ACCOUNT-GET-VNA]</a></li>
-<li><a href="#account-td-claim-interests" >[ACCOUNT-TD-CLAIM-INTERESTS]</a></li>
-<li><a href="#account-td-reclaim" >[ACCOUNT-TD-RECLAIM]</a></li>
+<li><a href="#account-get-vna" >Account - Get VNA</a></li>
+<li><a href="#account-claim-interests" >Account - Claim Interests</a></li>
+<li><a href="#account-reclaim-td" >Account - reclaim TD</a></li>
 </ul>
 </li>
 <li><a href="#did-directory" >DID Directory</a>
