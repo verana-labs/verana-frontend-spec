@@ -214,6 +214,13 @@ and 3 use cases:
 
 ![account](assets/account.png)
 
+Header Actions
+
+- [ACCOUNT-HEADER-ACTIONS-QR] show QR of my account address
+- [ACCOUNT-HEADER-ACTIONS-COPY] copy my account address
+- [ACCOUNT-HEADER-ACTIONS-EXPLORE] show in configured explorer (`ADDRESS_EXPLORER`) (opens in new window)
+- [ACCOUNT-HEADER-ACTIONS-LOGOUT] disconnect wallet
+
 #### Account - Get VNA
 
 Present a list of services to top-up my verana account.
