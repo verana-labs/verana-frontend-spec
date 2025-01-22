@@ -60,18 +60,40 @@ The Verana App MUST be delivered as a container.
 |                                | MAINNET_RPC_ENDPOINT                  |                                  | https://rpc.verana.network       |
 |                                | MAINNET_IDX_ENDPOINT                  |                                  | https://idx.verana.network       |
 |                                | MAINNET_CHAIN_ID                      |                                  | vna-mainnet-1       |
+|                                | MAINNET_NAME                          |                                  | Mainnet       |
 |                                | TESTNET_API_ENDPOINT                  |                                  | https://api.testnet.verana.network       |
 |                                | TESTNET_RPC_ENDPOINT                  |                                  | https://rpc.testnet.verana.network       |
 |                                | TESTNET_IDX_ENDPOINT                  |                                  | https://idx.testnet.verana.network       |
 |                                | TESTNET_CHAIN_ID                      |                                  | vna-testnet-1       |
-|                                | DEVNET_API_ENDPOINT                   |                                  | https://api.vna-devnet-main.devnet.verana.network       |
-|                                | DEVNET_RPC_ENDPOINT                   |                                  | https://rpc.vna-devnet-main.devnet.verana.network       |
-|                                | DEVNET_IDX_ENDPOINT                   |                                  | https://idx.vna-devnet-main.devnet.verana.network       |
-|                                | DEVNET_CHAIN_ID                       |                                  | vna-devnet-main       |
+|                                | TESTNET_NAME                          |                                  | Testnet       |
+|                                | DEVNETS__VNA-DEVNET_MAIN__API_ENDPOINT|                                  | https://api.vna-devnet-main.devnet.verana.network       |
+|                                | DEVNETS__VNA-DEVNET_MAIN__RPC_ENDPOINT|                                  | https://rpc.vna-devnet-main.devnet.verana.network       |
+|                                | DEVNETS__VNA-DEVNET_MAIN__IDX_ENDPOINT|                                  | https://idx.vna-devnet-main.devnet.verana.network       |
+|                                | DEVNETS__VNA-DEVNET_MAIN__NAME        |                                  | Vna Devnet Main       |
 |                                | DEFAULT_NETWORK                       |   Default selected network in App    | vna-mainnet-1       |
 | Internationalization           | DEFAULT_LOCALE                        |   Failover locale | en_US       |
 |                                | SUPPORTED_LOCALES                     |                                  | en_US, fr_FR, en:en_US, fr:fr_FR       |
 | Top-up my VNA account          | VNA-TOPUP-VS                          |   List of VSs for top-up         | did:example:123, did:example:456       |
+
+#### General - Networks
+
+[GENERAL-NETWORKS] All network declarations are optionals. Container MUST be configured with at least one network, else it cannot start and MUST log an error. Declared `DEFAULT_NETWORK` MUST exist else container startup MUST fail and log error. There can be only one Mainnet and one Testnet. An unlimited number of devnets can be configured. Add a devnet by creating a `DEVNETS__DEVNET_ID__*` env vars by replacing DEVNET_ID by the devnet id.
+
+Example: to declare 2 devnets with id mydevnet-1 and mydevnet-2, declare:
+
+- for mydevnet-1:
+
+DEVNETS__MYDEVNET_1__API_ENDPOINT=...
+DEVNETS__MYDEVNET_1__RPC_ENDPOINT=...
+DEVNETS__MYDEVNET_1__IDX_ENDPOINT=...
+DEVNETS__MYDEVNET_1__NAME=...
+
+- for mydevnet-2:
+
+DEVNETS__MYDEVNET_2__API_ENDPOINT=...
+DEVNETS__MYDEVNET_2__RPC_ENDPOINT=...
+DEVNETS__MYDEVNET_2__IDX_ENDPOINT=...
+DEVNETS__MYDEVNET_2__NAME=...
 
 #### General - Internationalization
 

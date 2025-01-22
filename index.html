@@ -74,7 +74,7 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 <p>The Verana App provides:</p>
 <ul>
 <li>interaction with the verana network, by querying the ledger and post transactions;</li>
-<li>statistics (ecosystem, blockchain, DTSs).</li>
+<li>statistics: ecosystem, blockchain, Verifiable Services (aka VSs).</li>
 </ul>
 <h2 id="terminology"><a class="toc-anchor" href="#terminology" >§</a> Terminology</h2>
 <p>TBW</p>
@@ -144,6 +144,12 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 </tr>
 <tr>
 <td></td>
+<td>MAINNET_NAME</td>
+<td></td>
+<td>Mainnet</td>
+</tr>
+<tr>
+<td></td>
 <td>TESTNET_API_ENDPOINT</td>
 <td></td>
 <td><a path-0="api.testnet.verana.network"href="https://api.testnet.verana.network" ><span>https://api.testnet.verana.network</span></a></td>
@@ -168,27 +174,33 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 </tr>
 <tr>
 <td></td>
-<td>DEVNET_API_ENDPOINT</td>
+<td>TESTNET_NAME</td>
+<td></td>
+<td>Testnet</td>
+</tr>
+<tr>
+<td></td>
+<td>DEVNETS__VNA-DEVNET_MAIN__API_ENDPOINT</td>
 <td></td>
 <td><a path-0="api.vna-devnet-main.devnet.verana.network"href="https://api.vna-devnet-main.devnet.verana.network" ><span>https://api.vna-devnet-main.devnet.verana.network</span></a></td>
 </tr>
 <tr>
 <td></td>
-<td>DEVNET_RPC_ENDPOINT</td>
+<td>DEVNETS__VNA-DEVNET_MAIN__RPC_ENDPOINT</td>
 <td></td>
 <td><a path-0="rpc.vna-devnet-main.devnet.verana.network"href="https://rpc.vna-devnet-main.devnet.verana.network" ><span>https://rpc.vna-devnet-main.devnet.verana.network</span></a></td>
 </tr>
 <tr>
 <td></td>
-<td>DEVNET_IDX_ENDPOINT</td>
+<td>DEVNETS__VNA-DEVNET_MAIN__IDX_ENDPOINT</td>
 <td></td>
 <td><a path-0="idx.vna-devnet-main.devnet.verana.network"href="https://idx.vna-devnet-main.devnet.verana.network" ><span>https://idx.vna-devnet-main.devnet.verana.network</span></a></td>
 </tr>
 <tr>
 <td></td>
-<td>DEVNET_CHAIN_ID</td>
+<td>DEVNETS__VNA-DEVNET_MAIN__NAME</td>
 <td></td>
-<td>vna-devnet-main</td>
+<td>Vna Devnet Main</td>
 </tr>
 <tr>
 <td></td>
@@ -216,13 +228,23 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 </tr>
 </tbody>
 </table>
-<h4 id="general-settings"><a class="toc-anchor" href="#general-settings" >§</a> General - Settings</h4>
-<p>All settings MUST be persisted in browser session.</p>
-<p>[GENERAL-SETTINGS-NETWORK-DEFAULT] When a new session is created, default selected network MUST be set to <code>DEFAULT_NETWORK</code>.</p>
-<p>[GENERAL-SETTINGS-NETWORK-MANAGE] In Settings/Network, user can see pre-configured networks and their endpoints (Mainnet, Testnet, Devnet). Additionally, user CAN add custom networks and save. Custom networks MUST be persisted in session.</p>
-<p>[GENERAL-SETTINGS-NETWORK-SELECT] User CAN select a network. Network list MUST show Mainnet, Testnet, Devnet, and custom networks.</p>
-<p>[GENERAL-SETTINGS-NETWORK-SELECTED] If selected network is not Mainnet, its name MUST appear in App header.</p>
-<p>[GENERAL-SETTINGS-LOCALE-SELECT] Default to user agent presented locale “Browser Default” which sets <code>settings.locale</code> to  NULL (undefined). User can force a locale here and store it to <code>settings.locale</code>. Locale list MUST contain all supported locales.</p>
+<h4 id="general-networks"><a class="toc-anchor" href="#general-networks" >§</a> General - Networks</h4>
+<p>[GENERAL-NETWORKS] All network declarations are optionals. Container MUST be configured with at least one network, else it cannot start and MUST log an error. Declared <code>DEFAULT_NETWORK</code> MUST exist else container startup MUST fail and log error. There can be only one Mainnet and one Testnet. An unlimited number of devnets can be configured. Add a devnet by creating a <code>DEVNETS__DEVNET_ID__*</code> env vars by replacing DEVNET_ID by the devnet id.</p>
+<p>Example: to declare 2 devnets with id mydevnet-1 and mydevnet-2, declare:</p>
+<ul>
+<li>for mydevnet-1:</li>
+</ul>
+<p>DEVNETS__MYDEVNET_1__API_ENDPOINT=…
+DEVNETS__MYDEVNET_1__RPC_ENDPOINT=…
+DEVNETS__MYDEVNET_1__IDX_ENDPOINT=…
+DEVNETS__MYDEVNET_1__NAME=…</p>
+<ul>
+<li>for mydevnet-2:</li>
+</ul>
+<p>DEVNETS__MYDEVNET_2__API_ENDPOINT=…
+DEVNETS__MYDEVNET_2__RPC_ENDPOINT=…
+DEVNETS__MYDEVNET_2__IDX_ENDPOINT=…
+DEVNETS__MYDEVNET_2__NAME=…</p>
 <h4 id="general-internationalization"><a class="toc-anchor" href="#general-internationalization" >§</a> General - Internationalization</h4>
 <p>[GENERAL-I18N-DEFAULT]</p>
 <p>[GENERAL-I18N-LOCALE-DATA] All texts, labels, rollover texts, images with texts, videos, sounds, text icons MUST be centralized in a directory per locale</p>
@@ -315,6 +337,29 @@ Right to left text (like Arabic) MUST be supported.
 <h4 id="account-reclaim-td"><a class="toc-anchor" href="#account-reclaim-td" >§</a> Account - reclaim TD</h4>
 <p>[ACCOUNT-TD-RECLAIM] If reclaimable trust deposit is not equal to 0, user sees the text, confirm check, and the cancel / confirm buttons like in mockup. Else, show text “You do not have reclaimable trust deposit.” with no check box and no buttons.</p>
 <p><img src="assets/account-reclaim.png" alt="account"></p>
+<h3 id="settings"><a class="toc-anchor" href="#settings" >§</a> Settings</h3>
+<p>All customized settings MUST be persisted in browser session.</p>
+<p>[SETTINGS-MAIN] The Settings page MUST be shown when user hits the settings icon in header. Settings include 2 sections: General and Networks.</p>
+<p><img src="assets/settings.png" alt="settings"></p>
+<h4 id="settings-general"><a class="toc-anchor" href="#settings-general" >§</a> Settings - General</h4>
+<p>[SETTINGS-GENERAL-LOCALE-SELECT] Default to user agent presented locale “Browser Default” which sets <code>settings.locale</code> to  NULL (undefined). User can force a locale here and store it to <code>settings.locale</code>. Locale list MUST contain all supported locales. Changing locale does not require any confirmation and is immediate.</p>
+<p><img src="assets/settings-general.png" alt="alt text"></p>
+<h4 id="network-selection"><a class="toc-anchor" href="#network-selection" >§</a> Network Selection</h4>
+<p>When a new session is created, default selected network MUST be set to <code>DEFAULT_NETWORK</code>.</p>
+<p>[SETTINGS-NETWORKS-LIST] Show the list of existing networks, as defined in container env variables. UI MUST order the networks that way: first, mainnet, if declared, second, testnet, if declared, then devnet(s) ordered by id, if declared, then custom networks, ordered by creation date (newer first).</p>
+<p>[SETTINGS-NETWORKS-BOOT-ERROR] If configured default network does not exist (not declared), container SHOULD NOT start and SHOULD log error message.</p>
+<p><img src="assets/settings-network-selection.png" alt="network selection"></p>
+<h4 id="network-selection-add-network"><a class="toc-anchor" href="#network-selection-add-network" >§</a> Network Selection - Add Network</h4>
+<p>[SETTINGS-NETWORKS-ADD] user MAY add/remove custom networks that are persisted in browser session.</p>
+<p><img src="assets/settings-network-selection-add.png" alt="add network"></p>
+<h4 id="network-selection-added-network"><a class="toc-anchor" href="#network-selection-added-network" >§</a> Network Selection - Added Network</h4>
+<p><img src="assets/settings-network-selection-added.png" alt="added network"></p>
+<h4 id="network-selection-delete-network"><a class="toc-anchor" href="#network-selection-delete-network" >§</a> Network Selection - Delete Network</h4>
+<p>[SETTINGS-NETWORKS-REMOVE] User CAN remove a network only if network is not currently selected.</p>
+<p><img src="assets/settings-network-selection-delete.png" alt="delete network"></p>
+<h4 id="network-selection-non-mainnet-header"><a class="toc-anchor" href="#network-selection-non-mainnet-header" >§</a> Network Selection - Non mainnet - Header</h4>
+<p>[SETTINGS-NETWORKS-HEADER] when selected network is not mainnet, network name and its id MUST be shown in header.</p>
+<p><img src="assets/settings-network-selection-no-mainnet-selected.png" alt="no mainnet"></p>
 <h3 id="did-directory"><a class="toc-anchor" href="#did-directory" >§</a> DID Directory</h3>
 <h4 id="list-my-entries"><a class="toc-anchor" href="#list-my-entries" >§</a> List my entries</h4>
 <h4 id="add-a-did"><a class="toc-anchor" href="#add-a-did" >§</a> Add a DID</h4>
@@ -354,7 +399,7 @@ Right to left text (like Arabic) MUST be supported.
 <ul>
 <li><a href="#general-deployment-general-deployment" >[GENERAL-DEPLOYMENT] General - Deployment</a></li>
 <li><a href="#general-env-general-container-variables" >[GENERAL-ENV] General - Container Variables</a></li>
-<li><a href="#general-settings" >General - Settings</a></li>
+<li><a href="#general-networks" >General - Networks</a></li>
 <li><a href="#general-internationalization" >General - Internationalization</a></li>
 <li><a href="#general-layout-general-layout" >[GENERAL-LAYOUT] General - Layout</a></li>
 </ul>
@@ -372,6 +417,16 @@ Right to left text (like Arabic) MUST be supported.
 <li><a href="#account-get-vna" >Account - Get VNA</a></li>
 <li><a href="#account-claim-interests" >Account - Claim Interests</a></li>
 <li><a href="#account-reclaim-td" >Account - reclaim TD</a></li>
+</ul>
+</li>
+<li><a href="#settings" >Settings</a>
+<ul>
+<li><a href="#settings-general" >Settings - General</a></li>
+<li><a href="#network-selection" >Network Selection</a></li>
+<li><a href="#network-selection-add-network" >Network Selection - Add Network</a></li>
+<li><a href="#network-selection-added-network" >Network Selection - Added Network</a></li>
+<li><a href="#network-selection-delete-network" >Network Selection - Delete Network</a></li>
+<li><a href="#network-selection-non-mainnet-header" >Network Selection - Non mainnet - Header</a></li>
 </ul>
 </li>
 <li><a href="#did-directory" >DID Directory</a>
