@@ -29,7 +29,7 @@ This specification is for the Verana Network frontend, a container-based App eas
 The Verana App provides:
 
 - interaction with the verana network, by querying the ledger and post transactions;
-- statistics (ecosystem, blockchain, DTSs).
+- statistics: ecosystem, blockchain, Verifiable Services (aka VSs).
 
 ## Terminology
 
@@ -72,22 +72,6 @@ The Verana App MUST be delivered as a container.
 | Internationalization           | DEFAULT_LOCALE                        |   Failover locale | en_US       |
 |                                | SUPPORTED_LOCALES                     |                                  | en_US, fr_FR, en:en_US, fr:fr_FR       |
 | Top-up my VNA account          | VNA-TOPUP-VS                          |   List of VSs for top-up         | did:example:123, did:example:456       |
-
-
-
-#### General - Settings
-
-All settings MUST be persisted in browser session.
-
-[GENERAL-SETTINGS-NETWORK-DEFAULT] When a new session is created, default selected network MUST be set to `DEFAULT_NETWORK`.
-
-[GENERAL-SETTINGS-NETWORK-MANAGE] In Settings/Network, user can see pre-configured networks and their endpoints (Mainnet, Testnet, Devnet). Additionally, user CAN add custom networks and save. Custom networks MUST be persisted in session.
-
-[GENERAL-SETTINGS-NETWORK-SELECT] User CAN select a network. Network list MUST show Mainnet, Testnet, Devnet, and custom networks.
-
-[GENERAL-SETTINGS-NETWORK-SELECTED] If selected network is not Mainnet, its name MUST appear in App header.
-
-[GENERAL-SETTINGS-LOCALE-SELECT] Default to user agent presented locale "Browser Default" which sets `settings.locale` to  NULL (undefined). User can force a locale here and store it to `settings.locale`. Locale list MUST contain all supported locales.
 
 #### General - Internationalization
 
@@ -231,6 +215,52 @@ The list of the services is configurable in variable `VNA-TOPUP-VS`. Use this li
 [ACCOUNT-TD-RECLAIM] If reclaimable trust deposit is not equal to 0, user sees the text, confirm check, and the cancel / confirm buttons like in mockup. Else, show text "You do not have reclaimable trust deposit." with no check box and no buttons.
 
 ![account](assets/account-reclaim.png)
+
+### Settings
+
+All customized settings MUST be persisted in browser session.
+
+[SETTINGS-MAIN] The Settings page MUST be shown when user hits the settings icon in header. Settings include 2 sections: General and Networks.
+
+![settings](assets/settings.png)
+
+#### Settings - General
+
+[SETTINGS-GENERAL-LOCALE-SELECT] Default to user agent presented locale "Browser Default" which sets `settings.locale` to  NULL (undefined). User can force a locale here and store it to `settings.locale`. Locale list MUST contain all supported locales. Changing locale does not require any confirmation and is immediate.
+
+![alt text](assets/settings-general.png)
+
+#### Network Selection
+
+When a new session is created, default selected network MUST be set to `DEFAULT_NETWORK`.
+
+[SETTINGS-NETWORKS-LIST] Show the list of existing networks, as defined in container env variables. UI MUST order the networks that way: first, mainnet, if declared, second, testnet, if declared, then devnet(s) ordered by id, if declared, then custom networks, ordered by creation date (newer first).
+
+[SETTINGS-NETWORKS-BOOT-ERROR] If configured default network does not exist (not declared), container SHOULD NOT start and SHOULD log error message.
+
+![network selection](assets/settings-network-selection.png)
+
+#### Network Selection - Add Network
+
+[SETTINGS-NETWORKS-ADD] user MAY add/remove custom networks that are persisted in browser session.
+
+![add network](assets/settings-network-selection-add.png)
+
+#### Network Selection - Added Network
+
+![added network](assets/settings-network-selection-added.png)
+
+#### Network Selection - Delete Network
+
+[SETTINGS-NETWORKS-REMOVE] User CAN remove a network only if network is not currently selected.
+
+![delete network](assets/settings-network-selection-delete.png)
+
+#### Network Selection - Non mainnet - Header
+
+[SETTINGS-NETWORKS-HEADER] when selected network is not mainnet, network name and its id MUST be shown in header.
+
+![no mainnet](assets/settings-network-selection-no-mainnet-selected.png)
 
 ### DID Directory
 

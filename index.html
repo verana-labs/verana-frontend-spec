@@ -216,14 +216,14 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 </tr>
 </tbody>
 </table>
-<h4 id="general-settings-general-settings"><a class="toc-anchor" href="#general-settings-general-settings" >§</a> [GENERAL-SETTINGS] General - Settings</h4>
+<h4 id="general-settings"><a class="toc-anchor" href="#general-settings" >§</a> General - Settings</h4>
 <p>All settings MUST be persisted in browser session.</p>
 <p>[GENERAL-SETTINGS-NETWORK-DEFAULT] When a new session is created, default selected network MUST be set to <code>DEFAULT_NETWORK</code>.</p>
 <p>[GENERAL-SETTINGS-NETWORK-MANAGE] In Settings/Network, user can see pre-configured networks and their endpoints (Mainnet, Testnet, Devnet). Additionally, user CAN add custom networks and save. Custom networks MUST be persisted in session.</p>
 <p>[GENERAL-SETTINGS-NETWORK-SELECT] User CAN select a network. Network list MUST show Mainnet, Testnet, Devnet, and custom networks.</p>
 <p>[GENERAL-SETTINGS-NETWORK-SELECTED] If selected network is not Mainnet, its name MUST appear in App header.</p>
 <p>[GENERAL-SETTINGS-LOCALE-SELECT] Default to user agent presented locale “Browser Default” which sets <code>settings.locale</code> to  NULL (undefined). User can force a locale here and store it to <code>settings.locale</code>. Locale list MUST contain all supported locales.</p>
-<h4 id="general-i18n-general-internationalization"><a class="toc-anchor" href="#general-i18n-general-internationalization" >§</a> [GENERAL-I18N] General - Internationalization</h4>
+<h4 id="general-internationalization"><a class="toc-anchor" href="#general-internationalization" >§</a> General - Internationalization</h4>
 <p>[GENERAL-I18N-DEFAULT]</p>
 <p>[GENERAL-I18N-LOCALE-DATA] All texts, labels, rollover texts, images with texts, videos, sounds, text icons MUST be centralized in a directory per locale</p>
 <p>[GENERAL-I18N-CONTENT-KEY] Each content MUST be identified by its key, <code>content_key</code>.</p>
@@ -354,8 +354,8 @@ Right to left text (like Arabic) MUST be supported.
 <ul>
 <li><a href="#general-deployment-general-deployment" >[GENERAL-DEPLOYMENT] General - Deployment</a></li>
 <li><a href="#general-env-general-container-variables" >[GENERAL-ENV] General - Container Variables</a></li>
-<li><a href="#general-settings-general-settings" >[GENERAL-SETTINGS] General - Settings</a></li>
-<li><a href="#general-i18n-general-internationalization" >[GENERAL-I18N] General - Internationalization</a></li>
+<li><a href="#general-settings" >General - Settings</a></li>
+<li><a href="#general-internationalization" >General - Internationalization</a></li>
 <li><a href="#general-layout-general-layout" >[GENERAL-LAYOUT] General - Layout</a></li>
 </ul>
 </li>
