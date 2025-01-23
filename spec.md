@@ -217,6 +217,29 @@ Redirect user to where he was before connecting.
 
 ![dashboard-not connected](assets/dashboard-connected.png)
 
+### Crypto Transaction execution
+
+[CRYPTO-TRANSACTIONS-DISPLAY-ZONE]
+
+When a transaction is executed, it MUST be always shown as a popup. Transaction info (a text, _renew DID did:example:abc_ in the example below) MUST be passed as a description so that the display text can be shown in the popup.
+
+![display zone](assets/transaction-display-zone.png)
+
+[CRYPTO-TRANSACTIONS-EXEC] When executing a transaction:
+
+- `Transaction in progress` MUST be shown with message "Your transaction _renew DID did:example:abc_ is being broadcasted to the network".
+- when transaction ID is known, message should change to "Your transaction _renew DID did:example:abc_ is being processed [link](https://mintscan.com)" with a link to the transaction explorer.
+
+![pending](assets/transaction-pending.png)
+
+[CRYPTO-TRANSACTIONS-SUCCESS] when transaction is successful:
+
+![success](assets/transaction-success.png)
+
+[CRYPTO-TRANSACTIONS-ERROR] when error:
+
+![error](assets/transaction-error.png)
+
 ### Account
 
 [ACCOUNT-MAIN]
