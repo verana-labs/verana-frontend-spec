@@ -74,7 +74,7 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 <p>The Verana App provides:</p>
 <ul>
 <li>interaction with the verana network, by querying the ledger and post transactions;</li>
-<li>statistics (ecosystem, blockchain, DTSs).</li>
+<li>statistics: ecosystem, blockchain, Verifiable Services (aka VSs).</li>
 </ul>
 <h2 id="terminology"><a class="toc-anchor" href="#terminology" >§</a> Terminology</h2>
 <p>TBW</p>
@@ -144,6 +144,12 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 </tr>
 <tr>
 <td></td>
+<td>MAINNET_NAME</td>
+<td></td>
+<td>Mainnet</td>
+</tr>
+<tr>
+<td></td>
 <td>TESTNET_API_ENDPOINT</td>
 <td></td>
 <td><a path-0="api.testnet.verana.network"href="https://api.testnet.verana.network" ><span>https://api.testnet.verana.network</span></a></td>
@@ -168,27 +174,33 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 </tr>
 <tr>
 <td></td>
-<td>DEVNET_API_ENDPOINT</td>
+<td>TESTNET_NAME</td>
+<td></td>
+<td>Testnet</td>
+</tr>
+<tr>
+<td></td>
+<td>DEVNETS__VNA-DEVNET_MAIN__API_ENDPOINT</td>
 <td></td>
 <td><a path-0="api.vna-devnet-main.devnet.verana.network"href="https://api.vna-devnet-main.devnet.verana.network" ><span>https://api.vna-devnet-main.devnet.verana.network</span></a></td>
 </tr>
 <tr>
 <td></td>
-<td>DEVNET_RPC_ENDPOINT</td>
+<td>DEVNETS__VNA-DEVNET_MAIN__RPC_ENDPOINT</td>
 <td></td>
 <td><a path-0="rpc.vna-devnet-main.devnet.verana.network"href="https://rpc.vna-devnet-main.devnet.verana.network" ><span>https://rpc.vna-devnet-main.devnet.verana.network</span></a></td>
 </tr>
 <tr>
 <td></td>
-<td>DEVNET_IDX_ENDPOINT</td>
+<td>DEVNETS__VNA-DEVNET_MAIN__IDX_ENDPOINT</td>
 <td></td>
 <td><a path-0="idx.vna-devnet-main.devnet.verana.network"href="https://idx.vna-devnet-main.devnet.verana.network" ><span>https://idx.vna-devnet-main.devnet.verana.network</span></a></td>
 </tr>
 <tr>
 <td></td>
-<td>DEVNET_CHAIN_ID</td>
+<td>DEVNETS__VNA-DEVNET_MAIN__NAME</td>
 <td></td>
-<td>vna-devnet-main</td>
+<td>Vna Devnet Main</td>
 </tr>
 <tr>
 <td></td>
@@ -216,14 +228,24 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 </tr>
 </tbody>
 </table>
-<h4 id="general-settings-general-settings"><a class="toc-anchor" href="#general-settings-general-settings" >§</a> [GENERAL-SETTINGS] General - Settings</h4>
-<p>All settings MUST be persisted in browser session.</p>
-<p>[GENERAL-SETTINGS-NETWORK-DEFAULT] When a new session is created, default selected network MUST be set to <code>DEFAULT_NETWORK</code>.</p>
-<p>[GENERAL-SETTINGS-NETWORK-MANAGE] In Settings/Network, user can see pre-configured networks and their endpoints (Mainnet, Testnet, Devnet). Additionally, user CAN add custom networks and save. Custom networks MUST be persisted in session.</p>
-<p>[GENERAL-SETTINGS-NETWORK-SELECT] User CAN select a network. Network list MUST show Mainnet, Testnet, Devnet, and custom networks.</p>
-<p>[GENERAL-SETTINGS-NETWORK-SELECTED] If selected network is not Mainnet, its name MUST appear in App header.</p>
-<p>[GENERAL-SETTINGS-LOCALE-SELECT] Default to user agent presented locale “Browser Default” which sets <code>settings.locale</code> to  NULL (undefined). User can force a locale here and store it to <code>settings.locale</code>. Locale list MUST contain all supported locales.</p>
-<h4 id="general-i18n-general-internationalization"><a class="toc-anchor" href="#general-i18n-general-internationalization" >§</a> [GENERAL-I18N] General - Internationalization</h4>
+<h4 id="general-networks"><a class="toc-anchor" href="#general-networks" >§</a> General - Networks</h4>
+<p>[GENERAL-NETWORKS] All network declarations are optionals. Container MUST be configured with at least one network, else it cannot start and MUST log an error. Declared <code>DEFAULT_NETWORK</code> MUST exist else container startup MUST fail and log error. There can be only one Mainnet and one Testnet. An unlimited number of devnets can be configured. Add a devnet by creating a <code>DEVNETS__DEVNET_ID__*</code> env vars by replacing DEVNET_ID by the devnet id.</p>
+<p>Example: to declare 2 devnets with id mydevnet-1 and mydevnet-2, declare:</p>
+<ul>
+<li>for mydevnet-1:</li>
+</ul>
+<p>DEVNETS__MYDEVNET_1__API_ENDPOINT=…
+DEVNETS__MYDEVNET_1__RPC_ENDPOINT=…
+DEVNETS__MYDEVNET_1__IDX_ENDPOINT=…
+DEVNETS__MYDEVNET_1__NAME=…</p>
+<ul>
+<li>for mydevnet-2:</li>
+</ul>
+<p>DEVNETS__MYDEVNET_2__API_ENDPOINT=…
+DEVNETS__MYDEVNET_2__RPC_ENDPOINT=…
+DEVNETS__MYDEVNET_2__IDX_ENDPOINT=…
+DEVNETS__MYDEVNET_2__NAME=…</p>
+<h4 id="general-internationalization"><a class="toc-anchor" href="#general-internationalization" >§</a> General - Internationalization</h4>
 <p>[GENERAL-I18N-DEFAULT]</p>
 <p>[GENERAL-I18N-LOCALE-DATA] All texts, labels, rollover texts, images with texts, videos, sounds, text icons MUST be centralized in a directory per locale</p>
 <p>[GENERAL-I18N-CONTENT-KEY] Each content MUST be identified by its key, <code>content_key</code>.</p>
@@ -259,6 +281,13 @@ Right to left text (like Arabic) MUST be supported.
 <p><img src="assets/layout-menu-small-opened.png" alt="small menu - opened"></p>
 <p>[GENERAL-LAYOUT-CONTENT] The content zone.</p>
 <p><img src="assets/layout-content-zone.png" alt="content zone"></p>
+<h3 id="menu"><a class="toc-anchor" href="#menu" >§</a> Menu</h3>
+<p>[MENU] Menu entries:</p>
+<ul>
+<li>Dashboard (default page): go to Dashboard  =&gt; [DASHBOARD]</li>
+<li>Account (user MUST be connected to see this menu entry) =&gt; [ACCOUNT-MAIN]</li>
+<li>DID Directory (user MUST be connected to see this menu entry) =&gt; [DIDS-LIST-DIDS-I-CONTROL]</li>
+</ul>
 <h3 id="crypto-wallet-integration"><a class="toc-anchor" href="#crypto-wallet-integration" >§</a> Crypto Wallet Integration</h3>
 <h4 id="crypto-wallet-integration-general"><a class="toc-anchor" href="#crypto-wallet-integration-general" >§</a> Crypto Wallet Integration - General</h4>
 <p>[CW-GENERAL-KIT]  Use a kit such as the <a path-0="github.com"path-1="cosmology-tech"path-2="cosmos-kit"href="https://github.com/cosmology-tech/cosmos-kit" >cosmos-kit repo</a> to easily integrate any wallet to the Verana App.</p>
@@ -283,6 +312,15 @@ Right to left text (like Arabic) MUST be supported.
 <p>[CW-CONNECT-WALLET-CONNECTED]</p>
 <p>Redirect user to where he was before connecting.</p>
 <p><img src="assets/cw-justconnected.png" alt="just connected"></p>
+<h3 id="dashboard"><a class="toc-anchor" href="#dashboard" >§</a> Dashboard</h3>
+<p>[DASHBOARD]</p>
+<ul>
+<li>show the network I am connect to (as selected in settings)</li>
+<li>show the block height</li>
+<li>If user is not connected, show a button “connect wallet”</li>
+</ul>
+<p><img src="assets/dashboard-notconnected.png" alt="dashboard-not connected"></p>
+<p><img src="assets/dashboard-connected.png" alt="dashboard-not connected"></p>
 <h3 id="account"><a class="toc-anchor" href="#account" >§</a> Account</h3>
 <p>[ACCOUNT-MAIN]</p>
 <p>Account shows balances:</p>
@@ -297,6 +335,13 @@ Right to left text (like Arabic) MUST be supported.
 <li>Trust Deposit &gt; reclaim deposit: to get back claimable deposit, if any. Use [MOD-TD-MSG-3] from verifiable-trust-vpr-spec.</li>
 </ul>
 <p><img src="assets/account.png" alt="account"></p>
+<p>Header Actions</p>
+<ul>
+<li>[ACCOUNT-HEADER-ACTIONS-QR] show QR of my account address</li>
+<li>[ACCOUNT-HEADER-ACTIONS-COPY] copy my account address</li>
+<li>[ACCOUNT-HEADER-ACTIONS-EXPLORE] show in configured explorer (<code>ADDRESS_EXPLORER</code>) (opens in new window)</li>
+<li>[ACCOUNT-HEADER-ACTIONS-LOGOUT] disconnect wallet</li>
+</ul>
 <h4 id="account-get-vna"><a class="toc-anchor" href="#account-get-vna" >§</a> Account - Get VNA</h4>
 <p>Present a list of services to top-up my verana account.</p>
 <p>The list of the services is configurable in variable <code>VNA-TOPUP-VS</code>. Use this list of service to generate a radio button type select.</p>
@@ -315,12 +360,104 @@ Right to left text (like Arabic) MUST be supported.
 <h4 id="account-reclaim-td"><a class="toc-anchor" href="#account-reclaim-td" >§</a> Account - reclaim TD</h4>
 <p>[ACCOUNT-TD-RECLAIM] If reclaimable trust deposit is not equal to 0, user sees the text, confirm check, and the cancel / confirm buttons like in mockup. Else, show text “You do not have reclaimable trust deposit.” with no check box and no buttons.</p>
 <p><img src="assets/account-reclaim.png" alt="account"></p>
+<h3 id="settings"><a class="toc-anchor" href="#settings" >§</a> Settings</h3>
+<p>All customized settings MUST be persisted in browser session.</p>
+<p>[SETTINGS-MAIN] The Settings page MUST be shown when user hits the settings icon in header. Settings include 2 sections: General and Networks. Settings MUST work even if user is not connected.</p>
+<p><img src="assets/settings.png" alt="settings"></p>
+<h4 id="settings-general"><a class="toc-anchor" href="#settings-general" >§</a> Settings - General</h4>
+<p>[SETTINGS-GENERAL-LOCALE-SELECT] Default to user agent presented locale “Browser Default” which sets <code>settings.locale</code> to  NULL (undefined). User can force a locale here and store it to <code>settings.locale</code>. Locale list MUST contain all supported locales. Changing locale does not require any confirmation and is immediate.</p>
+<p><img src="assets/settings-general.png" alt="alt text"></p>
+<h4 id="network-selection"><a class="toc-anchor" href="#network-selection" >§</a> Network Selection</h4>
+<p>When a new session is created, default selected network MUST be set to <code>DEFAULT_NETWORK</code>.</p>
+<p>[SETTINGS-NETWORKS-LIST] Show the list of existing networks, as defined in container env variables. UI MUST order the networks that way: first, mainnet, if declared, second, testnet, if declared, then devnet(s) ordered by id, if declared, then custom networks, ordered by creation date (newer first).</p>
+<p>[SETTINGS-NETWORKS-BOOT-ERROR] If configured default network does not exist (not declared), container SHOULD NOT start and SHOULD log error message.</p>
+<p><img src="assets/settings-network-selection.png" alt="network selection"></p>
+<h4 id="network-selection-add-network"><a class="toc-anchor" href="#network-selection-add-network" >§</a> Network Selection - Add Network</h4>
+<p>[SETTINGS-NETWORKS-ADD] user MAY add/remove custom networks that are persisted in browser session.</p>
+<p><img src="assets/settings-network-selection-add.png" alt="add network"></p>
+<h4 id="network-selection-added-network"><a class="toc-anchor" href="#network-selection-added-network" >§</a> Network Selection - Added Network</h4>
+<p><img src="assets/settings-network-selection-added.png" alt="added network"></p>
+<h4 id="network-selection-delete-network"><a class="toc-anchor" href="#network-selection-delete-network" >§</a> Network Selection - Delete Network</h4>
+<p>[SETTINGS-NETWORKS-REMOVE] User CAN remove a network only if network is not currently selected.</p>
+<p><img src="assets/settings-network-selection-delete.png" alt="delete network"></p>
+<h4 id="network-selection-non-mainnet-header"><a class="toc-anchor" href="#network-selection-non-mainnet-header" >§</a> Network Selection - Non mainnet - Header</h4>
+<p>[SETTINGS-NETWORKS-HEADER] when selected network is not mainnet, network name and its id MUST be shown in header.</p>
+<p><img src="assets/settings-network-selection-no-mainnet-selected.png" alt="no mainnet"></p>
 <h3 id="did-directory"><a class="toc-anchor" href="#did-directory" >§</a> DID Directory</h3>
-<h4 id="list-my-entries"><a class="toc-anchor" href="#list-my-entries" >§</a> List my entries</h4>
+<h4 id="list"><a class="toc-anchor" href="#list" >§</a> List</h4>
+<p>[DIDS-LIST-RESULTS]</p>
+<ul>
+<li>search results are clickable and lead to DID info use case.</li>
+<li>search result pagination MUST be managed by frontend, as we can assume a given account will not have tons of DIDs, and because we want to be able to order result by clicking columns.</li>
+</ul>
+<p>When screen size is reduced, column are progressively eliminated, in this order:</p>
+<ul>
+<li>created</li>
+<li>deposit</li>
+<li>controller</li>
+<li>modified</li>
+</ul>
+<p>DID and expire MUST be shown always.</p>
+<p>[DIDS-LIST-QUERY-PERSISTENCE]</p>
+<p>By default, Did query option is preselected with “Show DIDs I control / All DIDs”. When user customizes the query, query is persisted in user session. If user go to DID Info by clicking a result row, and go back to list using the browser “back” or clicks “back to directory” from other DID screens, query is loaded from session. If user hits the “DID Directory” menu, query session is cleared.</p>
+<p>[DIDS-LIST-DIDS-I-CONTROL]</p>
+<ul>
+<li>filters are self-explained (see [MOD-DD-QRY-1] List DIDs in VPR spec)</li>
+</ul>
+<p><img src="assets/dids-search-list-i-control.png" alt="list I control"></p>
+<p>[DIDS-LIST-SEARCH-DID]</p>
+<ul>
+<li>User MUST write the full DID in order to do a search. Due to backend limitations, only the full DID name can be specified, subtext search is not supported. A better version will be specified when idx endpoint will be available.</li>
+<li>If a result is returned, save this DID in session so that we can use auto-completion when user wants to search again the same DID</li>
+<li>If a DID is in session but a new search doesn’t return anything (removed DID), remove it from session.</li>
+</ul>
+<p><img src="assets/dids-search-did.png" alt="alt text"></p>
+<p>[DIDS-LIST-FOR-CONTROLLER]</p>
+<ul>
+<li>controller is mandatory</li>
+<li>other filters are self-explained (see [MOD-DD-QRY-1] List DIDs in VPR spec)</li>
+</ul>
+<p><img src="assets/dids-search-list-for-controller.png" alt="list for controller"></p>
+<h4 id="did-infos"><a class="toc-anchor" href="#did-infos" >§</a> DID Infos</h4>
+<p>[DIDS-DID-INFOS] Show DID infos and Action use cases:</p>
+<ul>
+<li>renew</li>
+<li>touch</li>
+<li>remove</li>
+</ul>
+<p><img src="assets/dids-did-info.png" alt="did infos"></p>
 <h4 id="add-a-did"><a class="toc-anchor" href="#add-a-did" >§</a> Add a DID</h4>
+<p>[DIDS-DID-ADD] Adds a DID to the Directory. Use [MOD-DD-MSG-1-2-2] from VPR spec to estimate approx transaction cost.</p>
+<ul>
+<li>CANCEL: go back to where I was, with the same search filters</li>
+<li>CONFIRM: execute transaction, show transaction status until successful. If successful, go to DID Info.</li>
+<li>back to directory: return to DID directory, with current search filter (stored in session)</li>
+</ul>
+<p><img src="assets/dids-add.png" alt="add a DID"></p>
 <h4 id="renew-a-did"><a class="toc-anchor" href="#renew-a-did" >§</a> Renew a DID</h4>
+<p>[DIDS-DID-RENEW] Renew a DID. Use [MOD-DD-MSG-2-2-2] from VPR spec to estimate approx transaction cost.</p>
+<ul>
+<li>CANCEL: close renew section</li>
+<li>CONFIRM: execute transaction, show transaction status until successful. If successful, refresh DID info data (without reloading page).</li>
+<li>back to directory: return to DID directory, with current search filter (stored in session)</li>
+</ul>
+<p><img src="assets/dids-did-renew.png" alt="renew a DID"></p>
 <h4 id="touch-a-did"><a class="toc-anchor" href="#touch-a-did" >§</a> Touch a DID</h4>
+<p>[DIDS-DID-TOUCH] Renew a DID. Use [MOD-DD-MSG-4-2-2] from VPR spec to estimate approx transaction cost.</p>
+<ul>
+<li>CANCEL: close touch section</li>
+<li>CONFIRM: execute transaction, show transaction status until successful. If successful, refresh DID info data (without reloading page).</li>
+<li>back to directory: return to DID directory, with current search filter (stored in session)</li>
+</ul>
+<p><img src="assets/dids-did-touch.png" alt="touch a DID"></p>
 <h4 id="remove-a-did"><a class="toc-anchor" href="#remove-a-did" >§</a> Remove a DID</h4>
+<p>[DIDS-DID-REMOVE] Renew a DID. Use [MOD-DD-MSG-3-2-2] from VPR spec to estimate approx transaction cost.</p>
+<ul>
+<li>CANCEL: close remove section</li>
+<li>CONFIRM: execute transaction, show transaction status until successful. If successful, return to DID directory, with previous search filter stored in session.</li>
+<li>back to directory: return to DID directory, with current search filter (stored in session)</li>
+</ul>
+<p><img src="assets/dids-did-remove.png" alt="remove a DID"></p>
 
                     </article>    
       
@@ -354,11 +491,12 @@ Right to left text (like Arabic) MUST be supported.
 <ul>
 <li><a href="#general-deployment-general-deployment" >[GENERAL-DEPLOYMENT] General - Deployment</a></li>
 <li><a href="#general-env-general-container-variables" >[GENERAL-ENV] General - Container Variables</a></li>
-<li><a href="#general-settings-general-settings" >[GENERAL-SETTINGS] General - Settings</a></li>
-<li><a href="#general-i18n-general-internationalization" >[GENERAL-I18N] General - Internationalization</a></li>
+<li><a href="#general-networks" >General - Networks</a></li>
+<li><a href="#general-internationalization" >General - Internationalization</a></li>
 <li><a href="#general-layout-general-layout" >[GENERAL-LAYOUT] General - Layout</a></li>
 </ul>
 </li>
+<li><a href="#menu" >Menu</a></li>
 <li><a href="#crypto-wallet-integration" >Crypto Wallet Integration</a>
 <ul>
 <li><a href="#crypto-wallet-integration-general" >Crypto Wallet Integration - General</a></li>
@@ -367,6 +505,7 @@ Right to left text (like Arabic) MUST be supported.
 <li><a href="#crypto-wallet-connected" >Crypto Wallet - Connected</a></li>
 </ul>
 </li>
+<li><a href="#dashboard" >Dashboard</a></li>
 <li><a href="#account" >Account</a>
 <ul>
 <li><a href="#account-get-vna" >Account - Get VNA</a></li>
@@ -374,9 +513,20 @@ Right to left text (like Arabic) MUST be supported.
 <li><a href="#account-reclaim-td" >Account - reclaim TD</a></li>
 </ul>
 </li>
+<li><a href="#settings" >Settings</a>
+<ul>
+<li><a href="#settings-general" >Settings - General</a></li>
+<li><a href="#network-selection" >Network Selection</a></li>
+<li><a href="#network-selection-add-network" >Network Selection - Add Network</a></li>
+<li><a href="#network-selection-added-network" >Network Selection - Added Network</a></li>
+<li><a href="#network-selection-delete-network" >Network Selection - Delete Network</a></li>
+<li><a href="#network-selection-non-mainnet-header" >Network Selection - Non mainnet - Header</a></li>
+</ul>
+</li>
 <li><a href="#did-directory" >DID Directory</a>
 <ul>
-<li><a href="#list-my-entries" >List my entries</a></li>
+<li><a href="#list" >List</a></li>
+<li><a href="#did-infos" >DID Infos</a></li>
 <li><a href="#add-a-did" >Add a DID</a></li>
 <li><a href="#renew-a-did" >Renew a DID</a></li>
 <li><a href="#touch-a-did" >Touch a DID</a></li>
