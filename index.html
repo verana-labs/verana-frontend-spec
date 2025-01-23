@@ -368,11 +368,80 @@ Right to left text (like Arabic) MUST be supported.
 <p>[SETTINGS-NETWORKS-HEADER] when selected network is not mainnet, network name and its id MUST be shown in header.</p>
 <p><img src="assets/settings-network-selection-no-mainnet-selected.png" alt="no mainnet"></p>
 <h3 id="did-directory"><a class="toc-anchor" href="#did-directory" >§</a> DID Directory</h3>
-<h4 id="list-my-entries"><a class="toc-anchor" href="#list-my-entries" >§</a> List my entries</h4>
+<h4 id="list"><a class="toc-anchor" href="#list" >§</a> List</h4>
+<p>[DIDS-LIST-RESULTS]</p>
+<ul>
+<li>search results are clickable and lead to DID info use case.</li>
+<li>search result pagination MUST be managed by frontend, as we can assume a given account will not have tons of DIDs, and because we want to be able to order result by clicking columns.</li>
+</ul>
+<p>When screen size is reduced, column are progressively eliminated, in this order:</p>
+<ul>
+<li>created</li>
+<li>deposit</li>
+<li>controller</li>
+<li>modified</li>
+</ul>
+<p>DID and expire MUST be shown always.</p>
+<p>[DIDS-LIST-QUERY-PERSISTENCE]</p>
+<p>By default, Did query option is preselected with “Show DIDs I control / All DIDs”. When user customizes the query, query is persisted in user session. If user go to DID Info by clicking a result row, and go back to list using the browser “back” or clicks “back to directory” from other DID screens, query is loaded from session. If user hits the “DID Directory” menu, query session is cleared.</p>
+<p>[DIDS-LIST-DIDS-I-CONTROL]</p>
+<ul>
+<li>filters are self-explained (see [MOD-DD-QRY-1] List DIDs in VPR spec)</li>
+</ul>
+<p><img src="assets/dids-search-list-i-control.png" alt="list I control"></p>
+<p>[DIDS-LIST-SEARCH-DID]</p>
+<ul>
+<li>User MUST write the full DID in order to do a search. Due to backend limitations, only the full DID name can be specified, subtext search is not supported. A better version will be specified when idx endpoint will be available.</li>
+<li>If a result is returned, save this DID in session so that we can use auto-completion when user wants to search again the same DID</li>
+<li>If a DID is in session but a new search doesn’t return anything (removed DID), remove it from session.</li>
+</ul>
+<p><img src="assets/dids-search-did.png" alt="alt text"></p>
+<p>[DIDS-LIST-FOR-CONTROLLER]</p>
+<ul>
+<li>controller is mandatory</li>
+<li>other filters are self-explained (see [MOD-DD-QRY-1] List DIDs in VPR spec)</li>
+</ul>
+<p><img src="assets/dids-search-list-for-controller.png" alt="list for controller"></p>
+<h4 id="did-infos"><a class="toc-anchor" href="#did-infos" >§</a> DID Infos</h4>
+<p>[DIDS-DID-INFOS] Show DID infos and Action use cases:</p>
+<ul>
+<li>renew</li>
+<li>touch</li>
+<li>remove</li>
+</ul>
+<p><img src="assets/dids-did-info.png" alt="did infos"></p>
 <h4 id="add-a-did"><a class="toc-anchor" href="#add-a-did" >§</a> Add a DID</h4>
+<p>[DIDS-DID-ADD] Adds a DID to the Directory. Use [MOD-DD-MSG-1-2-2] from VPR spec to estimate approx transaction cost.</p>
+<ul>
+<li>CANCEL: go back to where I was, with the same search filters</li>
+<li>CONFIRM: execute transaction, show transaction status until successful. If successful, go to DID Info.</li>
+<li>back to directory: return to DID directory, with current search filter (stored in session)</li>
+</ul>
+<p><img src="assets/dids-add.png" alt="add a DID"></p>
 <h4 id="renew-a-did"><a class="toc-anchor" href="#renew-a-did" >§</a> Renew a DID</h4>
+<p>[DIDS-DID-RENEW] Renew a DID. Use [MOD-DD-MSG-2-2-2] from VPR spec to estimate approx transaction cost.</p>
+<ul>
+<li>CANCEL: close renew section</li>
+<li>CONFIRM: execute transaction, show transaction status until successful. If successful, refresh DID info data (without reloading page).</li>
+<li>back to directory: return to DID directory, with current search filter (stored in session)</li>
+</ul>
+<p><img src="assets/dids-did-renew.png" alt="renew a DID"></p>
 <h4 id="touch-a-did"><a class="toc-anchor" href="#touch-a-did" >§</a> Touch a DID</h4>
+<p>[DIDS-DID-TOUCH] Renew a DID. Use [MOD-DD-MSG-4-2-2] from VPR spec to estimate approx transaction cost.</p>
+<ul>
+<li>CANCEL: close touch section</li>
+<li>CONFIRM: execute transaction, show transaction status until successful. If successful, refresh DID info data (without reloading page).</li>
+<li>back to directory: return to DID directory, with current search filter (stored in session)</li>
+</ul>
+<p><img src="assets/dids-did-touch.png" alt="touch a DID"></p>
 <h4 id="remove-a-did"><a class="toc-anchor" href="#remove-a-did" >§</a> Remove a DID</h4>
+<p>[DIDS-DID-REMOVE] Renew a DID. Use [MOD-DD-MSG-3-2-2] from VPR spec to estimate approx transaction cost.</p>
+<ul>
+<li>CANCEL: close remove section</li>
+<li>CONFIRM: execute transaction, show transaction status until successful. If successful, return to DID directory, with previous search filter stored in session.</li>
+<li>back to directory: return to DID directory, with current search filter (stored in session)</li>
+</ul>
+<p><img src="assets/dids-did-remove.png" alt="remove a DID"></p>
 
                     </article>    
       
@@ -438,7 +507,8 @@ Right to left text (like Arabic) MUST be supported.
 </li>
 <li><a href="#did-directory" >DID Directory</a>
 <ul>
-<li><a href="#list-my-entries" >List my entries</a></li>
+<li><a href="#list" >List</a></li>
+<li><a href="#did-infos" >DID Infos</a></li>
 <li><a href="#add-a-did" >Add a DID</a></li>
 <li><a href="#renew-a-did" >Renew a DID</a></li>
 <li><a href="#touch-a-did" >Touch a DID</a></li>

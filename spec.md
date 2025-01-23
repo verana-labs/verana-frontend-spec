@@ -293,12 +293,93 @@ When a new session is created, default selected network MUST be set to `DEFAULT_
 
 ### DID Directory
 
-#### List my entries
+#### List
+
+[DIDS-LIST-RESULTS]
+
+- search results are clickable and lead to DID info use case.
+- search result pagination MUST be managed by frontend, as we can assume a given account will not have tons of DIDs, and because we want to be able to order result by clicking columns.
+
+When screen size is reduced, column are progressively eliminated, in this order:
+
+- created
+- deposit
+- controller
+- modified
+
+DID and expire MUST be shown always.
+
+[DIDS-LIST-QUERY-PERSISTENCE]
+
+By default, Did query option is preselected with "Show DIDs I control / All DIDs". When user customizes the query, query is persisted in user session. If user go to DID Info by clicking a result row, and go back to list using the browser "back" or clicks "back to directory" from other DID screens, query is loaded from session. If user hits the "DID Directory" menu, query session is cleared.  
+
+[DIDS-LIST-DIDS-I-CONTROL]
+
+- filters are self-explained (see [MOD-DD-QRY-1] List DIDs in VPR spec)
+
+![list I control](assets/dids-search-list-i-control.png)
+
+[DIDS-LIST-SEARCH-DID]
+
+- User MUST write the full DID in order to do a search. Due to backend limitations, only the full DID name can be specified, subtext search is not supported. A better version will be specified when idx endpoint will be available.
+- If a result is returned, save this DID in session so that we can use auto-completion when user wants to search again the same DID
+- If a DID is in session but a new search doesn't return anything (removed DID), remove it from session.
+
+![alt text](assets/dids-search-did.png)
+
+[DIDS-LIST-FOR-CONTROLLER]
+
+- controller is mandatory
+- other filters are self-explained (see [MOD-DD-QRY-1] List DIDs in VPR spec)
+
+![list for controller](assets/dids-search-list-for-controller.png)
+
+#### DID Infos
+
+[DIDS-DID-INFOS] Show DID infos and Action use cases:
+
+- renew
+- touch
+- remove
+
+![did infos](assets/dids-did-info.png)
 
 #### Add a DID
 
+[DIDS-DID-ADD] Adds a DID to the Directory. Use [MOD-DD-MSG-1-2-2] from VPR spec to estimate approx transaction cost.
+
+- CANCEL: go back to where I was, with the same search filters
+- CONFIRM: execute transaction, show transaction status until successful. If successful, go to DID Info.
+- back to directory: return to DID directory, with current search filter (stored in session)
+
+![add a DID](assets/dids-add.png)
+
 #### Renew a DID
+
+[DIDS-DID-RENEW] Renew a DID. Use [MOD-DD-MSG-2-2-2] from VPR spec to estimate approx transaction cost.
+
+- CANCEL: close renew section
+- CONFIRM: execute transaction, show transaction status until successful. If successful, refresh DID info data (without reloading page).
+- back to directory: return to DID directory, with current search filter (stored in session)
+
+![renew a DID](assets/dids-did-renew.png)
 
 #### Touch a DID
 
+[DIDS-DID-TOUCH] Renew a DID. Use [MOD-DD-MSG-4-2-2] from VPR spec to estimate approx transaction cost.
+
+- CANCEL: close touch section
+- CONFIRM: execute transaction, show transaction status until successful. If successful, refresh DID info data (without reloading page).
+- back to directory: return to DID directory, with current search filter (stored in session)
+
+![touch a DID](assets/dids-did-touch.png)
+
 #### Remove a DID
+
+[DIDS-DID-REMOVE] Renew a DID. Use [MOD-DD-MSG-3-2-2] from VPR spec to estimate approx transaction cost.
+
+- CANCEL: close remove section
+- CONFIRM: execute transaction, show transaction status until successful. If successful, return to DID directory, with previous search filter stored in session.
+- back to directory: return to DID directory, with current search filter (stored in session)
+
+![remove a DID](assets/dids-did-remove.png)
