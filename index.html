@@ -150,6 +150,12 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 </tr>
 <tr>
 <td></td>
+<td>MAINNET_TOPUP_VS</td>
+<td>List of VSs for top-up</td>
+<td>did:example:123, did:example:456</td>
+</tr>
+<tr>
+<td></td>
 <td>TESTNET_API_ENDPOINT</td>
 <td></td>
 <td><a path-0="api.testnet.verana.network"href="https://api.testnet.verana.network" ><span>https://api.testnet.verana.network</span></a></td>
@@ -180,6 +186,12 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 </tr>
 <tr>
 <td></td>
+<td>TESTNET_TOPUP_VS</td>
+<td>List of VSs for top-up</td>
+<td>did:example:123, did:example:456</td>
+</tr>
+<tr>
+<td></td>
 <td>DEVNETS__VNA-DEVNET_MAIN__API_ENDPOINT</td>
 <td></td>
 <td><a path-0="api.vna-devnet-main.devnet.verana.network"href="https://api.vna-devnet-main.devnet.verana.network" ><span>https://api.vna-devnet-main.devnet.verana.network</span></a></td>
@@ -204,6 +216,12 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 </tr>
 <tr>
 <td></td>
+<td>DEVNETS__VNA-DEVNET_MAIN__TOPUP_VS</td>
+<td>List of VSs for top-up</td>
+<td>did:example:123, did:example:456</td>
+</tr>
+<tr>
+<td></td>
 <td>DEFAULT_NETWORK</td>
 <td>Default selected network in App</td>
 <td>vna-mainnet-1</td>
@@ -220,12 +238,6 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 <td></td>
 <td>en_US, fr_FR, en:en_US, fr:fr_FR</td>
 </tr>
-<tr>
-<td>Top-up my VNA account</td>
-<td>VNA-TOPUP-VS</td>
-<td>List of VSs for top-up</td>
-<td>did:example:123, did:example:456</td>
-</tr>
 </tbody>
 </table>
 <h4 id="general-networks"><a class="toc-anchor" href="#general-networks" >§</a> General - Networks</h4>
@@ -237,14 +249,16 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 <p>DEVNETS__MYDEVNET_1__API_ENDPOINT=…
 DEVNETS__MYDEVNET_1__RPC_ENDPOINT=…
 DEVNETS__MYDEVNET_1__IDX_ENDPOINT=…
-DEVNETS__MYDEVNET_1__NAME=…</p>
+DEVNETS__MYDEVNET_1__NAME=…
+DEVNETS__MYDEVNET_1__TOPUP_VS=…</p>
 <ul>
 <li>for mydevnet-2:</li>
 </ul>
 <p>DEVNETS__MYDEVNET_2__API_ENDPOINT=…
 DEVNETS__MYDEVNET_2__RPC_ENDPOINT=…
 DEVNETS__MYDEVNET_2__IDX_ENDPOINT=…
-DEVNETS__MYDEVNET_2__NAME=…</p>
+DEVNETS__MYDEVNET_2__NAME=…
+DEVNETS__MYDEVNET_2__TOPUP_VS=…</p>
 <h4 id="general-internationalization"><a class="toc-anchor" href="#general-internationalization" >§</a> General - Internationalization</h4>
 <p>[GENERAL-I18N-DEFAULT]</p>
 <p>[GENERAL-I18N-LOCALE-DATA] All texts, labels, rollover texts, images with texts, videos, sounds, text icons MUST be centralized in a directory per locale</p>
@@ -358,7 +372,7 @@ Right to left text (like Arabic) MUST be supported.
 </ul>
 <h4 id="account-get-vna"><a class="toc-anchor" href="#account-get-vna" >§</a> Account - Get VNA</h4>
 <p>Present a list of services to top-up my verana account.</p>
-<p>The list of the services is configurable in variable <code>VNA-TOPUP-VS</code>. Use this list of service to generate a radio button type select.</p>
+<p>The list of the services is configurable in variables <code>*TOPUP-VS</code> which depends on network. Use this list of service to generate a radio button type select.</p>
 <ul>
 <li>
 <p>[ACCOUNT-GET-VNA-RESOLVE-VS] Selected Verifiable Service MUST be trust resolved to get service name (service credential) and organization name (organization credential) shown in service description text, and get supported payment methods to show related icons.</p>

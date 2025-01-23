@@ -61,19 +61,21 @@ The Verana App MUST be delivered as a container.
 |                                | MAINNET_IDX_ENDPOINT                  |                                  | https://idx.verana.network       |
 |                                | MAINNET_CHAIN_ID                      |                                  | vna-mainnet-1       |
 |                                | MAINNET_NAME                          |                                  | Mainnet       |
+|                                | MAINNET_TOPUP_VS                      |   List of VSs for top-up       | did:example:123, did:example:456       |
 |                                | TESTNET_API_ENDPOINT                  |                                  | https://api.testnet.verana.network       |
 |                                | TESTNET_RPC_ENDPOINT                  |                                  | https://rpc.testnet.verana.network       |
 |                                | TESTNET_IDX_ENDPOINT                  |                                  | https://idx.testnet.verana.network       |
 |                                | TESTNET_CHAIN_ID                      |                                  | vna-testnet-1       |
 |                                | TESTNET_NAME                          |                                  | Testnet       |
+|                                | TESTNET_TOPUP_VS                      |   List of VSs for top-up       | did:example:123, did:example:456       |
 |                                | DEVNETS__VNA-DEVNET_MAIN__API_ENDPOINT|                                  | https://api.vna-devnet-main.devnet.verana.network       |
 |                                | DEVNETS__VNA-DEVNET_MAIN__RPC_ENDPOINT|                                  | https://rpc.vna-devnet-main.devnet.verana.network       |
 |                                | DEVNETS__VNA-DEVNET_MAIN__IDX_ENDPOINT|                                  | https://idx.vna-devnet-main.devnet.verana.network       |
 |                                | DEVNETS__VNA-DEVNET_MAIN__NAME        |                                  | Vna Devnet Main       |
+|                                | DEVNETS__VNA-DEVNET_MAIN__TOPUP_VS    |   List of VSs for top-up       | did:example:123, did:example:456       |
 |                                | DEFAULT_NETWORK                       |   Default selected network in App    | vna-mainnet-1       |
 | Internationalization           | DEFAULT_LOCALE                        |   Failover locale | en_US       |
 |                                | SUPPORTED_LOCALES                     |                                  | en_US, fr_FR, en:en_US, fr:fr_FR       |
-| Top-up my VNA account          | VNA-TOPUP-VS                          |   List of VSs for top-up         | did:example:123, did:example:456       |
 
 #### General - Networks
 
@@ -87,6 +89,7 @@ DEVNETS__MYDEVNET_1__API_ENDPOINT=...
 DEVNETS__MYDEVNET_1__RPC_ENDPOINT=...
 DEVNETS__MYDEVNET_1__IDX_ENDPOINT=...
 DEVNETS__MYDEVNET_1__NAME=...
+DEVNETS__MYDEVNET_1__TOPUP_VS=...
 
 - for mydevnet-2:
 
@@ -94,6 +97,8 @@ DEVNETS__MYDEVNET_2__API_ENDPOINT=...
 DEVNETS__MYDEVNET_2__RPC_ENDPOINT=...
 DEVNETS__MYDEVNET_2__IDX_ENDPOINT=...
 DEVNETS__MYDEVNET_2__NAME=...
+DEVNETS__MYDEVNET_2__TOPUP_VS=...
+
 
 #### General - Internationalization
 
@@ -268,7 +273,7 @@ Header Actions
 
 Present a list of services to top-up my verana account.
 
-The list of the services is configurable in variable `VNA-TOPUP-VS`. Use this list of service to generate a radio button type select. 
+The list of the services is configurable in variables `*TOPUP-VS` which depends on network. Use this list of service to generate a radio button type select. 
 
 - [ACCOUNT-GET-VNA-RESOLVE-VS] Selected Verifiable Service MUST be trust resolved to get service name (service credential) and organization name (organization credential) shown in service description text, and get supported payment methods to show related icons.
 
