@@ -156,6 +156,14 @@ Right to left text (like Arabic) MUST be supported.
 
 ![content zone](assets/layout-content-zone.png)
 
+### Menu
+
+[MENU] Menu entries:
+
+- Dashboard (default page): go to Dashboard  => [DASHBOARD]
+- Account (user MUST be connected to see this menu entry) => [ACCOUNT-MAIN]
+- DID Directory (user MUST be connected to see this menu entry) => [DIDS-LIST-DIDS-I-CONTROL]
+
 ### Crypto Wallet Integration
 
 #### Crypto Wallet Integration - General
@@ -196,6 +204,18 @@ Follow kit instructions and be inventive. Example mockup:
 Redirect user to where he was before connecting.
 
 ![just connected](assets/cw-justconnected.png)
+
+### Dashboard
+
+[DASHBOARD]
+
+- show the network I am connect to (as selected in settings)
+- show the block height
+- If user is not connected, show a button "connect wallet"
+
+![dashboard-not connected](assets/dashboard-notconnected.png)
+
+![dashboard-not connected](assets/dashboard-connected.png)
 
 ### Account
 
@@ -249,7 +269,7 @@ The list of the services is configurable in variable `VNA-TOPUP-VS`. Use this li
 
 All customized settings MUST be persisted in browser session.
 
-[SETTINGS-MAIN] The Settings page MUST be shown when user hits the settings icon in header. Settings include 2 sections: General and Networks.
+[SETTINGS-MAIN] The Settings page MUST be shown when user hits the settings icon in header. Settings include 2 sections: General and Networks. Settings MUST work even if user is not connected.
 
 ![settings](assets/settings.png)
 

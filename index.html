@@ -281,6 +281,13 @@ Right to left text (like Arabic) MUST be supported.
 <p><img src="assets/layout-menu-small-opened.png" alt="small menu - opened"></p>
 <p>[GENERAL-LAYOUT-CONTENT] The content zone.</p>
 <p><img src="assets/layout-content-zone.png" alt="content zone"></p>
+<h3 id="menu"><a class="toc-anchor" href="#menu" >§</a> Menu</h3>
+<p>[MENU] Menu entries:</p>
+<ul>
+<li>Dashboard (default page): go to Dashboard  =&gt; [DASHBOARD]</li>
+<li>Account (user MUST be connected to see this menu entry) =&gt; [ACCOUNT-MAIN]</li>
+<li>DID Directory (user MUST be connected to see this menu entry) =&gt; [DIDS-LIST-DIDS-I-CONTROL]</li>
+</ul>
 <h3 id="crypto-wallet-integration"><a class="toc-anchor" href="#crypto-wallet-integration" >§</a> Crypto Wallet Integration</h3>
 <h4 id="crypto-wallet-integration-general"><a class="toc-anchor" href="#crypto-wallet-integration-general" >§</a> Crypto Wallet Integration - General</h4>
 <p>[CW-GENERAL-KIT]  Use a kit such as the <a path-0="github.com"path-1="cosmology-tech"path-2="cosmos-kit"href="https://github.com/cosmology-tech/cosmos-kit" >cosmos-kit repo</a> to easily integrate any wallet to the Verana App.</p>
@@ -305,6 +312,15 @@ Right to left text (like Arabic) MUST be supported.
 <p>[CW-CONNECT-WALLET-CONNECTED]</p>
 <p>Redirect user to where he was before connecting.</p>
 <p><img src="assets/cw-justconnected.png" alt="just connected"></p>
+<h3 id="dashboard"><a class="toc-anchor" href="#dashboard" >§</a> Dashboard</h3>
+<p>[DASHBOARD]</p>
+<ul>
+<li>show the network I am connect to (as selected in settings)</li>
+<li>show the block height</li>
+<li>If user is not connected, show a button “connect wallet”</li>
+</ul>
+<p><img src="assets/dashboard-notconnected.png" alt="dashboard-not connected"></p>
+<p><img src="assets/dashboard-connected.png" alt="dashboard-not connected"></p>
 <h3 id="account"><a class="toc-anchor" href="#account" >§</a> Account</h3>
 <p>[ACCOUNT-MAIN]</p>
 <p>Account shows balances:</p>
@@ -346,7 +362,7 @@ Right to left text (like Arabic) MUST be supported.
 <p><img src="assets/account-reclaim.png" alt="account"></p>
 <h3 id="settings"><a class="toc-anchor" href="#settings" >§</a> Settings</h3>
 <p>All customized settings MUST be persisted in browser session.</p>
-<p>[SETTINGS-MAIN] The Settings page MUST be shown when user hits the settings icon in header. Settings include 2 sections: General and Networks.</p>
+<p>[SETTINGS-MAIN] The Settings page MUST be shown when user hits the settings icon in header. Settings include 2 sections: General and Networks. Settings MUST work even if user is not connected.</p>
 <p><img src="assets/settings.png" alt="settings"></p>
 <h4 id="settings-general"><a class="toc-anchor" href="#settings-general" >§</a> Settings - General</h4>
 <p>[SETTINGS-GENERAL-LOCALE-SELECT] Default to user agent presented locale “Browser Default” which sets <code>settings.locale</code> to  NULL (undefined). User can force a locale here and store it to <code>settings.locale</code>. Locale list MUST contain all supported locales. Changing locale does not require any confirmation and is immediate.</p>
@@ -480,6 +496,7 @@ Right to left text (like Arabic) MUST be supported.
 <li><a href="#general-layout-general-layout" >[GENERAL-LAYOUT] General - Layout</a></li>
 </ul>
 </li>
+<li><a href="#menu" >Menu</a></li>
 <li><a href="#crypto-wallet-integration" >Crypto Wallet Integration</a>
 <ul>
 <li><a href="#crypto-wallet-integration-general" >Crypto Wallet Integration - General</a></li>
@@ -488,6 +505,7 @@ Right to left text (like Arabic) MUST be supported.
 <li><a href="#crypto-wallet-connected" >Crypto Wallet - Connected</a></li>
 </ul>
 </li>
+<li><a href="#dashboard" >Dashboard</a></li>
 <li><a href="#account" >Account</a>
 <ul>
 <li><a href="#account-get-vna" >Account - Get VNA</a></li>
