@@ -321,6 +321,20 @@ Right to left text (like Arabic) MUST be supported.
 </ul>
 <p><img src="assets/dashboard-notconnected.png" alt="dashboard-not connected"></p>
 <p><img src="assets/dashboard-connected.png" alt="dashboard-not connected"></p>
+<h3 id="crypto-transaction-execution"><a class="toc-anchor" href="#crypto-transaction-execution" >§</a> Crypto Transaction execution</h3>
+<p>[CRYPTO-TRANSACTIONS-DISPLAY-ZONE]</p>
+<p>When a transaction is executed, it MUST be always shown as a popup. Transaction info (a text, <em>renew DID did:example:abc</em> in the example below) MUST be passed as a description so that the display text can be shown in the popup.</p>
+<p><img src="assets/transaction-display-zone.png" alt="display zone"></p>
+<p>[CRYPTO-TRANSACTIONS-EXEC] When executing a transaction:</p>
+<ul>
+<li><code>Transaction in progress</code> MUST be shown with message “Your transaction <em>renew DID did:example:abc</em> is being broadcasted to the network”.</li>
+<li>when transaction ID is known, message should change to “Your transaction <em>renew DID did:example:abc</em> is being processed <a path-0="mintscan.com"href="https://mintscan.com" >link</a>” with a link to the transaction explorer.</li>
+</ul>
+<p><img src="assets/transaction-pending.png" alt="pending"></p>
+<p>[CRYPTO-TRANSACTIONS-SUCCESS] when transaction is successful:</p>
+<p><img src="assets/transaction-success.png" alt="success"></p>
+<p>[CRYPTO-TRANSACTIONS-ERROR] when error:</p>
+<p><img src="assets/transaction-error.png" alt="error"></p>
 <h3 id="account"><a class="toc-anchor" href="#account" >§</a> Account</h3>
 <p>[ACCOUNT-MAIN]</p>
 <p>Account shows balances:</p>
@@ -506,6 +520,7 @@ Right to left text (like Arabic) MUST be supported.
 </ul>
 </li>
 <li><a href="#dashboard" >Dashboard</a></li>
+<li><a href="#crypto-transaction-execution" >Crypto Transaction execution</a></li>
 <li><a href="#account" >Account</a>
 <ul>
 <li><a href="#account-get-vna" >Account - Get VNA</a></li>
