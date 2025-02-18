@@ -26,7 +26,40 @@ This specification is for the Verana Network frontend, a container-based App eas
 
 ## Introduction
 
-The Verana App provides:
+*This section is non-normative.*
+
+### What is Verana?
+
+Verana is the Verifiable Trust layer that makes the Internet verifiable.
+
+Like the DNS (Domain Name System) provides a way of resolving domain names, Verana provides a way of resolving, verifying, and enforcing trust.
+
+- DNS: Resolve domain names
+- Verana: Resolve Proof of Trust
+
+### Benefits
+
+Fraud and Identity theft are eradicated.
+
+#### For the End User
+
+- identify, verify, and get a proof of who is the provider of a service before connecting to it.
+- collect verifiable credentials from verified service providers.
+- use your credentials to prove your identity, age, address, diplomas, avatar ownership. Use selective disclosure to only share essential information and protect your data.
+- anonymously register and connect to services, without revealing public identifier(s) such as email or phone number, and without a password.
+- stop using public identifiers and control who can contact you. Revoke connections at will.
+
+#### For Service Providers
+
+- get your organization or person verifiable credential and link all your services to your credential so that users can clearly identify you and know they are connecting to the right service.
+- ease user onboarding by removing registration forms and passwords.
+- fast verify user's identity (and other claims) with no hassle.
+- create hubs, meeting rooms, or other services protected by identity: users must present an identity credential to enter.
+- issue Verifiable Credentials to your users and get paid when other organizations request presentation of the credential.
+- build a verifiable trust reputation and be recognized.
+- be searchable: add your services to the verifiable service directory
+
+### The Verana App provides:
 
 - interaction with the verana network, by querying the ledger and post transactions;
 - statistics: ecosystem, blockchain, Verifiable Services (aka VSs).
