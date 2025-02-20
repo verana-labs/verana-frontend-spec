@@ -30,12 +30,48 @@ This specification is for the Verana Network frontend, a container-based App eas
 
 ### What is Verana?
 
-Verana is the Verifiable Trust layer that makes the Internet verifiable.
+Verana is the Zero Trust layer that makes the Internet verifiable.
 
-Like the DNS (Domain Name System) provides a way of resolving domain names, Verana provides a way of resolving, verifying, and enforcing trust.
+Like the DNS (Domain Name System) provides a way of resolving domain names, Verana provides a way of resolving, verifying, and proving trust.
 
 - DNS: Resolve domain names
 - Verana: Resolve Proof of Trust
+
+Verana is a public, decentralized ecosystem run by volunteers around the world. Anyone can participate and contribute to the ecosystem.
+
+Participants build a Proof-of-Trust reputation over time, and are financially rewarded by the network for their trustworthiness.
+
+### Based on Verifiable Credentials and GDPR compliant
+
+### The Verana Foundation
+
+As a non-profit organization, the Verana Foundation's mission is to provide the required bricks for enabling a Zero Trust layer: governance and leadership, open source software, and a verifiable trust registry of essential credential schemas.
+
+#### Governance and Leadership
+
+The Verana Foundation is governed and leaded by its contributors, participants, and ambassadors.
+
+
+#### Software
+
+Open source software and modules that implement the [Verifiable Trust specification](https://verana-labs.github.io/verifiable-trust-spec/)
+
+#### Essential Credential Schemas (ECS) Trust Registry
+
+a Trust Registry of Essential Credential Schemas:
+
+- Organization,
+- Person,
+- Service,
+- User Agent.
+
+These credential schemas provide the required basic features of the Zero Trust layer, that can be queried by users, organizations, user agents...:
+
+- who is the organization or person running this service?
+- what is the name of this service? What is the minimum required age for connecting to this service?
+- is this user agent compliant with the Verifiable Trust specification?
+
+A trust registry governance framework defines the rules for participating in the ECSs as credential Issuer. Provided that they comply with the Governance Framework, any organization can join the ECS Trust Registry.
 
 ### Benefits
 
@@ -149,12 +185,12 @@ Get `locale` from `settings.locale` from user settings. If null, use `locale` fr
 - if not found, try to use the default locale for the same language. So if `locale` is equal to `en_GB`, look for entry en:... in `SUPPORTED_LOCALES` to get default locale for `en`.
 - else fallback to `DEFAULT_LOCALE` (normally `en_US`).
 
-:::Note
+:::note
 At least the content of the default locale MUST be provided by development/design team.
 Default locale for development MUST be en_US.
 :::
 
-:::Warn
+:::warn
 Right to left text (like Arabic) MUST be supported.
 :::
 

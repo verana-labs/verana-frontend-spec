@@ -73,12 +73,36 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 <h2 id="introduction"><a class="toc-anchor" href="#introduction" >§</a> Introduction</h2>
 <p><em>This section is non-normative.</em></p>
 <h3 id="what-is-verana"><a class="toc-anchor" href="#what-is-verana" >§</a> What is Verana?</h3>
-<p>Verana is the Verifiable Trust layer that makes the Internet verifiable.</p>
-<p>Like the DNS (Domain Name System) provides a way of resolving domain names, Verana provides a way of resolving, verifying, and enforcing trust.</p>
+<p>Verana is the Zero Trust layer that makes the Internet verifiable.</p>
+<p>Like the DNS (Domain Name System) provides a way of resolving domain names, Verana provides a way of resolving, verifying, and proving trust.</p>
 <ul>
 <li>DNS: Resolve domain names</li>
 <li>Verana: Resolve Proof of Trust</li>
 </ul>
+<p>Verana is a public, decentralized ecosystem run by volunteers around the world. Anyone can participate and contribute to the ecosystem.</p>
+<p>Participants build a Proof-of-Trust reputation over time, and are financially rewarded by the network for their trustworthiness.</p>
+<h3 id="based-on-verifiable-credentials-and-gdpr-compliant"><a class="toc-anchor" href="#based-on-verifiable-credentials-and-gdpr-compliant" >§</a> Based on Verifiable Credentials and GDPR compliant</h3>
+<h3 id="the-verana-foundation"><a class="toc-anchor" href="#the-verana-foundation" >§</a> The Verana Foundation</h3>
+<p>As a non-profit organization, the Verana Foundation’s mission is to provide the required bricks for enabling a Zero Trust layer: governance and leadership, open source software, and a verifiable trust registry of essential credential schemas.</p>
+<h4 id="governance-and-leadership"><a class="toc-anchor" href="#governance-and-leadership" >§</a> Governance and Leadership</h4>
+<p>The Verana Foundation is governed and leaded by its contributors, participants, and ambassadors.</p>
+<h4 id="software"><a class="toc-anchor" href="#software" >§</a> Software</h4>
+<p>Open source software and modules that implement the <a path-0="verana-labs.github.io"path-1="verifiable-trust-spec"path-2=""href="https://verana-labs.github.io/verifiable-trust-spec/" >Verifiable Trust specification</a></p>
+<h4 id="essential-credential-schemas-ecs-trust-registry"><a class="toc-anchor" href="#essential-credential-schemas-ecs-trust-registry" >§</a> Essential Credential Schemas (ECS) Trust Registry</h4>
+<p>a Trust Registry of Essential Credential Schemas:</p>
+<ul>
+<li>Organization,</li>
+<li>Person,</li>
+<li>Service,</li>
+<li>User Agent.</li>
+</ul>
+<p>These credential schemas provide the required basic features of the Zero Trust layer, that can be queried by users, organizations, user agents…:</p>
+<ul>
+<li>who is the organization or person running this service?</li>
+<li>what is the name of this service? What is the minimum required age for connecting to this service?</li>
+<li>is this user agent compliant with the Verifiable Trust specification?</li>
+</ul>
+<p>A trust registry governance framework defines the rules for participating in the ECSs as credential Issuer. Provided that they comply with the Governance Framework, any organization can join the ECS Trust Registry.</p>
 <h3 id="benefits"><a class="toc-anchor" href="#benefits" >§</a> Benefits</h3>
 <p>Fraud and Identity theft are eradicated.</p>
 <h4 id="for-the-end-user"><a class="toc-anchor" href="#for-the-end-user" >§</a> For the End User</h4>
@@ -298,11 +322,10 @@ DEVNETS__MYDEVNET_2__TOPUP_VS=…</p>
 <li>if not found, try to use the default locale for the same language. So if <code>locale</code> is equal to <code>en_GB</code>, look for entry en:… in <code>SUPPORTED_LOCALES</code> to get default locale for <code>en</code>.</li>
 <li>else fallback to <code>DEFAULT_LOCALE</code> (normally <code>en_US</code>).</li>
 </ul>
-<p>:::Note
-At least the content of the default locale MUST be provided by development/design team.
-Default locale for development MUST be en_US.
-:::</p>
-<p>:::Warn
+<div id="note-1" class="notice note"><a class="notice-link" href="#note-1">NOTE</a><p>At least the content of the default locale MUST be provided by development/design team.
+Default locale for development MUST be en_US.</p>
+</div>
+<p>:::warn
 Right to left text (like Arabic) MUST be supported.
 :::</p>
 <h4 id="general-layout-general-layout"><a class="toc-anchor" href="#general-layout-general-layout" >§</a> [GENERAL-LAYOUT] General - Layout</h4>
@@ -542,6 +565,14 @@ Right to left text (like Arabic) MUST be supported.
 <li><a href="#introduction" >Introduction</a>
 <ul>
 <li><a href="#what-is-verana" >What is Verana?</a></li>
+<li><a href="#based-on-verifiable-credentials-and-gdpr-compliant" >Based on Verifiable Credentials and GDPR compliant</a></li>
+<li><a href="#the-verana-foundation" >The Verana Foundation</a>
+<ul>
+<li><a href="#governance-and-leadership" >Governance and Leadership</a></li>
+<li><a href="#software" >Software</a></li>
+<li><a href="#essential-credential-schemas-ecs-trust-registry" >Essential Credential Schemas (ECS) Trust Registry</a></li>
+</ul>
+</li>
 <li><a href="#benefits" >Benefits</a>
 <ul>
 <li><a href="#for-the-end-user" >For the End User</a></li>
