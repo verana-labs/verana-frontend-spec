@@ -1,5 +1,5 @@
-# verana-app-specs
+# verana-frontend-spec
 
-The home of the verana app spec.
+The home of the verana frontend spec.
 
-Browsable: [https://verana-labs.github.io/verana-app-spec/](https://verana-labs.github.io/verana-app-spec/)
+Browsable: [https://verana-labs.github.io/verana-frontend-spec/](https://verana-labs.github.io/verana-frontend-spec/)

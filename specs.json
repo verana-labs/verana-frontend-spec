@@ -2,14 +2,14 @@
     "specs": [
       
       {
-        "title": "Verana App Specification",
+        "title": "Verana Frontend Specification",
         "spec_directory": "./",
         "logo": "https://verana.io/logo.svg",
         "logo_link": "https://verana.io",
         "source": {
           "host": "github",
           "account": "verana-labs",
-          "repo": "verana-app-spec"
+          "repo": "verana-frontend-spec"
         }
       }
     ]

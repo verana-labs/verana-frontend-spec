@@ -1,8 +1,8 @@
-# Verana App Specification
+# Verana Frontend Specification
 
 **Specification Status:** Pre-Draft
 
-**Latest Draft:** [verana-labs/verana-app-spec](https://github.com/verana-labs/verana-app-spec)
+**Latest Draft:** [verana-labs/verana-frontend-spec](https://github.com/verana-labs/verana-frontend-spec)
 
 **Editors:**
 
@@ -12,11 +12,11 @@
 
 **Participate:**
 
-~ [GitHub repo](https://github.com/verana-labs/verana-app-spec)
+~ [GitHub repo](https://github.com/verana-labs/verana-frontend-spec)
 
-~ [File a bug](https://github.com/verana-labs/verana-app-spec/issues)
+~ [File a bug](https://github.com/verana-labs/verana-frontend-spec/issues)
 
-~ [Commit history](https://github.com/verana-labs/verana-app-spec/commits/main)
+~ [Commit history](https://github.com/verana-labs/verana-frontend-spec/commits/main)
 
 ---
 
