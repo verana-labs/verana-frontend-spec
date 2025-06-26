@@ -2,18 +2,18 @@
   "dependencies": {
     "spec-up": "^0.10.8"
   },
-  "name": "verana-app-spec",
+  "name": "verana-frontend-spec",
   "version": "1.0",
-  "description": "Decentralized Trust Specification",
+  "description": "Verana Frontend Specification",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/verana-labs/verana-app-spec.git"
+    "url": "git+https://github.com/verana-labs/verana-frontend-spec.git"
   },
   "license": "Apache 2",
-  "homepage": "https://github.com/verana-labs/verana-app-spec",
+  "homepage": "https://github.com/verana-labs/verana-frontend-spec",
   
   "bugs": {
-    "url": "https://github.com/verana-labs/verana-app-spec/issues"
+    "url": "https://github.com/verana-labs/verana-frontend-spec/issues"
   },
   "scripts": {
     "render": "npm run build",
