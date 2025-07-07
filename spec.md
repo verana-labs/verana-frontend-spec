@@ -341,38 +341,6 @@ All customized settings MUST be persisted in browser session.
 
 ![alt text](assets/settings-general.png)
 
-#### Network Selection
-
-When a new session is created, default selected network MUST be set to `DEFAULT_NETWORK`.
-
-[SETTINGS-NETWORKS-LIST] Show the list of existing networks, as defined in container env variables. UI MUST order the networks that way: first, mainnet, if declared, second, testnet, if declared, then devnet(s) ordered by id, if declared, then custom networks, ordered by creation date (newer first).
-
-[SETTINGS-NETWORKS-BOOT-ERROR] If configured default network does not exist (not declared), container SHOULD NOT start and SHOULD log error message.
-
-![network selection](assets/settings-network-selection.png)
-
-#### Network Selection - Add Network
-
-[SETTINGS-NETWORKS-ADD] user MAY add/remove custom networks that are persisted in browser session.
-
-![add network](assets/settings-network-selection-add.png)
-
-#### Network Selection - Added Network
-
-![added network](assets/settings-network-selection-added.png)
-
-#### Network Selection - Delete Network
-
-[SETTINGS-NETWORKS-REMOVE] User CAN remove a network only if network is not currently selected.
-
-![delete network](assets/settings-network-selection-delete.png)
-
-#### Network Selection - Non mainnet - Header
-
-[SETTINGS-NETWORKS-HEADER] when selected network is not mainnet, network name and its id MUST be shown in header.
-
-![no mainnet](assets/settings-network-selection-no-mainnet-selected.png)
-
 ### DID Directory
 
 #### List

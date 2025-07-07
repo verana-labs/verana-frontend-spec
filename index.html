@@ -231,7 +231,7 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 <li>if not found, try to use the default locale for the same language. So if <code>locale</code> is equal to <code>en_GB</code>, look for entry en:… in <code>SUPPORTED_LOCALES</code> to get default locale for <code>en</code>.</li>
 <li>else fallback to <code>DEFAULT_LOCALE</code> (normally <code>en_US</code>).</li>
 </ul>
-<div id="note-1" class="notice note"><a class="notice-link" href="#note-1">NOTE</a><p>At least the content of the default locale MUST be provided by development/design team.
+<div id="note-2" class="notice note"><a class="notice-link" href="#note-2">NOTE</a><p>At least the content of the default locale MUST be provided by development/design team.
 Default locale for development MUST be en_US.</p>
 </div>
 <p>:::warn
@@ -355,22 +355,6 @@ Right to left text (like Arabic) MUST be supported.
 <h4 id="settings-general"><a class="toc-anchor" href="#settings-general" >§</a> Settings - General</h4>
 <p>[SETTINGS-GENERAL-LOCALE-SELECT] Default to user agent presented locale “Browser Default” which sets <code>settings.locale</code> to  NULL (undefined). User can force a locale here and store it to <code>settings.locale</code>. Locale list MUST contain all supported locales. Changing locale does not require any confirmation and is immediate.</p>
 <p><img src="assets/settings-general.png" alt="alt text"></p>
-<h4 id="network-selection"><a class="toc-anchor" href="#network-selection" >§</a> Network Selection</h4>
-<p>When a new session is created, default selected network MUST be set to <code>DEFAULT_NETWORK</code>.</p>
-<p>[SETTINGS-NETWORKS-LIST] Show the list of existing networks, as defined in container env variables. UI MUST order the networks that way: first, mainnet, if declared, second, testnet, if declared, then devnet(s) ordered by id, if declared, then custom networks, ordered by creation date (newer first).</p>
-<p>[SETTINGS-NETWORKS-BOOT-ERROR] If configured default network does not exist (not declared), container SHOULD NOT start and SHOULD log error message.</p>
-<p><img src="assets/settings-network-selection.png" alt="network selection"></p>
-<h4 id="network-selection-add-network"><a class="toc-anchor" href="#network-selection-add-network" >§</a> Network Selection - Add Network</h4>
-<p>[SETTINGS-NETWORKS-ADD] user MAY add/remove custom networks that are persisted in browser session.</p>
-<p><img src="assets/settings-network-selection-add.png" alt="add network"></p>
-<h4 id="network-selection-added-network"><a class="toc-anchor" href="#network-selection-added-network" >§</a> Network Selection - Added Network</h4>
-<p><img src="assets/settings-network-selection-added.png" alt="added network"></p>
-<h4 id="network-selection-delete-network"><a class="toc-anchor" href="#network-selection-delete-network" >§</a> Network Selection - Delete Network</h4>
-<p>[SETTINGS-NETWORKS-REMOVE] User CAN remove a network only if network is not currently selected.</p>
-<p><img src="assets/settings-network-selection-delete.png" alt="delete network"></p>
-<h4 id="network-selection-non-mainnet-header"><a class="toc-anchor" href="#network-selection-non-mainnet-header" >§</a> Network Selection - Non mainnet - Header</h4>
-<p>[SETTINGS-NETWORKS-HEADER] when selected network is not mainnet, network name and its id MUST be shown in header.</p>
-<p><img src="assets/settings-network-selection-no-mainnet-selected.png" alt="no mainnet"></p>
 <h3 id="did-directory"><a class="toc-anchor" href="#did-directory" >§</a> DID Directory</h3>
 <h4 id="list"><a class="toc-anchor" href="#list" >§</a> List</h4>
 <p>[DIDS-LIST-RESULTS]</p>
@@ -523,11 +507,6 @@ Right to left text (like Arabic) MUST be supported.
 <li><a href="#settings" >Settings</a>
 <ul>
 <li><a href="#settings-general" >Settings - General</a></li>
-<li><a href="#network-selection" >Network Selection</a></li>
-<li><a href="#network-selection-add-network" >Network Selection - Add Network</a></li>
-<li><a href="#network-selection-added-network" >Network Selection - Added Network</a></li>
-<li><a href="#network-selection-delete-network" >Network Selection - Delete Network</a></li>
-<li><a href="#network-selection-non-mainnet-header" >Network Selection - Non mainnet - Header</a></li>
 </ul>
 </li>
 <li><a href="#did-directory" >DID Directory</a>
