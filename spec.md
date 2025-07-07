@@ -155,7 +155,7 @@ At least the content of the default locale MUST be provided by development/desig
 Default locale for development MUST be en_US.
 :::
 
-:::warn
+:::warning
 Right to left text (like Arabic) MUST be supported.
 :::
 
