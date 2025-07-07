@@ -231,7 +231,7 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 <li>if not found, try to use the default locale for the same language. So if <code>locale</code> is equal to <code>en_GB</code>, look for entry en:… in <code>SUPPORTED_LOCALES</code> to get default locale for <code>en</code>.</li>
 <li>else fallback to <code>DEFAULT_LOCALE</code> (normally <code>en_US</code>).</li>
 </ul>
-<div id="note-2" class="notice note"><a class="notice-link" href="#note-2">NOTE</a><p>At least the content of the default locale MUST be provided by development/design team.
+<div id="note-55" class="notice note"><a class="notice-link" href="#note-55">NOTE</a><p>At least the content of the default locale MUST be provided by development/design team.
 Default locale for development MUST be en_US.</p>
 </div>
 <p>:::warn
@@ -356,7 +356,7 @@ Right to left text (like Arabic) MUST be supported.
 <p>[SETTINGS-GENERAL-LOCALE-SELECT] Default to user agent presented locale “Browser Default” which sets <code>settings.locale</code> to  NULL (undefined). User can force a locale here and store it to <code>settings.locale</code>. Locale list MUST contain all supported locales. Changing locale does not require any confirmation and is immediate.</p>
 <p><img src="assets/settings-general.png" alt="alt text"></p>
 <h3 id="did-directory"><a class="toc-anchor" href="#did-directory" >§</a> DID Directory</h3>
-<h4 id="list"><a class="toc-anchor" href="#list" >§</a> List</h4>
+<h4 id="list-dids"><a class="toc-anchor" href="#list-dids" >§</a> List DIDs</h4>
 <p>[DIDS-LIST-RESULTS]</p>
 <ul>
 <li>search results are clickable and lead to DID info use case.</li>
@@ -423,6 +423,84 @@ Right to left text (like Arabic) MUST be supported.
 </ul>
 <p><img src="assets/dids-did-touch.png" alt="touch a DID"></p>
 <h4 id="remove-a-did"><a class="toc-anchor" href="#remove-a-did" >§</a> Remove a DID</h4>
+<p>[DIDS-DID-REMOVE] Renew a DID. Use [MOD-DD-MSG-3-2-2] from VPR spec to estimate approx transaction cost.</p>
+<ul>
+<li>CANCEL: close remove section</li>
+<li>CONFIRM: execute transaction, show transaction status until successful. If successful, return to DID directory, with previous search filter stored in session.</li>
+<li>back to directory: return to DID directory, with current search filter (stored in session)</li>
+</ul>
+<p><img src="assets/dids-did-remove.png" alt="remove a DID"></p>
+<h3 id="trust-registries"><a class="toc-anchor" href="#trust-registries" >§</a> Trust Registries</h3>
+<h4 id="list-trust-registries"><a class="toc-anchor" href="#list-trust-registries" >§</a> List Trust Registries</h4>
+<p>[TR-LIST-RESULTS]</p>
+<p>When screen size is reduced, column are progressively eliminated, in this order:</p>
+<ul>
+<li>created</li>
+<li>deposit</li>
+<li>controller</li>
+<li>modified</li>
+</ul>
+<p>DID and expire MUST be shown always.</p>
+<p><img src="assets/tr-list.png" alt="List Trust Registries"></p>
+<h4 id="add-a-trust-registry"><a class="toc-anchor" href="#add-a-trust-registry" >§</a> Add a Trust Registry</h4>
+<p>[TR-NEW] Adds a Trust Registry.</p>
+<p>When user confirms:</p>
+<ul>
+<li>
+<p>CONFIRM: as it is required when executing the method for creating the trust registry, governance framework document must be downloaded, and its digest_sri calculated. See <a path-0="verana-labs.github.io"path-1="verifiable-trust-vpr-spec"path-2="#mod-tr-msg-1-create-new-trust-registry"href="https://verana-labs.github.io/verifiable-trust-vpr-spec/#mod-tr-msg-1-create-new-trust-registry" >mod-tr-msg-1-create-new-trust-registry</a>. Execute transaction, show transaction status until successful. If successful, go to Trust Registry Info.</p>
+</li>
+<li>
+<p>CANCEL: go back to where I was</p>
+</li>
+</ul>
+<p><img src="assets/tr-new.png" alt="new Trust Registry"></p>
+<h4 id="trust-registry-infos-basic-information"><a class="toc-anchor" href="#trust-registry-infos-basic-information" >§</a> Trust Registry Infos - Basic Information</h4>
+<p>[TR-INFOS] Show Trust Registry infos. To switch to edit user hits the “edit” icon.</p>
+<p><img src="assets/tr-infos-basic.png" alt="alt text"></p>
+<p>Edit:</p>
+<p><a path-0="verana-labs.github.io"path-1="verifiable-trust-vpr-spec"path-2="#mod-tr-msg-4-update-trust-registry"href="https://verana-labs.github.io/verifiable-trust-vpr-spec/#mod-tr-msg-4-update-trust-registry" >mod-tr-msg-4-update-trust-registry</a></p>
+<p><img src="assets/tr-infos-basic-edit.png" alt="alt text"></p>
+<div id="note-56" class="notice note"><a class="notice-link" href="#note-56">NOTE</a><p>primary governance framework language cannot be modified</p>
+</div>
+<h4 id="trust-registry-add-governance-framework-document"><a class="toc-anchor" href="#trust-registry-add-governance-framework-document" >§</a> Trust Registry - Add Governance Framework Document</h4>
+<p>[TR-EGF-ADD-DOC] Add EGF document.</p>
+<p>When user confirms:</p>
+<ul>
+<li>
+<p>CONFIRM: as it is required when executing the method for creating the trust registry, governance framework document must be downloaded, and its digest_sri calculated. See <a path-0="verana-labs.github.io"path-1="verifiable-trust-vpr-spec"path-2="#mod-tr-msg-2-add-governance-framework-document"href="https://verana-labs.github.io/verifiable-trust-vpr-spec/#mod-tr-msg-2-add-governance-framework-document" >mod-tr-msg-2-add-governance-framework-document</a>. Execute transaction, show transaction status until successful. If successful, stay on the same view and refresh next version table content.</p>
+</li>
+<li>
+<p>CANCEL: collapse and clear form.</p>
+</li>
+</ul>
+<h4 id="trust-registry-set-egf-version-active"><a class="toc-anchor" href="#trust-registry-set-egf-version-active" >§</a> Trust Registry - Set EGF version active</h4>
+<p>[TR-EGF-SET-ACTIVE] Set EGF version active.</p>
+<p>When user confirms:</p>
+<ul>
+<li>
+<p>CONFIRM: execute the <a path-0="verana-labs.github.io"path-1="verifiable-trust-vpr-spec"path-2="#mod-tr-msg-3-increase-active-governance-framework-version"href="https://verana-labs.github.io/verifiable-trust-vpr-spec/#mod-tr-msg-3-increase-active-governance-framework-version" >mod-tr-msg-3-increase-active-governance-framework-version</a> show transaction status until successful. If successful, stay on the same view and refresh view.</p>
+</li>
+<li>
+<p>CANCEL: collapse.</p>
+</li>
+</ul>
+<h4 id="renew-a-did-2"><a class="toc-anchor" href="#renew-a-did-2" >§</a> Renew a DID</h4>
+<p>[DIDS-DID-RENEW] Renew a DID. Use [MOD-DD-MSG-2-2-2] from VPR spec to estimate approx transaction cost.</p>
+<ul>
+<li>CANCEL: close renew section</li>
+<li>CONFIRM: execute transaction, show transaction status until successful. If successful, refresh DID info data (without reloading page).</li>
+<li>back to directory: return to DID directory, with current search filter (stored in session)</li>
+</ul>
+<p><img src="assets/dids-did-renew.png" alt="renew a DID"></p>
+<h4 id="touch-a-did-2"><a class="toc-anchor" href="#touch-a-did-2" >§</a> Touch a DID</h4>
+<p>[DIDS-DID-TOUCH] Renew a DID. Use [MOD-DD-MSG-4-2-2] from VPR spec to estimate approx transaction cost.</p>
+<ul>
+<li>CANCEL: close touch section</li>
+<li>CONFIRM: execute transaction, show transaction status until successful. If successful, refresh DID info data (without reloading page).</li>
+<li>back to directory: return to DID directory, with current search filter (stored in session)</li>
+</ul>
+<p><img src="assets/dids-did-touch.png" alt="touch a DID"></p>
+<h4 id="remove-a-did-2"><a class="toc-anchor" href="#remove-a-did-2" >§</a> Remove a DID</h4>
 <p>[DIDS-DID-REMOVE] Renew a DID. Use [MOD-DD-MSG-3-2-2] from VPR spec to estimate approx transaction cost.</p>
 <ul>
 <li>CANCEL: close remove section</li>
@@ -511,12 +589,24 @@ Right to left text (like Arabic) MUST be supported.
 </li>
 <li><a href="#did-directory" >DID Directory</a>
 <ul>
-<li><a href="#list" >List</a></li>
+<li><a href="#list-dids" >List DIDs</a></li>
 <li><a href="#did-infos" >DID Infos</a></li>
 <li><a href="#add-a-did" >Add a DID</a></li>
 <li><a href="#renew-a-did" >Renew a DID</a></li>
 <li><a href="#touch-a-did" >Touch a DID</a></li>
 <li><a href="#remove-a-did" >Remove a DID</a></li>
+</ul>
+</li>
+<li><a href="#trust-registries" >Trust Registries</a>
+<ul>
+<li><a href="#list-trust-registries" >List Trust Registries</a></li>
+<li><a href="#add-a-trust-registry" >Add a Trust Registry</a></li>
+<li><a href="#trust-registry-infos-basic-information" >Trust Registry Infos - Basic Information</a></li>
+<li><a href="#trust-registry-add-governance-framework-document" >Trust Registry - Add Governance Framework Document</a></li>
+<li><a href="#trust-registry-set-egf-version-active" >Trust Registry - Set EGF version active</a></li>
+<li><a href="#renew-a-did-2" >Renew a DID</a></li>
+<li><a href="#touch-a-did-2" >Touch a DID</a></li>
+<li><a href="#remove-a-did-2" >Remove a DID</a></li>
 </ul>
 </li>
 </ul>

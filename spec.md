@@ -343,7 +343,7 @@ All customized settings MUST be persisted in browser session.
 
 ### DID Directory
 
-#### List
+#### List DIDs
 
 [DIDS-LIST-RESULTS]
 
@@ -403,6 +403,101 @@ By default, Did query option is preselected with "Show DIDs I control / All DIDs
 - back to directory: return to DID directory, with current search filter (stored in session)
 
 ![add a DID](assets/dids-add.png)
+
+#### Renew a DID
+
+[DIDS-DID-RENEW] Renew a DID. Use [MOD-DD-MSG-2-2-2] from VPR spec to estimate approx transaction cost.
+
+- CANCEL: close renew section
+- CONFIRM: execute transaction, show transaction status until successful. If successful, refresh DID info data (without reloading page).
+- back to directory: return to DID directory, with current search filter (stored in session)
+
+![renew a DID](assets/dids-did-renew.png)
+
+#### Touch a DID
+
+[DIDS-DID-TOUCH] Renew a DID. Use [MOD-DD-MSG-4-2-2] from VPR spec to estimate approx transaction cost.
+
+- CANCEL: close touch section
+- CONFIRM: execute transaction, show transaction status until successful. If successful, refresh DID info data (without reloading page).
+- back to directory: return to DID directory, with current search filter (stored in session)
+
+![touch a DID](assets/dids-did-touch.png)
+
+#### Remove a DID
+
+[DIDS-DID-REMOVE] Renew a DID. Use [MOD-DD-MSG-3-2-2] from VPR spec to estimate approx transaction cost.
+
+- CANCEL: close remove section
+- CONFIRM: execute transaction, show transaction status until successful. If successful, return to DID directory, with previous search filter stored in session.
+- back to directory: return to DID directory, with current search filter (stored in session)
+
+![remove a DID](assets/dids-did-remove.png)
+
+### Trust Registries
+
+#### List Trust Registries
+
+[TR-LIST-RESULTS]
+
+When screen size is reduced, column are progressively eliminated, in this order:
+
+- created
+- deposit
+- controller
+- modified
+
+DID and expire MUST be shown always.
+
+![List Trust Registries](assets/tr-list.png)
+
+#### Add a Trust Registry
+
+[TR-NEW] Adds a Trust Registry.
+
+When user confirms:
+
+- CONFIRM: as it is required when executing the method for creating the trust registry, governance framework document must be downloaded, and its digest_sri calculated. See [mod-tr-msg-1-create-new-trust-registry](https://verana-labs.github.io/verifiable-trust-vpr-spec/#mod-tr-msg-1-create-new-trust-registry). Execute transaction, show transaction status until successful. If successful, go to Trust Registry Info.
+
+- CANCEL: go back to where I was
+
+![new Trust Registry](assets/tr-new.png)
+
+#### Trust Registry Infos - Basic Information
+
+[TR-INFOS] Show Trust Registry infos. To switch to edit user hits the "edit" icon.
+
+![alt text](assets/tr-infos-basic.png)
+
+Edit:
+
+[mod-tr-msg-4-update-trust-registry](https://verana-labs.github.io/verifiable-trust-vpr-spec/#mod-tr-msg-4-update-trust-registry)
+
+![alt text](assets/tr-infos-basic-edit.png)
+
+:::note
+primary governance framework language cannot be modified
+:::
+
+#### Trust Registry - Add Governance Framework Document
+
+[TR-EGF-ADD-DOC] Add EGF document.
+
+When user confirms:
+
+- CONFIRM: as it is required when executing the method for creating the trust registry, governance framework document must be downloaded, and its digest_sri calculated. See [mod-tr-msg-2-add-governance-framework-document](https://verana-labs.github.io/verifiable-trust-vpr-spec/#mod-tr-msg-2-add-governance-framework-document). Execute transaction, show transaction status until successful. If successful, stay on the same view and refresh next version table content.
+
+- CANCEL: collapse and clear form.
+
+#### Trust Registry - Set EGF version active
+
+[TR-EGF-SET-ACTIVE] Set EGF version active.
+
+When user confirms:
+
+- CONFIRM: execute the [mod-tr-msg-3-increase-active-governance-framework-version](https://verana-labs.github.io/verifiable-trust-vpr-spec/#mod-tr-msg-3-increase-active-governance-framework-version) show transaction status until successful. If successful, stay on the same view and refresh view.
+
+- CANCEL: collapse.
 
 #### Renew a DID
 
