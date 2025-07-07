@@ -95,7 +95,7 @@ Fraud and Identity theft are eradicated.
 - build a verifiable trust reputation and be recognized.
 - be searchable: add your services to the verifiable service directory
 
-### The Verana App provides:
+### The Verana App provides
 
 - interaction with the verana network, by querying the ledger and post transactions;
 - statistics: ecosystem, blockchain, Verifiable Services (aka VSs).
@@ -125,49 +125,14 @@ The Verana App MUST be delivered as a container.
 | General                        | APP_NAME                              |                                  | Veranito                         |
 |                                | APP_LOGO                              |                                  | logo.svg                        |
 |                                | ADDRESS_EXPLORER                      |                                  | https://www.mintscan.io/verana/address/VERANA_ADDRESS   |
-| Network Configuration          | MAINNET_API_ENDPOINT                  |                                  | https://api.verana.network       |
-|                                | MAINNET_RPC_ENDPOINT                  |                                  | https://rpc.verana.network       |
-|                                | MAINNET_IDX_ENDPOINT                  |                                  | https://idx.verana.network       |
-|                                | MAINNET_CHAIN_ID                      |                                  | vna-mainnet-1       |
-|                                | MAINNET_NAME                          |                                  | Mainnet       |
-|                                | MAINNET_TOPUP_VS                      |   List of VSs for top-up       | did:example:123, did:example:456       |
-|                                | TESTNET_API_ENDPOINT                  |                                  | https://api.testnet.verana.network       |
-|                                | TESTNET_RPC_ENDPOINT                  |                                  | https://rpc.testnet.verana.network       |
-|                                | TESTNET_IDX_ENDPOINT                  |                                  | https://idx.testnet.verana.network       |
-|                                | TESTNET_CHAIN_ID                      |                                  | vna-testnet-1       |
-|                                | TESTNET_NAME                          |                                  | Testnet       |
-|                                | TESTNET_TOPUP_VS                      |   List of VSs for top-up       | did:example:123, did:example:456       |
-|                                | DEVNETS__VNA-DEVNET_MAIN__API_ENDPOINT|                                  | https://api.vna-devnet-main.devnet.verana.network       |
-|                                | DEVNETS__VNA-DEVNET_MAIN__RPC_ENDPOINT|                                  | https://rpc.vna-devnet-main.devnet.verana.network       |
-|                                | DEVNETS__VNA-DEVNET_MAIN__IDX_ENDPOINT|                                  | https://idx.vna-devnet-main.devnet.verana.network       |
-|                                | DEVNETS__VNA-DEVNET_MAIN__NAME        |                                  | Vna Devnet Main       |
-|                                | DEVNETS__VNA-DEVNET_MAIN__TOPUP_VS    |   List of VSs for top-up       | did:example:123, did:example:456       |
-|                                | DEFAULT_NETWORK                       |   Default selected network in App    | vna-mainnet-1       |
+| Network Configuration          | API_ENDPOINT                  |                                  | https://api.verana.network       |
+|                                | RPC_ENDPOINT                  |                                  | https://rpc.verana.network       |
+|                                | IDX_ENDPOINT                  |                                  | https://idx.verana.network       |
+|                                | CHAIN_ID                      |                                  | vna-mainnet-1       |
+|                                | CHAIN_NAME                          |                                  | Mainnet       |
+|                                | TOPUP_VS                      |   List of VSs for top-up       | did:example:123, did:example:456       |
 | Internationalization           | DEFAULT_LOCALE                        |   Failover locale | en_US       |
 |                                | SUPPORTED_LOCALES                     |                                  | en_US, fr_FR, en:en_US, fr:fr_FR       |
-
-#### General - Networks
-
-[GENERAL-NETWORKS] All network declarations are optionals. Container MUST be configured with at least one network, else it cannot start and MUST log an error. Declared `DEFAULT_NETWORK` MUST exist else container startup MUST fail and log error. There can be only one Mainnet and one Testnet. An unlimited number of devnets can be configured. Add a devnet by creating a `DEVNETS__DEVNET_ID__*` env vars by replacing DEVNET_ID by the devnet id.
-
-Example: to declare 2 devnets with id mydevnet-1 and mydevnet-2, declare:
-
-- for mydevnet-1:
-
-DEVNETS__MYDEVNET_1__API_ENDPOINT=...
-DEVNETS__MYDEVNET_1__RPC_ENDPOINT=...
-DEVNETS__MYDEVNET_1__IDX_ENDPOINT=...
-DEVNETS__MYDEVNET_1__NAME=...
-DEVNETS__MYDEVNET_1__TOPUP_VS=...
-
-- for mydevnet-2:
-
-DEVNETS__MYDEVNET_2__API_ENDPOINT=...
-DEVNETS__MYDEVNET_2__RPC_ENDPOINT=...
-DEVNETS__MYDEVNET_2__IDX_ENDPOINT=...
-DEVNETS__MYDEVNET_2__NAME=...
-DEVNETS__MYDEVNET_2__TOPUP_VS=...
-
 
 #### General - Internationalization
 
@@ -376,41 +341,9 @@ All customized settings MUST be persisted in browser session.
 
 ![alt text](assets/settings-general.png)
 
-#### Network Selection
-
-When a new session is created, default selected network MUST be set to `DEFAULT_NETWORK`.
-
-[SETTINGS-NETWORKS-LIST] Show the list of existing networks, as defined in container env variables. UI MUST order the networks that way: first, mainnet, if declared, second, testnet, if declared, then devnet(s) ordered by id, if declared, then custom networks, ordered by creation date (newer first).
-
-[SETTINGS-NETWORKS-BOOT-ERROR] If configured default network does not exist (not declared), container SHOULD NOT start and SHOULD log error message.
-
-![network selection](assets/settings-network-selection.png)
-
-#### Network Selection - Add Network
-
-[SETTINGS-NETWORKS-ADD] user MAY add/remove custom networks that are persisted in browser session.
-
-![add network](assets/settings-network-selection-add.png)
-
-#### Network Selection - Added Network
-
-![added network](assets/settings-network-selection-added.png)
-
-#### Network Selection - Delete Network
-
-[SETTINGS-NETWORKS-REMOVE] User CAN remove a network only if network is not currently selected.
-
-![delete network](assets/settings-network-selection-delete.png)
-
-#### Network Selection - Non mainnet - Header
-
-[SETTINGS-NETWORKS-HEADER] when selected network is not mainnet, network name and its id MUST be shown in header.
-
-![no mainnet](assets/settings-network-selection-no-mainnet-selected.png)
-
 ### DID Directory
 
-#### List
+#### List DIDs
 
 [DIDS-LIST-RESULTS]
 
@@ -470,6 +403,101 @@ By default, Did query option is preselected with "Show DIDs I control / All DIDs
 - back to directory: return to DID directory, with current search filter (stored in session)
 
 ![add a DID](assets/dids-add.png)
+
+#### Renew a DID
+
+[DIDS-DID-RENEW] Renew a DID. Use [MOD-DD-MSG-2-2-2] from VPR spec to estimate approx transaction cost.
+
+- CANCEL: close renew section
+- CONFIRM: execute transaction, show transaction status until successful. If successful, refresh DID info data (without reloading page).
+- back to directory: return to DID directory, with current search filter (stored in session)
+
+![renew a DID](assets/dids-did-renew.png)
+
+#### Touch a DID
+
+[DIDS-DID-TOUCH] Renew a DID. Use [MOD-DD-MSG-4-2-2] from VPR spec to estimate approx transaction cost.
+
+- CANCEL: close touch section
+- CONFIRM: execute transaction, show transaction status until successful. If successful, refresh DID info data (without reloading page).
+- back to directory: return to DID directory, with current search filter (stored in session)
+
+![touch a DID](assets/dids-did-touch.png)
+
+#### Remove a DID
+
+[DIDS-DID-REMOVE] Renew a DID. Use [MOD-DD-MSG-3-2-2] from VPR spec to estimate approx transaction cost.
+
+- CANCEL: close remove section
+- CONFIRM: execute transaction, show transaction status until successful. If successful, return to DID directory, with previous search filter stored in session.
+- back to directory: return to DID directory, with current search filter (stored in session)
+
+![remove a DID](assets/dids-did-remove.png)
+
+### Trust Registries
+
+#### List Trust Registries
+
+[TR-LIST-RESULTS]
+
+When screen size is reduced, column are progressively eliminated, in this order:
+
+- created
+- deposit
+- controller
+- modified
+
+DID and expire MUST be shown always.
+
+![List Trust Registries](assets/tr-list.png)
+
+#### Add a Trust Registry
+
+[TR-NEW] Adds a Trust Registry.
+
+When user confirms:
+
+- CONFIRM: as it is required when executing the method for creating the trust registry, governance framework document must be downloaded, and its digest_sri calculated. See [mod-tr-msg-1-create-new-trust-registry](https://verana-labs.github.io/verifiable-trust-vpr-spec/#mod-tr-msg-1-create-new-trust-registry). Execute transaction, show transaction status until successful. If successful, go to Trust Registry Info.
+
+- CANCEL: go back to where I was
+
+![new Trust Registry](assets/tr-new.png)
+
+#### Trust Registry Infos - Basic Information
+
+[TR-INFOS] Show Trust Registry infos. To switch to edit user hits the "edit" icon.
+
+![alt text](assets/tr-infos-basic.png)
+
+Edit:
+
+[mod-tr-msg-4-update-trust-registry](https://verana-labs.github.io/verifiable-trust-vpr-spec/#mod-tr-msg-4-update-trust-registry)
+
+![alt text](assets/tr-infos-basic-edit.png)
+
+:::note
+primary governance framework language cannot be modified
+:::
+
+#### Trust Registry - Add Governance Framework Document
+
+[TR-EGF-ADD-DOC] Add EGF document.
+
+When user confirms:
+
+- CONFIRM: as it is required when executing the method for creating the trust registry, governance framework document must be downloaded, and its digest_sri calculated. See [mod-tr-msg-2-add-governance-framework-document](https://verana-labs.github.io/verifiable-trust-vpr-spec/#mod-tr-msg-2-add-governance-framework-document). Execute transaction, show transaction status until successful. If successful, stay on the same view and refresh next version table content.
+
+- CANCEL: collapse and clear form.
+
+#### Trust Registry - Set EGF version active
+
+[TR-EGF-SET-ACTIVE] Set EGF version active.
+
+When user confirms:
+
+- CONFIRM: execute the [mod-tr-msg-3-increase-active-governance-framework-version](https://verana-labs.github.io/verifiable-trust-vpr-spec/#mod-tr-msg-3-increase-active-governance-framework-version) show transaction status until successful. If successful, stay on the same view and refresh view.
+
+- CANCEL: collapse.
 
 #### Renew a DID
 

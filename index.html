@@ -123,7 +123,7 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 <li>build a verifiable trust reputation and be recognized.</li>
 <li>be searchable: add your services to the verifiable service directory</li>
 </ul>
-<h3 id="the-verana-app-provides"><a class="toc-anchor" href="#the-verana-app-provides" >§</a> The Verana App provides:</h3>
+<h3 id="the-verana-app-provides"><a class="toc-anchor" href="#the-verana-app-provides" >§</a> The Verana App provides</h3>
 <ul>
 <li>interaction with the verana network, by querying the ledger and post transactions;</li>
 <li>statistics: ecosystem, blockchain, Verifiable Services (aka VSs).</li>
@@ -172,111 +172,39 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 </tr>
 <tr>
 <td>Network Configuration</td>
-<td>MAINNET_API_ENDPOINT</td>
+<td>API_ENDPOINT</td>
 <td></td>
 <td><a path-0="api.verana.network"href="https://api.verana.network" ><span>https://api.verana.network</span></a></td>
 </tr>
 <tr>
 <td></td>
-<td>MAINNET_RPC_ENDPOINT</td>
+<td>RPC_ENDPOINT</td>
 <td></td>
 <td><a path-0="rpc.verana.network"href="https://rpc.verana.network" ><span>https://rpc.verana.network</span></a></td>
 </tr>
 <tr>
 <td></td>
-<td>MAINNET_IDX_ENDPOINT</td>
+<td>IDX_ENDPOINT</td>
 <td></td>
 <td><a path-0="idx.verana.network"href="https://idx.verana.network" ><span>https://idx.verana.network</span></a></td>
 </tr>
 <tr>
 <td></td>
-<td>MAINNET_CHAIN_ID</td>
+<td>CHAIN_ID</td>
 <td></td>
 <td>vna-mainnet-1</td>
 </tr>
 <tr>
 <td></td>
-<td>MAINNET_NAME</td>
+<td>CHAIN_NAME</td>
 <td></td>
 <td>Mainnet</td>
 </tr>
 <tr>
 <td></td>
-<td>MAINNET_TOPUP_VS</td>
+<td>TOPUP_VS</td>
 <td>List of VSs for top-up</td>
 <td>did:example:123, did:example:456</td>
-</tr>
-<tr>
-<td></td>
-<td>TESTNET_API_ENDPOINT</td>
-<td></td>
-<td><a path-0="api.testnet.verana.network"href="https://api.testnet.verana.network" ><span>https://api.testnet.verana.network</span></a></td>
-</tr>
-<tr>
-<td></td>
-<td>TESTNET_RPC_ENDPOINT</td>
-<td></td>
-<td><a path-0="rpc.testnet.verana.network"href="https://rpc.testnet.verana.network" ><span>https://rpc.testnet.verana.network</span></a></td>
-</tr>
-<tr>
-<td></td>
-<td>TESTNET_IDX_ENDPOINT</td>
-<td></td>
-<td><a path-0="idx.testnet.verana.network"href="https://idx.testnet.verana.network" ><span>https://idx.testnet.verana.network</span></a></td>
-</tr>
-<tr>
-<td></td>
-<td>TESTNET_CHAIN_ID</td>
-<td></td>
-<td>vna-testnet-1</td>
-</tr>
-<tr>
-<td></td>
-<td>TESTNET_NAME</td>
-<td></td>
-<td>Testnet</td>
-</tr>
-<tr>
-<td></td>
-<td>TESTNET_TOPUP_VS</td>
-<td>List of VSs for top-up</td>
-<td>did:example:123, did:example:456</td>
-</tr>
-<tr>
-<td></td>
-<td>DEVNETS__VNA-DEVNET_MAIN__API_ENDPOINT</td>
-<td></td>
-<td><a path-0="api.vna-devnet-main.devnet.verana.network"href="https://api.vna-devnet-main.devnet.verana.network" ><span>https://api.vna-devnet-main.devnet.verana.network</span></a></td>
-</tr>
-<tr>
-<td></td>
-<td>DEVNETS__VNA-DEVNET_MAIN__RPC_ENDPOINT</td>
-<td></td>
-<td><a path-0="rpc.vna-devnet-main.devnet.verana.network"href="https://rpc.vna-devnet-main.devnet.verana.network" ><span>https://rpc.vna-devnet-main.devnet.verana.network</span></a></td>
-</tr>
-<tr>
-<td></td>
-<td>DEVNETS__VNA-DEVNET_MAIN__IDX_ENDPOINT</td>
-<td></td>
-<td><a path-0="idx.vna-devnet-main.devnet.verana.network"href="https://idx.vna-devnet-main.devnet.verana.network" ><span>https://idx.vna-devnet-main.devnet.verana.network</span></a></td>
-</tr>
-<tr>
-<td></td>
-<td>DEVNETS__VNA-DEVNET_MAIN__NAME</td>
-<td></td>
-<td>Vna Devnet Main</td>
-</tr>
-<tr>
-<td></td>
-<td>DEVNETS__VNA-DEVNET_MAIN__TOPUP_VS</td>
-<td>List of VSs for top-up</td>
-<td>did:example:123, did:example:456</td>
-</tr>
-<tr>
-<td></td>
-<td>DEFAULT_NETWORK</td>
-<td>Default selected network in App</td>
-<td>vna-mainnet-1</td>
 </tr>
 <tr>
 <td>Internationalization</td>
@@ -292,25 +220,6 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 </tr>
 </tbody>
 </table>
-<h4 id="general-networks"><a class="toc-anchor" href="#general-networks" >§</a> General - Networks</h4>
-<p>[GENERAL-NETWORKS] All network declarations are optionals. Container MUST be configured with at least one network, else it cannot start and MUST log an error. Declared <code>DEFAULT_NETWORK</code> MUST exist else container startup MUST fail and log error. There can be only one Mainnet and one Testnet. An unlimited number of devnets can be configured. Add a devnet by creating a <code>DEVNETS__DEVNET_ID__*</code> env vars by replacing DEVNET_ID by the devnet id.</p>
-<p>Example: to declare 2 devnets with id mydevnet-1 and mydevnet-2, declare:</p>
-<ul>
-<li>for mydevnet-1:</li>
-</ul>
-<p>DEVNETS__MYDEVNET_1__API_ENDPOINT=…
-DEVNETS__MYDEVNET_1__RPC_ENDPOINT=…
-DEVNETS__MYDEVNET_1__IDX_ENDPOINT=…
-DEVNETS__MYDEVNET_1__NAME=…
-DEVNETS__MYDEVNET_1__TOPUP_VS=…</p>
-<ul>
-<li>for mydevnet-2:</li>
-</ul>
-<p>DEVNETS__MYDEVNET_2__API_ENDPOINT=…
-DEVNETS__MYDEVNET_2__RPC_ENDPOINT=…
-DEVNETS__MYDEVNET_2__IDX_ENDPOINT=…
-DEVNETS__MYDEVNET_2__NAME=…
-DEVNETS__MYDEVNET_2__TOPUP_VS=…</p>
 <h4 id="general-internationalization"><a class="toc-anchor" href="#general-internationalization" >§</a> General - Internationalization</h4>
 <p>[GENERAL-I18N-DEFAULT]</p>
 <p>[GENERAL-I18N-LOCALE-DATA] All texts, labels, rollover texts, images with texts, videos, sounds, text icons MUST be centralized in a directory per locale</p>
@@ -322,7 +231,7 @@ DEVNETS__MYDEVNET_2__TOPUP_VS=…</p>
 <li>if not found, try to use the default locale for the same language. So if <code>locale</code> is equal to <code>en_GB</code>, look for entry en:… in <code>SUPPORTED_LOCALES</code> to get default locale for <code>en</code>.</li>
 <li>else fallback to <code>DEFAULT_LOCALE</code> (normally <code>en_US</code>).</li>
 </ul>
-<div id="note-1" class="notice note"><a class="notice-link" href="#note-1">NOTE</a><p>At least the content of the default locale MUST be provided by development/design team.
+<div id="note-55" class="notice note"><a class="notice-link" href="#note-55">NOTE</a><p>At least the content of the default locale MUST be provided by development/design team.
 Default locale for development MUST be en_US.</p>
 </div>
 <p>:::warn
@@ -446,24 +355,8 @@ Right to left text (like Arabic) MUST be supported.
 <h4 id="settings-general"><a class="toc-anchor" href="#settings-general" >§</a> Settings - General</h4>
 <p>[SETTINGS-GENERAL-LOCALE-SELECT] Default to user agent presented locale “Browser Default” which sets <code>settings.locale</code> to  NULL (undefined). User can force a locale here and store it to <code>settings.locale</code>. Locale list MUST contain all supported locales. Changing locale does not require any confirmation and is immediate.</p>
 <p><img src="assets/settings-general.png" alt="alt text"></p>
-<h4 id="network-selection"><a class="toc-anchor" href="#network-selection" >§</a> Network Selection</h4>
-<p>When a new session is created, default selected network MUST be set to <code>DEFAULT_NETWORK</code>.</p>
-<p>[SETTINGS-NETWORKS-LIST] Show the list of existing networks, as defined in container env variables. UI MUST order the networks that way: first, mainnet, if declared, second, testnet, if declared, then devnet(s) ordered by id, if declared, then custom networks, ordered by creation date (newer first).</p>
-<p>[SETTINGS-NETWORKS-BOOT-ERROR] If configured default network does not exist (not declared), container SHOULD NOT start and SHOULD log error message.</p>
-<p><img src="assets/settings-network-selection.png" alt="network selection"></p>
-<h4 id="network-selection-add-network"><a class="toc-anchor" href="#network-selection-add-network" >§</a> Network Selection - Add Network</h4>
-<p>[SETTINGS-NETWORKS-ADD] user MAY add/remove custom networks that are persisted in browser session.</p>
-<p><img src="assets/settings-network-selection-add.png" alt="add network"></p>
-<h4 id="network-selection-added-network"><a class="toc-anchor" href="#network-selection-added-network" >§</a> Network Selection - Added Network</h4>
-<p><img src="assets/settings-network-selection-added.png" alt="added network"></p>
-<h4 id="network-selection-delete-network"><a class="toc-anchor" href="#network-selection-delete-network" >§</a> Network Selection - Delete Network</h4>
-<p>[SETTINGS-NETWORKS-REMOVE] User CAN remove a network only if network is not currently selected.</p>
-<p><img src="assets/settings-network-selection-delete.png" alt="delete network"></p>
-<h4 id="network-selection-non-mainnet-header"><a class="toc-anchor" href="#network-selection-non-mainnet-header" >§</a> Network Selection - Non mainnet - Header</h4>
-<p>[SETTINGS-NETWORKS-HEADER] when selected network is not mainnet, network name and its id MUST be shown in header.</p>
-<p><img src="assets/settings-network-selection-no-mainnet-selected.png" alt="no mainnet"></p>
 <h3 id="did-directory"><a class="toc-anchor" href="#did-directory" >§</a> DID Directory</h3>
-<h4 id="list"><a class="toc-anchor" href="#list" >§</a> List</h4>
+<h4 id="list-dids"><a class="toc-anchor" href="#list-dids" >§</a> List DIDs</h4>
 <p>[DIDS-LIST-RESULTS]</p>
 <ul>
 <li>search results are clickable and lead to DID info use case.</li>
@@ -537,6 +430,84 @@ Right to left text (like Arabic) MUST be supported.
 <li>back to directory: return to DID directory, with current search filter (stored in session)</li>
 </ul>
 <p><img src="assets/dids-did-remove.png" alt="remove a DID"></p>
+<h3 id="trust-registries"><a class="toc-anchor" href="#trust-registries" >§</a> Trust Registries</h3>
+<h4 id="list-trust-registries"><a class="toc-anchor" href="#list-trust-registries" >§</a> List Trust Registries</h4>
+<p>[TR-LIST-RESULTS]</p>
+<p>When screen size is reduced, column are progressively eliminated, in this order:</p>
+<ul>
+<li>created</li>
+<li>deposit</li>
+<li>controller</li>
+<li>modified</li>
+</ul>
+<p>DID and expire MUST be shown always.</p>
+<p><img src="assets/tr-list.png" alt="List Trust Registries"></p>
+<h4 id="add-a-trust-registry"><a class="toc-anchor" href="#add-a-trust-registry" >§</a> Add a Trust Registry</h4>
+<p>[TR-NEW] Adds a Trust Registry.</p>
+<p>When user confirms:</p>
+<ul>
+<li>
+<p>CONFIRM: as it is required when executing the method for creating the trust registry, governance framework document must be downloaded, and its digest_sri calculated. See <a path-0="verana-labs.github.io"path-1="verifiable-trust-vpr-spec"path-2="#mod-tr-msg-1-create-new-trust-registry"href="https://verana-labs.github.io/verifiable-trust-vpr-spec/#mod-tr-msg-1-create-new-trust-registry" >mod-tr-msg-1-create-new-trust-registry</a>. Execute transaction, show transaction status until successful. If successful, go to Trust Registry Info.</p>
+</li>
+<li>
+<p>CANCEL: go back to where I was</p>
+</li>
+</ul>
+<p><img src="assets/tr-new.png" alt="new Trust Registry"></p>
+<h4 id="trust-registry-infos-basic-information"><a class="toc-anchor" href="#trust-registry-infos-basic-information" >§</a> Trust Registry Infos - Basic Information</h4>
+<p>[TR-INFOS] Show Trust Registry infos. To switch to edit user hits the “edit” icon.</p>
+<p><img src="assets/tr-infos-basic.png" alt="alt text"></p>
+<p>Edit:</p>
+<p><a path-0="verana-labs.github.io"path-1="verifiable-trust-vpr-spec"path-2="#mod-tr-msg-4-update-trust-registry"href="https://verana-labs.github.io/verifiable-trust-vpr-spec/#mod-tr-msg-4-update-trust-registry" >mod-tr-msg-4-update-trust-registry</a></p>
+<p><img src="assets/tr-infos-basic-edit.png" alt="alt text"></p>
+<div id="note-56" class="notice note"><a class="notice-link" href="#note-56">NOTE</a><p>primary governance framework language cannot be modified</p>
+</div>
+<h4 id="trust-registry-add-governance-framework-document"><a class="toc-anchor" href="#trust-registry-add-governance-framework-document" >§</a> Trust Registry - Add Governance Framework Document</h4>
+<p>[TR-EGF-ADD-DOC] Add EGF document.</p>
+<p>When user confirms:</p>
+<ul>
+<li>
+<p>CONFIRM: as it is required when executing the method for creating the trust registry, governance framework document must be downloaded, and its digest_sri calculated. See <a path-0="verana-labs.github.io"path-1="verifiable-trust-vpr-spec"path-2="#mod-tr-msg-2-add-governance-framework-document"href="https://verana-labs.github.io/verifiable-trust-vpr-spec/#mod-tr-msg-2-add-governance-framework-document" >mod-tr-msg-2-add-governance-framework-document</a>. Execute transaction, show transaction status until successful. If successful, stay on the same view and refresh next version table content.</p>
+</li>
+<li>
+<p>CANCEL: collapse and clear form.</p>
+</li>
+</ul>
+<h4 id="trust-registry-set-egf-version-active"><a class="toc-anchor" href="#trust-registry-set-egf-version-active" >§</a> Trust Registry - Set EGF version active</h4>
+<p>[TR-EGF-SET-ACTIVE] Set EGF version active.</p>
+<p>When user confirms:</p>
+<ul>
+<li>
+<p>CONFIRM: execute the <a path-0="verana-labs.github.io"path-1="verifiable-trust-vpr-spec"path-2="#mod-tr-msg-3-increase-active-governance-framework-version"href="https://verana-labs.github.io/verifiable-trust-vpr-spec/#mod-tr-msg-3-increase-active-governance-framework-version" >mod-tr-msg-3-increase-active-governance-framework-version</a> show transaction status until successful. If successful, stay on the same view and refresh view.</p>
+</li>
+<li>
+<p>CANCEL: collapse.</p>
+</li>
+</ul>
+<h4 id="renew-a-did-2"><a class="toc-anchor" href="#renew-a-did-2" >§</a> Renew a DID</h4>
+<p>[DIDS-DID-RENEW] Renew a DID. Use [MOD-DD-MSG-2-2-2] from VPR spec to estimate approx transaction cost.</p>
+<ul>
+<li>CANCEL: close renew section</li>
+<li>CONFIRM: execute transaction, show transaction status until successful. If successful, refresh DID info data (without reloading page).</li>
+<li>back to directory: return to DID directory, with current search filter (stored in session)</li>
+</ul>
+<p><img src="assets/dids-did-renew.png" alt="renew a DID"></p>
+<h4 id="touch-a-did-2"><a class="toc-anchor" href="#touch-a-did-2" >§</a> Touch a DID</h4>
+<p>[DIDS-DID-TOUCH] Renew a DID. Use [MOD-DD-MSG-4-2-2] from VPR spec to estimate approx transaction cost.</p>
+<ul>
+<li>CANCEL: close touch section</li>
+<li>CONFIRM: execute transaction, show transaction status until successful. If successful, refresh DID info data (without reloading page).</li>
+<li>back to directory: return to DID directory, with current search filter (stored in session)</li>
+</ul>
+<p><img src="assets/dids-did-touch.png" alt="touch a DID"></p>
+<h4 id="remove-a-did-2"><a class="toc-anchor" href="#remove-a-did-2" >§</a> Remove a DID</h4>
+<p>[DIDS-DID-REMOVE] Renew a DID. Use [MOD-DD-MSG-3-2-2] from VPR spec to estimate approx transaction cost.</p>
+<ul>
+<li>CANCEL: close remove section</li>
+<li>CONFIRM: execute transaction, show transaction status until successful. If successful, return to DID directory, with previous search filter stored in session.</li>
+<li>back to directory: return to DID directory, with current search filter (stored in session)</li>
+</ul>
+<p><img src="assets/dids-did-remove.png" alt="remove a DID"></p>
 
                     </article>    
       
@@ -579,7 +550,7 @@ Right to left text (like Arabic) MUST be supported.
 <li><a href="#for-service-providers" >For Service Providers</a></li>
 </ul>
 </li>
-<li><a href="#the-verana-app-provides" >The Verana App provides:</a></li>
+<li><a href="#the-verana-app-provides" >The Verana App provides</a></li>
 </ul>
 </li>
 <li><a href="#terminology" >Terminology</a></li>
@@ -589,7 +560,6 @@ Right to left text (like Arabic) MUST be supported.
 <ul>
 <li><a href="#general-deployment-general-deployment" >[GENERAL-DEPLOYMENT] General - Deployment</a></li>
 <li><a href="#general-env-general-container-variables" >[GENERAL-ENV] General - Container Variables</a></li>
-<li><a href="#general-networks" >General - Networks</a></li>
 <li><a href="#general-internationalization" >General - Internationalization</a></li>
 <li><a href="#general-layout-general-layout" >[GENERAL-LAYOUT] General - Layout</a></li>
 </ul>
@@ -615,21 +585,28 @@ Right to left text (like Arabic) MUST be supported.
 <li><a href="#settings" >Settings</a>
 <ul>
 <li><a href="#settings-general" >Settings - General</a></li>
-<li><a href="#network-selection" >Network Selection</a></li>
-<li><a href="#network-selection-add-network" >Network Selection - Add Network</a></li>
-<li><a href="#network-selection-added-network" >Network Selection - Added Network</a></li>
-<li><a href="#network-selection-delete-network" >Network Selection - Delete Network</a></li>
-<li><a href="#network-selection-non-mainnet-header" >Network Selection - Non mainnet - Header</a></li>
 </ul>
 </li>
 <li><a href="#did-directory" >DID Directory</a>
 <ul>
-<li><a href="#list" >List</a></li>
+<li><a href="#list-dids" >List DIDs</a></li>
 <li><a href="#did-infos" >DID Infos</a></li>
 <li><a href="#add-a-did" >Add a DID</a></li>
 <li><a href="#renew-a-did" >Renew a DID</a></li>
 <li><a href="#touch-a-did" >Touch a DID</a></li>
 <li><a href="#remove-a-did" >Remove a DID</a></li>
+</ul>
+</li>
+<li><a href="#trust-registries" >Trust Registries</a>
+<ul>
+<li><a href="#list-trust-registries" >List Trust Registries</a></li>
+<li><a href="#add-a-trust-registry" >Add a Trust Registry</a></li>
+<li><a href="#trust-registry-infos-basic-information" >Trust Registry Infos - Basic Information</a></li>
+<li><a href="#trust-registry-add-governance-framework-document" >Trust Registry - Add Governance Framework Document</a></li>
+<li><a href="#trust-registry-set-egf-version-active" >Trust Registry - Set EGF version active</a></li>
+<li><a href="#renew-a-did-2" >Renew a DID</a></li>
+<li><a href="#touch-a-did-2" >Touch a DID</a></li>
+<li><a href="#remove-a-did-2" >Remove a DID</a></li>
 </ul>
 </li>
 </ul>
