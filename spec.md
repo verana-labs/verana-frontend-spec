@@ -165,6 +165,9 @@ Right to left text (like Arabic) MUST be supported.
 
 [GENERAL-LAYOUT-HEADER] Header MUST include a squared App logo and App name on the left side, and on the right side the setting icon, a dark/light mode, and a crypto account zone. Optionally, if layout is very small, a Menu hamburger icon CAN appear on te left side of the header, and the App name MAY disappear.
 
+[GENERAL-LAYOUT-FAVICON]
+Package available in [favicons directory](favicons/). Add all including the site.webmanifest.
+
 ##### Header - Not Connected
 
 ![layout-header-not-connected](assets/layout-header-not-connected.png)
