@@ -499,32 +499,36 @@ When user confirms:
 
 - CANCEL: collapse.
 
-#### Renew a DID
+#### Trust Registry - Credential Schema List
 
-[DIDS-DID-RENEW] Renew a DID. Use [MOD-DD-MSG-2-2-2] from VPR spec to estimate approx transaction cost.
+Show existing Credential Schemas for this Trust Registry ordered by id desc, with a link for creating a new Credential Schema at the top.
 
-- CANCEL: close renew section
-- CONFIRM: execute transaction, show transaction status until successful. If successful, refresh DID info data (without reloading page).
-- back to directory: return to DID directory, with current search filter (stored in session)
+[TR-CS-LIST]
 
-![renew a DID](assets/dids-did-renew.png)
+![TR CS List](assets/tr-cs-list.png)
 
-#### Touch a DID
+#### Trust Registry - New Credential Schema
 
-[DIDS-DID-TOUCH] Renew a DID. Use [MOD-DD-MSG-4-2-2] from VPR spec to estimate approx transaction cost.
+Create a new Credential Schema
 
-- CANCEL: close touch section
-- CONFIRM: execute transaction, show transaction status until successful. If successful, refresh DID info data (without reloading page).
-- back to directory: return to DID directory, with current search filter (stored in session)
+[TR-CS-NEW]
 
-![touch a DID](assets/dids-did-touch.png)
+![TR CS New1](assets/tr-cs-new1.png)
 
-#### Remove a DID
+part2:
 
-[DIDS-DID-REMOVE] Renew a DID. Use [MOD-DD-MSG-3-2-2] from VPR spec to estimate approx transaction cost.
+![TR CS New2](assets/tr-cs-new2.png)
 
-- CANCEL: close remove section
-- CONFIRM: execute transaction, show transaction status until successful. If successful, return to DID directory, with previous search filter stored in session.
-- back to directory: return to DID directory, with current search filter (stored in session)
+When user confirms:
 
-![remove a DID](assets/dids-did-remove.png)
+- CONFIRM: [mod-cs-msg-1-create-new-credential-schema](https://verana-labs.github.io/verifiable-trust-vpr-spec/#mod-cs-msg-1-create-new-credential-schema). Execute transaction, show transaction status until successful. If successful, stay on the same view and refresh to [TR-CS-VIEW].
+
+- CANCEL: collapse and clear form.
+
+#### Trust Registry - View Credential Schema
+
+[TR-CS-VIEW]
+
+Do not show permissions yet.
+
+![TR CS View](assets/tr-cs-view.png)
