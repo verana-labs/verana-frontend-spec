@@ -123,7 +123,7 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 <li>build a verifiable trust reputation and be recognized.</li>
 <li>be searchable: add your services to the verifiable service directory</li>
 </ul>
-<h3 id="the-verana-app-provides"><a class="toc-anchor" href="#the-verana-app-provides" >§</a> The Verana App provides:</h3>
+<h3 id="the-verana-app-provides"><a class="toc-anchor" href="#the-verana-app-provides" >§</a> The Verana App provides</h3>
 <ul>
 <li>interaction with the verana network, by querying the ledger and post transactions;</li>
 <li>statistics: ecosystem, blockchain, Verifiable Services (aka VSs).</li>
@@ -172,111 +172,39 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 </tr>
 <tr>
 <td>Network Configuration</td>
-<td>MAINNET_API_ENDPOINT</td>
+<td>API_ENDPOINT</td>
 <td></td>
 <td><a path-0="api.verana.network"href="https://api.verana.network" ><span>https://api.verana.network</span></a></td>
 </tr>
 <tr>
 <td></td>
-<td>MAINNET_RPC_ENDPOINT</td>
+<td>RPC_ENDPOINT</td>
 <td></td>
 <td><a path-0="rpc.verana.network"href="https://rpc.verana.network" ><span>https://rpc.verana.network</span></a></td>
 </tr>
 <tr>
 <td></td>
-<td>MAINNET_IDX_ENDPOINT</td>
+<td>IDX_ENDPOINT</td>
 <td></td>
 <td><a path-0="idx.verana.network"href="https://idx.verana.network" ><span>https://idx.verana.network</span></a></td>
 </tr>
 <tr>
 <td></td>
-<td>MAINNET_CHAIN_ID</td>
+<td>CHAIN_ID</td>
 <td></td>
 <td>vna-mainnet-1</td>
 </tr>
 <tr>
 <td></td>
-<td>MAINNET_NAME</td>
+<td>CHAIN_NAME</td>
 <td></td>
 <td>Mainnet</td>
 </tr>
 <tr>
 <td></td>
-<td>MAINNET_TOPUP_VS</td>
+<td>TOPUP_VS</td>
 <td>List of VSs for top-up</td>
 <td>did:example:123, did:example:456</td>
-</tr>
-<tr>
-<td></td>
-<td>TESTNET_API_ENDPOINT</td>
-<td></td>
-<td><a path-0="api.testnet.verana.network"href="https://api.testnet.verana.network" ><span>https://api.testnet.verana.network</span></a></td>
-</tr>
-<tr>
-<td></td>
-<td>TESTNET_RPC_ENDPOINT</td>
-<td></td>
-<td><a path-0="rpc.testnet.verana.network"href="https://rpc.testnet.verana.network" ><span>https://rpc.testnet.verana.network</span></a></td>
-</tr>
-<tr>
-<td></td>
-<td>TESTNET_IDX_ENDPOINT</td>
-<td></td>
-<td><a path-0="idx.testnet.verana.network"href="https://idx.testnet.verana.network" ><span>https://idx.testnet.verana.network</span></a></td>
-</tr>
-<tr>
-<td></td>
-<td>TESTNET_CHAIN_ID</td>
-<td></td>
-<td>vna-testnet-1</td>
-</tr>
-<tr>
-<td></td>
-<td>TESTNET_NAME</td>
-<td></td>
-<td>Testnet</td>
-</tr>
-<tr>
-<td></td>
-<td>TESTNET_TOPUP_VS</td>
-<td>List of VSs for top-up</td>
-<td>did:example:123, did:example:456</td>
-</tr>
-<tr>
-<td></td>
-<td>DEVNETS__VNA-DEVNET_MAIN__API_ENDPOINT</td>
-<td></td>
-<td><a path-0="api.vna-devnet-main.devnet.verana.network"href="https://api.vna-devnet-main.devnet.verana.network" ><span>https://api.vna-devnet-main.devnet.verana.network</span></a></td>
-</tr>
-<tr>
-<td></td>
-<td>DEVNETS__VNA-DEVNET_MAIN__RPC_ENDPOINT</td>
-<td></td>
-<td><a path-0="rpc.vna-devnet-main.devnet.verana.network"href="https://rpc.vna-devnet-main.devnet.verana.network" ><span>https://rpc.vna-devnet-main.devnet.verana.network</span></a></td>
-</tr>
-<tr>
-<td></td>
-<td>DEVNETS__VNA-DEVNET_MAIN__IDX_ENDPOINT</td>
-<td></td>
-<td><a path-0="idx.vna-devnet-main.devnet.verana.network"href="https://idx.vna-devnet-main.devnet.verana.network" ><span>https://idx.vna-devnet-main.devnet.verana.network</span></a></td>
-</tr>
-<tr>
-<td></td>
-<td>DEVNETS__VNA-DEVNET_MAIN__NAME</td>
-<td></td>
-<td>Vna Devnet Main</td>
-</tr>
-<tr>
-<td></td>
-<td>DEVNETS__VNA-DEVNET_MAIN__TOPUP_VS</td>
-<td>List of VSs for top-up</td>
-<td>did:example:123, did:example:456</td>
-</tr>
-<tr>
-<td></td>
-<td>DEFAULT_NETWORK</td>
-<td>Default selected network in App</td>
-<td>vna-mainnet-1</td>
 </tr>
 <tr>
 <td>Internationalization</td>
@@ -292,25 +220,6 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 </tr>
 </tbody>
 </table>
-<h4 id="general-networks"><a class="toc-anchor" href="#general-networks" >§</a> General - Networks</h4>
-<p>[GENERAL-NETWORKS] All network declarations are optionals. Container MUST be configured with at least one network, else it cannot start and MUST log an error. Declared <code>DEFAULT_NETWORK</code> MUST exist else container startup MUST fail and log error. There can be only one Mainnet and one Testnet. An unlimited number of devnets can be configured. Add a devnet by creating a <code>DEVNETS__DEVNET_ID__*</code> env vars by replacing DEVNET_ID by the devnet id.</p>
-<p>Example: to declare 2 devnets with id mydevnet-1 and mydevnet-2, declare:</p>
-<ul>
-<li>for mydevnet-1:</li>
-</ul>
-<p>DEVNETS__MYDEVNET_1__API_ENDPOINT=…
-DEVNETS__MYDEVNET_1__RPC_ENDPOINT=…
-DEVNETS__MYDEVNET_1__IDX_ENDPOINT=…
-DEVNETS__MYDEVNET_1__NAME=…
-DEVNETS__MYDEVNET_1__TOPUP_VS=…</p>
-<ul>
-<li>for mydevnet-2:</li>
-</ul>
-<p>DEVNETS__MYDEVNET_2__API_ENDPOINT=…
-DEVNETS__MYDEVNET_2__RPC_ENDPOINT=…
-DEVNETS__MYDEVNET_2__IDX_ENDPOINT=…
-DEVNETS__MYDEVNET_2__NAME=…
-DEVNETS__MYDEVNET_2__TOPUP_VS=…</p>
 <h4 id="general-internationalization"><a class="toc-anchor" href="#general-internationalization" >§</a> General - Internationalization</h4>
 <p>[GENERAL-I18N-DEFAULT]</p>
 <p>[GENERAL-I18N-LOCALE-DATA] All texts, labels, rollover texts, images with texts, videos, sounds, text icons MUST be centralized in a directory per locale</p>
@@ -579,7 +488,7 @@ Right to left text (like Arabic) MUST be supported.
 <li><a href="#for-service-providers" >For Service Providers</a></li>
 </ul>
 </li>
-<li><a href="#the-verana-app-provides" >The Verana App provides:</a></li>
+<li><a href="#the-verana-app-provides" >The Verana App provides</a></li>
 </ul>
 </li>
 <li><a href="#terminology" >Terminology</a></li>
@@ -589,7 +498,6 @@ Right to left text (like Arabic) MUST be supported.
 <ul>
 <li><a href="#general-deployment-general-deployment" >[GENERAL-DEPLOYMENT] General - Deployment</a></li>
 <li><a href="#general-env-general-container-variables" >[GENERAL-ENV] General - Container Variables</a></li>
-<li><a href="#general-networks" >General - Networks</a></li>
 <li><a href="#general-internationalization" >General - Internationalization</a></li>
 <li><a href="#general-layout-general-layout" >[GENERAL-LAYOUT] General - Layout</a></li>
 </ul>

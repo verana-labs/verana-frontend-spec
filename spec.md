@@ -95,7 +95,7 @@ Fraud and Identity theft are eradicated.
 - build a verifiable trust reputation and be recognized.
 - be searchable: add your services to the verifiable service directory
 
-### The Verana App provides:
+### The Verana App provides
 
 - interaction with the verana network, by querying the ledger and post transactions;
 - statistics: ecosystem, blockchain, Verifiable Services (aka VSs).
@@ -125,49 +125,14 @@ The Verana App MUST be delivered as a container.
 | General                        | APP_NAME                              |                                  | Veranito                         |
 |                                | APP_LOGO                              |                                  | logo.svg                        |
 |                                | ADDRESS_EXPLORER                      |                                  | https://www.mintscan.io/verana/address/VERANA_ADDRESS   |
-| Network Configuration          | MAINNET_API_ENDPOINT                  |                                  | https://api.verana.network       |
-|                                | MAINNET_RPC_ENDPOINT                  |                                  | https://rpc.verana.network       |
-|                                | MAINNET_IDX_ENDPOINT                  |                                  | https://idx.verana.network       |
-|                                | MAINNET_CHAIN_ID                      |                                  | vna-mainnet-1       |
-|                                | MAINNET_NAME                          |                                  | Mainnet       |
-|                                | MAINNET_TOPUP_VS                      |   List of VSs for top-up       | did:example:123, did:example:456       |
-|                                | TESTNET_API_ENDPOINT                  |                                  | https://api.testnet.verana.network       |
-|                                | TESTNET_RPC_ENDPOINT                  |                                  | https://rpc.testnet.verana.network       |
-|                                | TESTNET_IDX_ENDPOINT                  |                                  | https://idx.testnet.verana.network       |
-|                                | TESTNET_CHAIN_ID                      |                                  | vna-testnet-1       |
-|                                | TESTNET_NAME                          |                                  | Testnet       |
-|                                | TESTNET_TOPUP_VS                      |   List of VSs for top-up       | did:example:123, did:example:456       |
-|                                | DEVNETS__VNA-DEVNET_MAIN__API_ENDPOINT|                                  | https://api.vna-devnet-main.devnet.verana.network       |
-|                                | DEVNETS__VNA-DEVNET_MAIN__RPC_ENDPOINT|                                  | https://rpc.vna-devnet-main.devnet.verana.network       |
-|                                | DEVNETS__VNA-DEVNET_MAIN__IDX_ENDPOINT|                                  | https://idx.vna-devnet-main.devnet.verana.network       |
-|                                | DEVNETS__VNA-DEVNET_MAIN__NAME        |                                  | Vna Devnet Main       |
-|                                | DEVNETS__VNA-DEVNET_MAIN__TOPUP_VS    |   List of VSs for top-up       | did:example:123, did:example:456       |
-|                                | DEFAULT_NETWORK                       |   Default selected network in App    | vna-mainnet-1       |
+| Network Configuration          | API_ENDPOINT                  |                                  | https://api.verana.network       |
+|                                | RPC_ENDPOINT                  |                                  | https://rpc.verana.network       |
+|                                | IDX_ENDPOINT                  |                                  | https://idx.verana.network       |
+|                                | CHAIN_ID                      |                                  | vna-mainnet-1       |
+|                                | CHAIN_NAME                          |                                  | Mainnet       |
+|                                | TOPUP_VS                      |   List of VSs for top-up       | did:example:123, did:example:456       |
 | Internationalization           | DEFAULT_LOCALE                        |   Failover locale | en_US       |
 |                                | SUPPORTED_LOCALES                     |                                  | en_US, fr_FR, en:en_US, fr:fr_FR       |
-
-#### General - Networks
-
-[GENERAL-NETWORKS] All network declarations are optionals. Container MUST be configured with at least one network, else it cannot start and MUST log an error. Declared `DEFAULT_NETWORK` MUST exist else container startup MUST fail and log error. There can be only one Mainnet and one Testnet. An unlimited number of devnets can be configured. Add a devnet by creating a `DEVNETS__DEVNET_ID__*` env vars by replacing DEVNET_ID by the devnet id.
-
-Example: to declare 2 devnets with id mydevnet-1 and mydevnet-2, declare:
-
-- for mydevnet-1:
-
-DEVNETS__MYDEVNET_1__API_ENDPOINT=...
-DEVNETS__MYDEVNET_1__RPC_ENDPOINT=...
-DEVNETS__MYDEVNET_1__IDX_ENDPOINT=...
-DEVNETS__MYDEVNET_1__NAME=...
-DEVNETS__MYDEVNET_1__TOPUP_VS=...
-
-- for mydevnet-2:
-
-DEVNETS__MYDEVNET_2__API_ENDPOINT=...
-DEVNETS__MYDEVNET_2__RPC_ENDPOINT=...
-DEVNETS__MYDEVNET_2__IDX_ENDPOINT=...
-DEVNETS__MYDEVNET_2__NAME=...
-DEVNETS__MYDEVNET_2__TOPUP_VS=...
-
 
 #### General - Internationalization
 
