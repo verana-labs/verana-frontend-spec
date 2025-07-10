@@ -220,6 +220,20 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 </tr>
 </tbody>
 </table>
+<h4 id="general-fee-calculation-and-preview"><a class="toc-anchor" href="#general-fee-calculation-and-preview" >§</a> General - Fee Calculation and Preview</h4>
+<p>As mentioned in <a path-0="github.com"path-1="verana-labs"path-2="verana-blockchain"path-3="issues"path-4="98"href="https://github.com/verana-labs/verana-blockchain/issues/98" >this issue</a></p>
+<p>Front end must calculate an estimation of trust fees in <strong>Trust Unit</strong> and use <code>trust_unit_price</code>, <code>trust_deposit_rate</code>, <code>user_agent_reward_rate</code>  + <code>wallet_user_agent_reward_rate</code> to calculate trust fees.</p>
+<ol>
+<li>For DID directory create/renew: value is set as a global variable <code>did_directory_trust_deposit</code></li>
+<li>For trust registry creation: <code>trust_registry_trust_deposit</code></li>
+<li>For Credential Schema: <code>credential_schema_trust_deposit</code></li>
+<li>For Start Permission / Renew Permission: for the selected validator permission, <code>Permission. validation_fees</code> + <code>trust_deposit_rate</code>%</li>
+<li>Session: use query method <code>Find Beneficiaries</code>, and add <code>trust_deposit_rate + user_agent_reward_rate  + wallet_user_agent_reward_rate </code>%</li>
+</ol>
+<blockquote>
+<p>Plus <strong>gas fees</strong> obviously.</p>
+</blockquote>
+<p>Other methods have just <strong>gas fees</strong>. Gas fee estimation depends on the size of the sent message. Default might be enough - this spec does not define how to calculate gas fee, but how to calculate required trust fee / deposit.</p>
 <h4 id="general-internationalization"><a class="toc-anchor" href="#general-internationalization" >§</a> General - Internationalization</h4>
 <p>[GENERAL-I18N-DEFAULT]</p>
 <p>[GENERAL-I18N-LOCALE-DATA] All texts, labels, rollover texts, images with texts, videos, sounds, text icons MUST be centralized in a directory per locale</p>
@@ -231,10 +245,10 @@ customElements.define("slide-panels",class extends HTMLElement{static get observ
 <li>if not found, try to use the default locale for the same language. So if <code>locale</code> is equal to <code>en_GB</code>, look for entry en:… in <code>SUPPORTED_LOCALES</code> to get default locale for <code>en</code>.</li>
 <li>else fallback to <code>DEFAULT_LOCALE</code> (normally <code>en_US</code>).</li>
 </ul>
-<div id="note-133" class="notice note"><a class="notice-link" href="#note-133">NOTE</a><p>At least the content of the default locale MUST be provided by development/design team.
+<div id="note-147" class="notice note"><a class="notice-link" href="#note-147">NOTE</a><p>At least the content of the default locale MUST be provided by development/design team.
 Default locale for development MUST be en_US.</p>
 </div>
-<div id="warning-5" class="notice warning"><a class="notice-link" href="#warning-5">WARNING</a><p>Right to left text (like Arabic) MUST be supported.</p>
+<div id="warning-12" class="notice warning"><a class="notice-link" href="#warning-12">WARNING</a><p>Right to left text (like Arabic) MUST be supported.</p>
 </div>
 <h4 id="general-layout-general-layout"><a class="toc-anchor" href="#general-layout-general-layout" >§</a> [GENERAL-LAYOUT] General - Layout</h4>
 <p>[GENERAL-LAYOUT-RESPONSIVE] App MUST be usable from any device, layout MUST be responsive.</p>
@@ -265,11 +279,11 @@ Package available in <a path-0=""href="favicons/" >favicons directory</a>. Add a
 </ul>
 <h3 id="crypto-wallet-integration"><a class="toc-anchor" href="#crypto-wallet-integration" >§</a> Crypto Wallet Integration</h3>
 <h4 id="crypto-wallet-integration-general"><a class="toc-anchor" href="#crypto-wallet-integration-general" >§</a> Crypto Wallet Integration - General</h4>
-<p>[CW-GENERAL-KIT]  Use a kit such as the <a path-0="github.com"path-1="cosmology-tech"path-2="cosmos-kit"href="https://github.com/cosmology-tech/cosmos-kit" >cosmos-kit repo</a> to easily integrate any wallet to the Verana App.</p>
+<p>[CW-GENERAL-KIT]  Use a kit such as the <a path-0="github.com"path-1="hyperweb-io"path-2="interchain-kit"href="https://github.com/hyperweb-io/interchain-kit" >interchain-kit repo</a> to easily integrate any wallet to the Verana App.</p>
 <p>[CW-CONNECT-WALLET]</p>
 <p>If user reaches the App through any URL of the App, and if a detected installed wallet is found and it has been already granted, App MUST connect to it immediately with no user intervention. (same will happen if I am connected and I reload the page in my browser).</p>
 <ul>
-<li>read the doc of cosmos-kit or any other library you want to use</li>
+<li>read the doc of interchain-kit or any other library you want to use</li>
 <li>detect any installed wallet extension, and put them in the “Detected Installed Wallets” section.</li>
 <li>show available mobile wallets, in the “Mobile Wallets” section</li>
 <li>show available non mobile wallets not detected, in the “Other Wallets” section</li>
@@ -461,7 +475,7 @@ Package available in <a path-0=""href="favicons/" >favicons directory</a>. Add a
 <p>Edit:</p>
 <p><a path-0="verana-labs.github.io"path-1="verifiable-trust-vpr-spec"path-2="#mod-tr-msg-4-update-trust-registry"href="https://verana-labs.github.io/verifiable-trust-vpr-spec/#mod-tr-msg-4-update-trust-registry" >mod-tr-msg-4-update-trust-registry</a></p>
 <p><img src="assets/tr-infos-basic-edit.png" alt="alt text"></p>
-<div id="note-134" class="notice note"><a class="notice-link" href="#note-134">NOTE</a><p>primary governance framework language cannot be modified</p>
+<div id="note-148" class="notice note"><a class="notice-link" href="#note-148">NOTE</a><p>primary governance framework language cannot be modified</p>
 </div>
 <h4 id="trust-registry-add-governance-framework-document"><a class="toc-anchor" href="#trust-registry-add-governance-framework-document" >§</a> Trust Registry - Add Governance Framework Document</h4>
 <p>[TR-EGF-ADD-DOC] Add EGF document.</p>
@@ -560,6 +574,7 @@ Package available in <a path-0=""href="favicons/" >favicons directory</a>. Add a
 <ul>
 <li><a href="#general-deployment-general-deployment" >[GENERAL-DEPLOYMENT] General - Deployment</a></li>
 <li><a href="#general-env-general-container-variables" >[GENERAL-ENV] General - Container Variables</a></li>
+<li><a href="#general-fee-calculation-and-preview" >General - Fee Calculation and Preview</a></li>
 <li><a href="#general-internationalization" >General - Internationalization</a></li>
 <li><a href="#general-layout-general-layout" >[GENERAL-LAYOUT] General - Layout</a></li>
 </ul>
