@@ -134,6 +134,22 @@ The Verana App MUST be delivered as a container.
 | Internationalization           | DEFAULT_LOCALE                        |   Failover locale | en_US       |
 |                                | SUPPORTED_LOCALES                     |                                  | en_US, fr_FR, en:en_US, fr:fr_FR       |
 
+#### General - Fee Calculation and Preview
+
+As mentioned in [this issue](https://github.com/verana-labs/verana-blockchain/issues/98)
+
+Front end must calculate an estimation of trust fees in **Trust Unit** and use `trust_unit_price`, `trust_deposit_rate`, `user_agent_reward_rate`  + `wallet_user_agent_reward_rate` to calculate trust fees.
+
+1. For DID directory create/renew: value is set as a global variable `did_directory_trust_deposit` 
+2. For trust registry creation: `trust_registry_trust_deposit` 
+3. For Credential Schema: `credential_schema_trust_deposit`
+4. For Start Permission / Renew Permission: for the selected validator permission, `Permission. validation_fees` + `trust_deposit_rate`%
+5. Session: use query method `Find Beneficiaries`, and add `trust_deposit_rate + user_agent_reward_rate  + wallet_user_agent_reward_rate `%
+
+> Plus **gas fees** obviously.
+
+Other methods have just **gas fees**. Gas fee estimation depends on the size of the sent message. Default might be enough - this spec does not define how to calculate gas fee, but how to calculate required trust fee / deposit.
+
 #### General - Internationalization
 
 [GENERAL-I18N-DEFAULT]
@@ -210,13 +226,13 @@ Package available in [favicons directory](favicons/). Add all including the site
 
 #### Crypto Wallet Integration - General
 
-[CW-GENERAL-KIT]  Use a kit such as the [cosmos-kit repo](https://github.com/cosmology-tech/cosmos-kit) to easily integrate any wallet to the Verana App.
+[CW-GENERAL-KIT]  Use a kit such as the [interchain-kit repo](https://github.com/hyperweb-io/interchain-kit) to easily integrate any wallet to the Verana App.
 
 [CW-CONNECT-WALLET]
 
 If user reaches the App through any URL of the App, and if a detected installed wallet is found and it has been already granted, App MUST connect to it immediately with no user intervention. (same will happen if I am connected and I reload the page in my browser).
 
-- read the doc of cosmos-kit or any other library you want to use
+- read the doc of interchain-kit or any other library you want to use
 - detect any installed wallet extension, and put them in the "Detected Installed Wallets" section.
 - show available mobile wallets, in the "Mobile Wallets" section
 - show available non mobile wallets not detected, in the "Other Wallets" section
