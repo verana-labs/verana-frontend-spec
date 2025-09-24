@@ -133,6 +133,7 @@ The Verana App MUST be delivered as a container.
 |                                | TOPUP_VS                      |   List of VSs for top-up       | did:example:123, did:example:456       |
 | Internationalization           | DEFAULT_LOCALE                        |   Failover locale | en_US       |
 |                                | SUPPORTED_LOCALES                     |                                  | en_US, fr_FR, en:en_US, fr:fr_FR       |
+|                                | SESSION_LIFETIME_SECONDS                     |                                  | 86400       |
 
 #### General - Fee Calculation and Preview
 
