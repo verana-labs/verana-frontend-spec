@@ -1,0 +1,20 @@
+Design Trust Registries list with same responsive table rules as DIDs.
+
+Columns:
+- Id: integer
+- DID: DID
+- Controller: address
+- Created: date
+- Modified: date
+- EGF (content is always an icon with a link to an external resource)
+
+Trust Registry Info:
+- Basic info view with "edit" icon that switches to inline edit mode (primary language immutable note).
+- EGF Document: Add new doc (download + digest notice), list versions, Set active version flow.
+- Credential Schemas: list; New schema two-step form; View schema (permissions hidden for now).
+
+Add consistent “Back to list” affordances that respect session filters.
+
+Create New Trust Registry form:
+- On CONFIRM: step shows download of Governance Framework doc, then shows digest_sri computed notice before broadcast (UX placeholder), then Transaction Popup.
+
