@@ -1,4 +1,6 @@
-Design Trust Registries list with same responsive table rules as DIDs.
+Design "My Ecosystems" page.
+
+1) List view with same responsive table rules as DIDs (put 4 rows as example).
 
 Columns:
 - Id: integer
@@ -6,15 +8,34 @@ Columns:
 - Controller: address
 - Created: date
 - Modified: date
-- EGF (content is always an icon with a link to an external resource)
+- Role: one of OWNER, ISSUER_GRANTOR, ISSUER, VERIFIER_GRANTOR, VERIFIER (use a different color per role)
+- EGF (content is always an icon linking to an external resource)
 
-Trust Registry Info:
-- Basic info view with "edit" icon that switches to inline edit mode (primary language immutable note).
-- EGF Document: Add new doc (download + digest notice), list versions, Set active version flow.
-- Credential Schemas: list; New schema two-step form; View schema (permissions hidden for now).
-
-Add consistent “Back to list” affordances that respect session filters.
+click on row routes to 2) Ecosystem Info.
 
 Create New Trust Registry form:
-- On CONFIRM: step shows download of Governance Framework doc, then shows digest_sri computed notice before broadcast (UX placeholder), then Transaction Popup.
+- form with: DID, aka, Primary Governance Framework Language (select), Governance Framework Document URL (String). With message: You'll need approx. 5.900000 VNA to complete the transaction, CANCEL/CONFIRM and success routing to 2) Ecosystem Info.
+
+2) Ecosystem Info: click on table row shows Ecosystem Info (new view, not popup, with consistent “Back to list” affordances that respect session filters).
+View includes the following sections:
+
+2.1) Basic Information Section: id, DID, aka, controller, deposit amount in VNA, Primary Governance Framework Language, Active Governance Framework (integer). Edit button that makes the DID and the aka editable, with message: You'll need approx. 5.900000 VNA to complete the transaction, CANCEL/CONFIRM and success routing back to DID Info.
+2.2) EGF Documents Section: a simple List of documents ordered by version desc, with clickable links, no pagination, no column labels, example:
+    - Version 3: https://psycho.uche.org (en) *draft*
+    - Version 2: https://psycho.uche.org (en) **active since 2025-10-15**
+    - Version 1: https://psycho.uche.org (en) from 2025-10-13 to 2025-10-15
+a CTA "Add new EGF document" for adding a new governance framework document (popup): Governance Framework Language (select), Governance Framework Document URL (String) with message: You'll need approx. 5.900000 VNA to complete the transaction, CANCEL/CONFIRM and success updating the list.
+a CTA "Increase active EGF version"  (popup): no form, just with message: You'll need approx. 5.900000 VNA to complete the transaction, CANCEL/CONFIRM and success updating the list.
+
+2.3) Credential Schemas: list; New schema two-step form; View schema (permissions hidden for now).
+
+Columns:
+- Id: integer
+- Title: String
+- Description: String
+- Created: date
+- Modified: date
+
+Create New Credential Schema:
+- form with (popup): Issuer Permission Management Mode (select), Verifier Permission Management Mode (select), Issuer Grantor Validation Validity Period (int), Verifier Grantor Validation Validity Period (int) Issuer Validation Validity Period (int), Verifier Validation Validity Period (int), Holder Validation Validity Period (int), Json Schema (json textarea). With message: You'll need approx. 5.900000 VNA to complete the transaction, CANCEL/CONFIRM and success updating list.
 
