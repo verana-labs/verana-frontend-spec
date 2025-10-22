@@ -30,8 +30,6 @@
         .sortable-header { cursor: pointer; user-select: none; }
         .sortable-header:hover { background-color: rgba(0, 0, 0, 0.05); }
         .dark .sortable-header:hover { background-color: rgba(255, 255, 255, 0.05); }
-        .json-preview { max-height: 200px; overflow-y: auto; }
-        .json-expanded { max-height: 500px; overflow-y: auto; }
     </style>
     <script>
         tailwind.config = {
@@ -376,442 +374,532 @@
     <!-- Main Content -->
     <div class="flex-1 overflow-auto">
         <!-- Credential Schema View -->
-        <main id="credential-schema-view" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <main id="credential-schema" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             
-            <!-- Page Header with Back Button -->
-            <section id="schema-header" class="mb-8">
-                <div class="flex items-center mb-4">
-                    <button id="back-to-ecosystem" class="flex items-center text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 transition-colors mr-4">
-                        <i class="mr-2 fas fa-arrow-left"></i>
-                        Back to Ecosystem
-                    </button>
-                </div>
+            <!-- Back Navigation -->
+            <section id="back-nav" class="mb-6">
+                <button onclick="backToEcosystemInfo()" class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">
+                    <i class="mr-2 fas fa-arrow-left"></i>
+                    Back to Ecosystem Info
+                </button>
+            </section>
+
+            <!-- Page Header -->
+            <section id="page-header" class="mb-8">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between">
                     <div>
-                        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Identity Verification Schema</h1>
-                        <p class="mt-2 text-sm text-neutral-70 dark:text-neutral-70">Schema ID: 1 • Ecosystem #1</p>
+                        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Credential Schema</h1>
+                        <p class="mt-2 text-sm text-neutral-70 dark:text-neutral-70">Healthcare Trust Registry - Credential Schema Information</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Schema Information Section -->
-            <section id="schema-info-section" class="mb-8">
-                <div class="bg-white dark:bg-surface rounded-xl border border-neutral-20 dark:border-neutral-70 overflow-hidden">
-                    <div class="px-6 py-4 border-b border-neutral-20 dark:border-neutral-70">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Schema Information</h3>
+            <!-- Infos Section -->
+            <section id="infos-section" class="mb-8">
+                <div class="bg-white dark:bg-surface rounded-xl border border-neutral-20 dark:border-neutral-70 p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Infos</h3>
+                        <button id="edit-infos-btn" class="inline-flex items-center px-3 py-1.5 bg-primary-600 text-white rounded-lg text-sm font-medium hover:bg-primary-700 transition-colors">
+                            <i class="mr-1 fas fa-edit text-xs"></i>
+                            Edit
+                        </button>
                     </div>
                     
-                    <div class="p-6 space-y-6">
-                        <!-- Schema ID and JSON Schema -->
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Display Mode -->
+                    <div id="infos-display">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                             <div>
-                                <label class="block text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2">Schema ID</label>
-                                <div class="px-4 py-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                                    <span class="text-lg font-mono font-semibold text-gray-900 dark:text-white">1</span>
-                                </div>
+                                <label class="block text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-1">ID</label>
+                                <p class="text-sm text-gray-900 dark:text-white" id="schema-id">1001</p>
                             </div>
-                            
                             <div>
-                                <label class="block text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2">JSON Schema</label>
-                                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4">
-                                    <div id="json-preview" class="json-preview">
-                                        <pre class="text-sm text-gray-900 dark:text-white font-mono whitespace-pre-wrap">{"type": "object", "properties": {"name": {"type": "string"}, "email": {"type": "string", "format": "email"}, "dateOfBirth": {"type": "string", "format": "date"}}, "required": ["name", "email", "dateOfBirth"]}</pre>
-                                    </div>
-                                    <button id="expand-json" class="mt-2 text-sm text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 font-medium">
-                                        <i class="mr-1 fas fa-expand"></i>
-                                        Expand JSON Schema
-                                    </button>
-                                </div>
+                                <label class="block text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-1">Issuer Grantor Validation Validity Period</label>
+                                <p class="text-sm text-gray-900 dark:text-white" id="issuer-grantor-validity">365 days</p>
                             </div>
-                        </div>
-
-                        <!-- Permission Management Modes -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2">Issuer Permission Management Mode</label>
-                                <div class="px-4 py-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300">
-                                        <i class="mr-2 fas fa-shield-halved"></i>
-                                        TRUST_REGISTRY
-                                    </span>
-                                </div>
+                                <label class="block text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-1">Verifier Grantor Validation Validity Period</label>
+                                <p class="text-sm text-gray-900 dark:text-white" id="verifier-grantor-validity">365 days</p>
                             </div>
-                            
                             <div>
-                                <label class="block text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2">Verifier Permission Management Mode</label>
-                                <div class="px-4 py-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300">
-                                        <i class="mr-2 fas fa-unlock"></i>
-                                        OPEN
-                                    </span>
-                                </div>
+                                <label class="block text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-1">Issuer Validation Validity Period</label>
+                                <p class="text-sm text-gray-900 dark:text-white" id="issuer-validity">180 days</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-1">Verifier Validation Validity Period</label>
+                                <p class="text-sm text-gray-900 dark:text-white" id="verifier-validity">180 days</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-1">Holder Validation Validity Period</label>
+                                <p class="text-sm text-gray-900 dark:text-white" id="holder-validity">90 days</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-1">Issuer Permission Management Mode</label>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300" id="issuer-perm-mode">
+                                    TRUST_REGISTRY
+                                </span>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-1">Verifier Permission Management Mode</label>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300" id="verifier-perm-mode">
+                                    GRANTOR
+                                </span>
                             </div>
                         </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2">JSON Schema</label>
+                            <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 h-64 overflow-y-auto border border-neutral-20 dark:border-neutral-70">
+                                <pre class="text-sm text-gray-900 dark:text-white font-mono whitespace-pre-wrap" id="json-schema">{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "Healthcare Credential Schema",
+  "description": "Schema for healthcare professional credentials",
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uri"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name of the healthcare professional"
+        },
+        "profession": {
+          "type": "string",
+          "enum": ["doctor", "nurse", "pharmacist", "therapist"]
+        },
+        "licenseNumber": {
+          "type": "string",
+          "description": "Professional license number"
+        },
+        "specialization": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "validFrom": {
+          "type": "string",
+          "format": "date"
+        },
+        "validUntil": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": ["id", "name", "profession", "licenseNumber"]
+    }
+  },
+  "required": ["credentialSubject"]
+}</pre>
+                            </div>
+                        </div>
+                    </div>
 
-                        <!-- Validity Periods -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Edit Mode -->
+                    <div id="infos-edit" class="hidden">
+                        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-6">
+                            <p class="text-sm text-blue-700 dark:text-blue-300">You'll need approx. 5.900000 VNA to complete the transaction.</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                             <div>
-                                <label class="block text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2">Issuer Grantor Validity Period</label>
-                                <div class="px-4 py-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                                    <span class="text-lg font-semibold text-gray-900 dark:text-white">365</span>
-                                    <span class="text-sm text-neutral-70 dark:text-neutral-70 ml-1">days</span>
-                                </div>
+                                <label class="block text-sm font-medium text-gray-400 dark:text-gray-500 mb-1">ID</label>
+                                <input type="text" value="1001" disabled class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg bg-gray-100 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 cursor-not-allowed">
                             </div>
-                            
                             <div>
-                                <label class="block text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2">Verifier Grantor Validity Period</label>
-                                <div class="px-4 py-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                                    <span class="text-lg font-semibold text-gray-900 dark:text-white">365</span>
-                                    <span class="text-sm text-neutral-70 dark:text-neutral-70 ml-1">days</span>
-                                </div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Issuer Grantor Validation Validity Period (days)</label>
+                                <input type="number" id="edit-issuer-grantor-validity" value="365" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
                             </div>
-                            
                             <div>
-                                <label class="block text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2">Issuer Validity Period</label>
-                                <div class="px-4 py-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                                    <span class="text-lg font-semibold text-gray-900 dark:text-white">90</span>
-                                    <span class="text-sm text-neutral-70 dark:text-neutral-70 ml-1">days</span>
-                                </div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Verifier Grantor Validation Validity Period (days)</label>
+                                <input type="number" id="edit-verifier-grantor-validity" value="365" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
                             </div>
-                            
                             <div>
-                                <label class="block text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2">Verifier Validity Period</label>
-                                <div class="px-4 py-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                                    <span class="text-lg font-semibold text-gray-900 dark:text-white">90</span>
-                                    <span class="text-sm text-neutral-70 dark:text-neutral-70 ml-1">days</span>
-                                </div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Issuer Validation Validity Period (days)</label>
+                                <input type="number" id="edit-issuer-validity" value="180" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
                             </div>
-                            
                             <div>
-                                <label class="block text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2">Holder Validity Period</label>
-                                <div class="px-4 py-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                                    <span class="text-lg font-semibold text-gray-900 dark:text-white">30</span>
-                                    <span class="text-sm text-neutral-70 dark:text-neutral-70 ml-1">days</span>
-                                </div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Verifier Validation Validity Period (days)</label>
+                                <input type="number" id="edit-verifier-validity" value="180" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
                             </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Holder Validation Validity Period (days)</label>
+                                <input type="number" id="edit-holder-validity" value="90" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 dark:text-gray-500 mb-1">Issuer Permission Management Mode</label>
+                                <input type="text" value="TRUST_REGISTRY" disabled class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg bg-gray-100 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 cursor-not-allowed">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 dark:text-gray-500 mb-1">Verifier Permission Management Mode</label>
+                                <input type="text" value="GRANTOR" disabled class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg bg-gray-100 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 cursor-not-allowed">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-400 dark:text-gray-500 mb-2">JSON Schema</label>
+                            <div class="bg-gray-100 dark:bg-gray-700/50 rounded-lg p-4 h-64 overflow-y-auto border border-neutral-20 dark:border-neutral-70">
+                                <pre class="text-sm text-gray-500 dark:text-gray-400 font-mono whitespace-pre-wrap">{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "Healthcare Credential Schema",
+  "description": "Schema for healthcare professional credentials",
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uri"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name of the healthcare professional"
+        },
+        "profession": {
+          "type": "string",
+          "enum": ["doctor", "nurse", "pharmacist", "therapist"]
+        },
+        "licenseNumber": {
+          "type": "string",
+          "description": "Professional license number"
+        },
+        "specialization": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "validFrom": {
+          "type": "string",
+          "format": "date"
+        },
+        "validUntil": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": ["id", "name", "profession", "licenseNumber"]
+    }
+  },
+  "required": ["credentialSubject"]
+}</pre>
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-3">
+                            <button onclick="cancelEditInfos()" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                                Cancel
+                            </button>
+                            <button onclick="saveInfos()" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
+                                Save
+                            </button>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- My Permissions Section -->
-            <section id="my-permissions-section" class="mb-8">
-                <div class="bg-white dark:bg-surface rounded-xl border border-neutral-20 dark:border-neutral-70 overflow-hidden">
-                    <div class="px-6 py-4 border-b border-neutral-20 dark:border-neutral-70">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">My Permissions</h3>
-                            <div class="text-sm text-neutral-70 dark:text-neutral-70">
-                                <span>3 Permissions</span>
-                            </div>
-                        </div>
+            <section id="permissions-section">
+                <div class="bg-white dark:bg-surface rounded-xl border border-neutral-20 dark:border-neutral-70 p-6">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">My Permissions</h3>
+                        <p class="text-sm text-neutral-70 dark:text-neutral-70 mt-1">Your permissions for this credential schema.</p>
                     </div>
                     
-                    <div class="p-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <!-- Permission Card 1 - Active -->
-                            <div class="bg-white dark:bg-surface border-2 border-success-200 dark:border-success-700 rounded-xl p-6 relative">
-                                <div class="absolute top-4 right-4 flex space-x-2">
-                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-success-100 dark:bg-success-900/20 text-success-800 dark:text-success-300">
-                                        Active
+                    <!-- Permissions Grid -->
+                    <div id="permissions-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        
+                        <!-- Permission Card 1 - Active -->
+                        <div class="border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="flex items-center space-x-2">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300">
+                                        active
                                     </span>
                                 </div>
-                                
-                                <div class="space-y-4">
-                                    <div>
-                                        <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Permission ID</label>
-                                        <p class="text-lg font-semibold text-gray-900 dark:text-white">1</p>
-                                    </div>
-                                    
-                                    <div>
-                                        <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
-                                        <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkhaXg...ta2doK</p>
-                                    </div>
-                                    
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Created</label>
-                                            <p class="text-sm text-gray-900 dark:text-white">2024-01-15</p>
-                                        </div>
-                                        <div>
-                                            <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Modified</label>
-                                            <p class="text-sm text-gray-900 dark:text-white">2024-03-10</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective From</label>
-                                            <p class="text-sm text-gray-900 dark:text-white">2024-01-15</p>
-                                        </div>
-                                        <div>
-                                            <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Expires</label>
-                                            <p class="text-sm text-gray-900 dark:text-white">2025-01-15</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div>
-                                        <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Deposit</label>
-                                        <p class="text-lg font-semibold text-gray-900 dark:text-white">5,000.00 <span class="text-sm font-normal text-neutral-70">VNA</span></p>
-                                    </div>
-                                    
-                                    <div class="grid grid-cols-3 gap-2 text-center">
-                                        <div>
-                                            <p class="text-xs text-neutral-70 dark:text-neutral-70">Validation</p>
-                                            <p class="text-sm font-semibold text-gray-900 dark:text-white">25.00</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-xs text-neutral-70 dark:text-neutral-70">Issuance</p>
-                                            <p class="text-sm font-semibold text-gray-900 dark:text-white">15.00</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-xs text-neutral-70 dark:text-neutral-70">Verification</p>
-                                            <p class="text-sm font-semibold text-gray-900 dark:text-white">10.00</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <span class="text-sm font-medium text-gray-900 dark:text-white">ID: 12001</span>
                             </div>
                             
-                            <!-- Permission Card 2 - Expiring Soon -->
-                            <div class="bg-white dark:bg-surface border-2 border-yellow-200 dark:border-yellow-700 rounded-xl p-6 relative">
-                                <div class="absolute top-4 right-4 flex space-x-2">
-                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300">
-                                        Expires Soon
-                                    </span>
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
+                                    <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkHealthcareIssuer2024</p>
                                 </div>
                                 
-                                <div class="space-y-4">
+                                <div class="grid grid-cols-2 gap-3">
                                     <div>
-                                        <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Permission ID</label>
-                                        <p class="text-lg font-semibold text-gray-900 dark:text-white">2</p>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Created</label>
+                                        <p class="text-sm text-gray-900 dark:text-white">2024-01-15</p>
                                     </div>
-                                    
                                     <div>
-                                        <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
-                                        <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkpTHR...WsdvktH</p>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Modified</label>
+                                        <p class="text-sm text-gray-900 dark:text-white">2024-03-10</p>
                                     </div>
-                                    
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Created</label>
-                                            <p class="text-sm text-gray-900 dark:text-white">2023-11-01</p>
-                                        </div>
-                                        <div>
-                                            <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Extended</label>
-                                            <p class="text-sm text-gray-900 dark:text-white">2024-02-15</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective From</label>
-                                            <p class="text-sm text-gray-900 dark:text-white">2023-11-01</p>
-                                        </div>
-                                        <div>
-                                            <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Expires</label>
-                                            <p class="text-sm text-yellow-600 dark:text-yellow-400 font-semibold">2024-11-01</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div>
-                                        <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Deposit</label>
-                                        <p class="text-lg font-semibold text-gray-900 dark:text-white">3,500.00 <span class="text-sm font-normal text-neutral-70">VNA</span></p>
-                                    </div>
-                                    
-                                    <div class="grid grid-cols-3 gap-2 text-center">
-                                        <div>
-                                            <p class="text-xs text-neutral-70 dark:text-neutral-70">Validation</p>
-                                            <p class="text-sm font-semibold text-gray-900 dark:text-white">20.00</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-xs text-neutral-70 dark:text-neutral-70">Issuance</p>
-                                            <p class="text-sm font-semibold text-gray-900 dark:text-white">12.00</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-xs text-neutral-70 dark:text-neutral-70">Verification</p>
-                                            <p class="text-sm font-semibold text-gray-900 dark:text-white">8.00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Permission Card 3 - Expired with Slash -->
-                            <div class="bg-white dark:bg-surface border-2 border-gray-200 dark:border-gray-700 rounded-xl p-6 relative opacity-75">
-                                <div class="absolute top-4 right-4 flex space-x-2">
-                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300">
-                                        Expired
-                                    </span>
-                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-300">
-                                        Slashed
-                                    </span>
                                 </div>
                                 
-                                <div class="space-y-4">
+                                <div class="grid grid-cols-2 gap-3">
                                     <div>
-                                        <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Permission ID</label>
-                                        <p class="text-lg font-semibold text-gray-900 dark:text-white">3</p>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective From</label>
+                                        <p class="text-sm text-gray-900 dark:text-white">2024-01-15</p>
                                     </div>
-                                    
                                     <div>
-                                        <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
-                                        <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkecaL...HidTs8mL</p>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective Until</label>
+                                        <p class="text-sm text-gray-900 dark:text-white">2024-12-15</p>
                                     </div>
-                                    
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Created</label>
-                                            <p class="text-sm text-gray-900 dark:text-white">2023-08-01</p>
-                                        </div>
-                                        <div>
-                                            <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Slashed</label>
-                                            <p class="text-sm text-red-600 dark:text-red-400">2024-02-15</p>
-                                        </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Deposit</label>
+                                    <p class="text-sm font-mono text-gray-900 dark:text-white">125.50 VNA</p>
+                                </div>
+                                
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Validation</label>
+                                        <p class="text-sm font-mono text-gray-900 dark:text-white">2.5 VNA</p>
                                     </div>
-                                    
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective From</label>
-                                            <p class="text-sm text-gray-900 dark:text-white">2023-08-01</p>
-                                        </div>
-                                        <div>
-                                            <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Expired</label>
-                                            <p class="text-sm text-gray-500 dark:text-gray-400">2024-08-01</p>
-                                        </div>
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Issuance</label>
+                                        <p class="text-sm font-mono text-gray-900 dark:text-white">1.0 VNA</p>
                                     </div>
-                                    
-                                    <div class="space-y-2">
-                                        <div>
-                                            <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Original Deposit</label>
-                                            <p class="text-lg font-semibold text-gray-900 dark:text-white">2,000.00 <span class="text-sm font-normal text-neutral-70">VNA</span></p>
-                                        </div>
-                                        <div>
-                                            <label class="block text-xs font-medium text-neutral-70 dark:text-neutral-70">Slashed Amount</label>
-                                            <p class="text-lg font-semibold text-red-600 dark:text-red-400">500.00 <span class="text-sm font-normal text-neutral-70">VNA</span></p>
-                                        </div>
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Verification</label>
+                                        <p class="text-sm font-mono text-gray-900 dark:text-white">0.5 VNA</p>
                                     </div>
-                                    
-                                    <div class="grid grid-cols-3 gap-2 text-center">
-                                        <div>
-                                            <p class="text-xs text-neutral-70 dark:text-neutral-70">Validation</p>
-                                            <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">15.00</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-xs text-neutral-70 dark:text-neutral-70">Issuance</p>
-                                            <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">10.00</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-xs text-neutral-70 dark:text-neutral-70">Verification</p>
-                                            <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">5.00</p>
-                                        </div>
-                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Country</label>
+                                    <p class="text-sm text-gray-900 dark:text-white">US</p>
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- Permission Card 2 - Expires Soon -->
+                        <div class="border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="flex items-center space-x-2">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300">
+                                        expire in 2 weeks
+                                    </span>
+                                </div>
+                                <span class="text-sm font-medium text-gray-900 dark:text-white">ID: 12002</span>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
+                                    <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkHealthcareVerifier2024</p>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Created</label>
+                                        <p class="text-sm text-gray-900 dark:text-white">2023-11-01</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Extended</label>
+                                        <p class="text-sm text-gray-900 dark:text-white">2024-02-15</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective From</label>
+                                        <p class="text-sm text-gray-900 dark:text-white">2023-11-01</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective Until</label>
+                                        <p class="text-sm text-gray-900 dark:text-white">2024-11-01</p>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Deposit</label>
+                                    <p class="text-sm font-mono text-gray-900 dark:text-white">85.00 VNA</p>
+                                </div>
+                                
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Validation</label>
+                                        <p class="text-sm font-mono text-gray-900 dark:text-white">2.0 VNA</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Issuance</label>
+                                        <p class="text-sm font-mono text-gray-900 dark:text-white">-</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Verification</label>
+                                        <p class="text-sm font-mono text-gray-900 dark:text-white">0.8 VNA</p>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Country</label>
+                                    <p class="text-sm text-gray-900 dark:text-white">CA</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Permission Card 3 - Slashed -->
+                        <div class="border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="flex items-center space-x-2">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-300">
+                                        expired
+                                    </span>
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300">
+                                        slashed
+                                    </span>
+                                </div>
+                                <span class="text-sm font-medium text-gray-900 dark:text-white">ID: 12003</span>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
+                                    <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkHealthcareIssuerOld2023</p>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Created</label>
+                                        <p class="text-sm text-gray-900 dark:text-white">2023-06-01</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Slashed</label>
+                                        <p class="text-sm text-gray-900 dark:text-white">2023-12-15</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective From</label>
+                                        <p class="text-sm text-gray-900 dark:text-white">2023-06-01</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective Until</label>
+                                        <p class="text-sm text-gray-900 dark:text-white">2023-12-01</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Deposit</label>
+                                        <p class="text-sm font-mono text-gray-900 dark:text-white">100.00 VNA</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Slashed</label>
+                                        <p class="text-sm font-mono text-red-600 dark:text-red-400">25.00 VNA</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Validation</label>
+                                        <p class="text-sm font-mono text-gray-900 dark:text-white">3.0 VNA</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Issuance</label>
+                                        <p class="text-sm font-mono text-gray-900 dark:text-white">1.5 VNA</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Verification</label>
+                                        <p class="text-sm font-mono text-gray-900 dark:text-white">-</p>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Country</label>
+                                    <p class="text-sm text-gray-900 dark:text-white">UK</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Permission Card 4 - Repaid -->
+                        <div class="border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="flex items-center space-x-2">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300">
+                                        active
+                                    </span>
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-200 text-red-700 dark:bg-red-800/20 dark:text-red-400">
+                                        repaid
+                                    </span>
+                                </div>
+                                <span class="text-sm font-medium text-gray-900 dark:text-white">ID: 12004</span>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
+                                    <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkHealthcareGrantor2024</p>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Created</label>
+                                        <p class="text-sm text-gray-900 dark:text-white">2023-08-20</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Repaid</label>
+                                        <p class="text-sm text-gray-900 dark:text-white">2024-02-10</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective From</label>
+                                        <p class="text-sm text-gray-900 dark:text-white">2023-08-20</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective Until</label>
+                                        <p class="text-sm text-gray-900 dark:text-white">2025-08-20</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Deposit</label>
+                                        <p class="text-sm font-mono text-gray-900 dark:text-white">200.00 VNA</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Repaid</label>
+                                        <p class="text-sm font-mono text-green-600 dark:text-green-400">15.00 VNA</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Validation</label>
+                                        <p class="text-sm font-mono text-gray-900 dark:text-white">5.0 VNA</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Issuance</label>
+                                        <p class="text-sm font-mono text-gray-900 dark:text-white">2.0 VNA</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Verification</label>
+                                        <p class="text-sm font-mono text-gray-900 dark:text-white">1.0 VNA</p>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Country</label>
+                                    <p class="text-sm text-gray-900 dark:text-white">DE</p>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </section>
 
         </main>
-    </div>
-</div>
-
-<!-- JSON Schema Expanded Modal -->
-<div id="json-expanded-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
-    <div class="relative top-10 mx-auto p-5 border w-full max-w-4xl shadow-lg rounded-xl bg-white dark:bg-surface">
-        <div class="flex items-center justify-between mb-6">
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">JSON Schema</h3>
-            <button onclick="closeJsonModal()" class="text-neutral-70 hover:text-gray-500 dark:hover:text-gray-300">
-                <i class="text-lg fas fa-xmark"></i>
-            </button>
-        </div>
-
-        <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4">
-            <pre id="json-expanded-content" class="text-sm text-gray-900 dark:text-white font-mono whitespace-pre-wrap json-expanded overflow-auto">{
-  "type": "object",
-  "title": "Identity Verification Schema",
-  "description": "Basic identity verification schema for KYC processes",
-  "properties": {
-    "name": {
-      "type": "string",
-      "title": "Full Name",
-      "description": "Legal full name of the individual",
-      "minLength": 1,
-      "maxLength": 100
-    },
-    "email": {
-      "type": "string",
-      "format": "email",
-      "title": "Email Address",
-      "description": "Primary email address for communication"
-    },
-    "dateOfBirth": {
-      "type": "string",
-      "format": "date",
-      "title": "Date of Birth",
-      "description": "Date of birth in YYYY-MM-DD format"
-    },
-    "address": {
-      "type": "object",
-      "title": "Address",
-      "properties": {
-        "street": {
-          "type": "string",
-          "title": "Street Address"
-        },
-        "city": {
-          "type": "string",
-          "title": "City"
-        },
-        "state": {
-          "type": "string",
-          "title": "State/Province"
-        },
-        "postalCode": {
-          "type": "string",
-          "title": "Postal Code"
-        },
-        "country": {
-          "type": "string",
-          "title": "Country",
-          "enum": ["US", "CA", "UK", "DE", "FR", "AU", "JP"]
-        }
-      },
-      "required": ["street", "city", "country"]
-    },
-    "phoneNumber": {
-      "type": "string",
-      "title": "Phone Number",
-      "pattern": "^\\+?[1-9]\\d{1,14}$"
-    },
-    "governmentId": {
-      "type": "object",
-      "title": "Government ID",
-      "properties": {
-        "type": {
-          "type": "string",
-          "enum": ["passport", "driverLicense", "nationalId"],
-          "title": "ID Type"
-        },
-        "number": {
-          "type": "string",
-          "title": "ID Number"
-        },
-        "issuingCountry": {
-          "type": "string",
-          "title": "Issuing Country"
-        },
-        "expirationDate": {
-          "type": "string",
-          "format": "date",
-          "title": "Expiration Date"
-        }
-      },
-      "required": ["type", "number", "issuingCountry"]
-    }
-  },
-  "required": ["name", "email", "dateOfBirth", "address"],
-  "additionalProperties": false
-}</pre>
-        </div>
     </div>
 </div>
 
@@ -874,19 +962,51 @@
         mobileSidebarOverlay.classList.add('hidden');
     });
 
-    // Back to ecosystem functionality
-    document.getElementById('back-to-ecosystem').addEventListener('click', () => {
-        // In a real app, this would navigate back to the ecosystem info view
-        alert('Navigating back to Ecosystem Info view');
+    // Navigation functions
+    function backToEcosystemInfo() {
+        // In real app would navigate back to ecosystem info view
+        console.log('Navigate back to Ecosystem Info');
+    }
+
+    // Edit Infos functions
+    document.getElementById('edit-infos-btn').addEventListener('click', () => {
+        document.getElementById('infos-display').classList.add('hidden');
+        document.getElementById('infos-edit').classList.remove('hidden');
     });
 
-    // JSON Schema expand/collapse functionality
-    document.getElementById('expand-json').addEventListener('click', () => {
-        document.getElementById('json-expanded-modal').classList.remove('hidden');
-    });
+    function cancelEditInfos() {
+        document.getElementById('infos-edit').classList.add('hidden');
+        document.getElementById('infos-display').classList.remove('hidden');
+    }
 
-    function closeJsonModal() {
-        document.getElementById('json-expanded-modal').classList.add('hidden');
+    function saveInfos() {
+        const issuerGrantorValidity = document.getElementById('edit-issuer-grantor-validity').value;
+        const verifierGrantorValidity = document.getElementById('edit-verifier-grantor-validity').value;
+        const issuerValidity = document.getElementById('edit-issuer-validity').value;
+        const verifierValidity = document.getElementById('edit-verifier-validity').value;
+        const holderValidity = document.getElementById('edit-holder-validity').value;
+        
+        if (!issuerGrantorValidity || !verifierGrantorValidity || !issuerValidity || !verifierValidity || !holderValidity) {
+            alert('Please fill in all validity period fields');
+            return;
+        }
+        
+        cancelEditInfos();
+        showTransactionPopup('broadcasting', 'Updating credential schema configuration');
+        
+        setTimeout(() => {
+            showTransactionPopup('processing', 'Updating credential schema configuration', 'tx123456789abcdef');
+        }, 2000);
+        
+        setTimeout(() => {
+            showTransactionPopup('success', 'Credential schema configuration successfully updated');
+            // Update display values
+            document.getElementById('issuer-grantor-validity').textContent = `${issuerGrantorValidity} days`;
+            document.getElementById('verifier-grantor-validity').textContent = `${verifierGrantorValidity} days`;
+            document.getElementById('issuer-validity').textContent = `${issuerValidity} days`;
+            document.getElementById('verifier-validity').textContent = `${verifierValidity} days`;
+            document.getElementById('holder-validity').textContent = `${holderValidity} days`;
+        }, 4000);
     }
 
     // Transaction Popup functions
@@ -929,6 +1049,7 @@
     }
 
     function retryTransaction() {
+        // Retry logic would go here
         showTransactionPopup('broadcasting', 'Retrying transaction');
     }
 
@@ -936,6 +1057,7 @@
     function copyAddressFromHeader() {
         const address = '0x1234567890abcdef1234567890abcdef12345678';
         navigator.clipboard.writeText(address).then(() => {
+            // Show temporary success message
             const element = event.target.closest('div');
             const originalText = element.querySelector('p').textContent;
             element.querySelector('p').textContent = 'Copied!';
@@ -954,19 +1076,12 @@
     // Close modals on escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            closeJsonModal();
             document.getElementById('qr-modal').classList.add('hidden');
             mobileSidebarOverlay.classList.add('hidden');
         }
     });
 
     // Close modals on backdrop click
-    document.getElementById('json-expanded-modal').addEventListener('click', (e) => {
-        if (e.target === e.currentTarget) {
-            closeJsonModal();
-        }
-    });
-
     document.getElementById('qr-modal').addEventListener('click', (e) => {
         if (e.target === e.currentTarget) {
             document.getElementById('qr-modal').classList.add('hidden');
