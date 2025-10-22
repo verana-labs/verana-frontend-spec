@@ -85,21 +85,25 @@ Design the Credential Schema page
 
 As to arrive to this page one need to click on an ecosystem, make sure to put a link to go back to previous Ecosystem Info view.
 
-"Infos" sections
+"Infos" section
 
 - id (number) => credential schema Id
-- json_schema (show a preview String, and a link to expand and show the json schema as formatted json) => The Json Schema of this Credential Schema
 - issuer_grantor_validation_validity_period (number) => Validity Period, in days, of a permission granted to an Issuer Grantor.
 - verifier_grantor_validation_validity_period (number) => Validity Period, in days, of a permission granted to a Verifier Grantor.
 - issuer_validation_validity_period (number) => Validity Period, in days, of a permission granted to an Issuer.
 - verifier_validation_validity_period (number) => Validity Period, in days, of a permission granted to a Verifier.
 - holder_validation_validity_period (number) => Validity Period, in days, of a permission approved by an Issuer Grantor to an Issuer.
-- issuer_perm_management_mode (number) => TRUST_REGISTRY, GRANTOR or OPEN. TRUST_REGISTRY, GRANTOR means a validation process is needed to obtain an Issuer or Issuer Grantor permission. OPEN means no approval is needed for joining the Ecosystem as Issuer.
-- verifier_perm_management_mode (number) => TRUST_REGISTRY, GRANTOR or OPEN. TRUST_REGISTRY, GRANTOR means a validation process is needed to obtain an Verifier or Verifier Grantor permission. OPEN means no approval is needed for joining the Ecosystem as Verifier.
+- issuer_perm_management_mode (Enumeration, TRUST_REGISTRY, GRANTOR or OPEN)  =>  TRUST_REGISTRY, GRANTOR means a validation process is needed to obtain an Issuer or Issuer Grantor permission. OPEN means no approval is needed for joining the Ecosystem as Issuer. Use colored label for value: TRUST_REGISTRY: green, GRANTOR: blue, OPEN: light blue
+- verifier_perm_management_mode (Enumeration, TRUST_REGISTRY, GRANTOR or OPEN) =>  TRUST_REGISTRY, GRANTOR means a validation process is needed to obtain an Verifier or Verifier Grantor permission. OPEN means no approval is needed for joining the Ecosystem as Verifier. Use colored label value. Use colored label for value: TRUST_REGISTRY: green, GRANTOR: blue, OPEN: light blue
+- json_schema => The Json Schema of this Credential Schema, in a scrollable textarea
+
+Add an Edit button that transform this view in form with exactly the same layout, and cancel/save button at the bottom (cancel go back to view mode, save generates a transaction and go back to view mode), the form must allow only changing issuer_grantor_validation_validity_period, verifier_grantor_validation_validity_period, issuer_validation_validity_period, verifier_validation_validity_period, holder_validation_validity_period. All the other fields must appear but greyed (not editable).
 
 "My Permissions" sections
 
-Show a list of my permissions as cards. Use state labels, green for "active", yellow for "expire in 2 weeks", grey for "expired". Use an additional slash label, use red for "slashed", light red for "repaid".
+Show a list of my permissions as cards. 
+
+Use state labels, green for "active", yellow for "expire in 2 weeks", grey for "expired". Use an additional slash label, use red for "slashed", light red for "repaid". Do not use background color for cards. Make sure all card content is fully visible depending on window width.
 
 
   *id: uint64
