@@ -101,29 +101,28 @@ Add an Edit button that transform this view in form with exactly the same layout
 
 "My Permissions" sections
 
-Show a list of my permissions as cards. 
-
+Show a list of my permissions as cards (one card per row, ideally horizontal content, if window width is reduced (mobile), then content of card can switch to vertical). 
+On the right side, three vertical dots for showing a small menu, with the following entries: "Renew a Permission", "Repay Slash Deposit". Both option trigger a transaction.
 Use state labels, green for "active", yellow for "expire in 2 weeks", grey for "expired". Use an additional slash label, use red for "slashed", light red for "repaid". Do not use background color for cards. Make sure all card content is fully visible depending on window width.
 
 
-  *id: uint64
+  id: uint64
   did: string => id of the service linked to this permission
-  +created: timestamp => date of creation of the permission
-  +modified: timestamp => date the permission was last modified
-  +extended: timestamp => date the permission was last extended
-  +slashed: timestamp => date the permission was last slashed
-  +repaid: timestamp => date the permission was last repaid
+  created: timestamp => date of creation of the permission
+  modified: timestamp => date the permission was last modified
+  extended: timestamp => date the permission was last extended
+  slashed: timestamp => date the permission was last slashed
+  repaid: timestamp => date the permission was last repaid
+  revoked: timestamp => date the permission was revoked
   effective_from: timestamp => date the permission is effective from
   effective_until: timestamp => date the permission expires
-  +validation_fees: number => fees that must pay applicants that want to run a validation process
-  +issuance_fees: number => fees charged by this participant when a child permission issues a credential
-  +verification_fees: number => fees charged by this participant when a child permission verifies a credential of this schema
-  +deposit: number => deposit managed by this permission (trust value of the permission)
-  +slashed_deposit: number => amount of deposit that has been slashed
-  +repaid_deposit: number => amount of deposit that has been repaid
-  revoked: timestamp => date the permission was revoked
+  validation_fees: number => fees that must pay applicants that want to run a validation process
+  issuance_fees: number => fees charged by this participant when a child permission issues a credential
+  verification_fees: number => fees charged by this participant when a child permission verifies a credential of this schema
+  deposit: number => deposit managed by this permission (trust value of the permission)
+  slashed_deposit: number => amount of deposit that has been slashed
+  repaid_deposit: number => amount of deposit that has been repaid
   country: string => country this permission applies to
-  stat: number => usage statistics
   +vp_exp: timestamp => date the validation process of this permission will expire
   +vp_last_state_change: timestamp => date the validation process of this permission last changed state
   +vp_validator_deposit: number => deposit managed by this validation process
