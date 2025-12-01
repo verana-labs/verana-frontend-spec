@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pending Tasks</title>
+    <title>Credential Schema</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -252,8 +252,8 @@
                         Manage DIDs
                     </span>
 
-                    <span class="text-gray-700 dark:text-gray-300 hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:text-primary-700 dark:hover:text-primary-300 group flex items-center px-2 py-2 text-sm font-medium rounded-md cursor-pointer">
-                        <i class="text-gray-400 mr-3 text-sm fas fa-shield-halved"></i>
+                    <span class="bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 group flex items-center px-2 py-2 text-sm font-medium rounded-md cursor-pointer">
+                        <i class="text-primary-500 mr-3 text-sm fas fa-shield-halved"></i>
                         My Ecosystems
                     </span>
 
@@ -262,9 +262,9 @@
                         Discover & Join
                     </span>
 
-                    <span class="bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 group flex items-center px-2 py-2 text-sm font-medium rounded-md cursor-pointer">
+                    <span class="text-gray-700 dark:text-gray-300 hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:text-primary-700 dark:hover:text-primary-300 group flex items-center px-2 py-2 text-sm font-medium rounded-md cursor-pointer">
                         <div class="relative mr-3">
-                            <i class="text-primary-500 text-sm fas fa-list-check"></i>
+                            <i class="text-gray-400 text-sm fas fa-list-check"></i>
                             <div class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center">
                                 <span class="text-white text-xs font-bold">3</span>
                             </div>
@@ -323,17 +323,17 @@
                         <i class="text-gray-400 mr-4 fas fa-id-card"></i>
                         Manage DIDs
                     </span>
-                    <span class="text-gray-700 dark:text-gray-300 group flex items-center px-2 py-2 text-base font-medium rounded-md cursor-pointer">
-                        <i class="text-gray-400 mr-4 fas fa-shield-halved"></i>
+                    <span class="bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 group flex items-center px-2 py-2 text-base font-medium rounded-md cursor-pointer">
+                        <i class="text-primary-500 mr-4 fas fa-shield-halved"></i>
                         My Ecosystems
                     </span>
                     <span class="text-gray-700 dark:text-gray-300 group flex items-center px-2 py-2 text-base font-medium rounded-md cursor-pointer">
                         <i class="text-gray-400 mr-4 fas fa-compass"></i>
                         Discover & Join
                     </span>
-                    <span class="bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 group flex items-center px-2 py-2 text-base font-medium rounded-md cursor-pointer">
+                    <span class="text-gray-700 dark:text-gray-300 group flex items-center px-2 py-2 text-base font-medium rounded-md cursor-pointer">
                         <div class="relative mr-4">
-                            <i class="text-primary-500 fas fa-list-check"></i>
+                            <i class="text-gray-400 fas fa-list-check"></i>
                             <div class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center">
                                 <span class="text-white text-xs font-bold">3</span>
                             </div>
@@ -346,317 +346,223 @@
     </div>
 
     <div class="flex-1 overflow-auto">
-        <main id="pending-tasks-page" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <main id="credential-schema-page" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             
+            <section id="breadcrumbs" class="mb-6">
+                <nav class="flex flex-wrap items-center text-sm" aria-label="Breadcrumb">
+                    <a href="#" onclick="navigateTo('ecosystem'); return false;" class="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">Healthcare Trust Registry</a>
+                    <i class="mx-2 text-neutral-70 fas fa-chevron-right text-xs"></i>
+                    <span class="text-gray-900 dark:text-white font-medium">Healthcare Credential Schema</span>
+                </nav>
+            </section>
+
             <section id="page-header" class="mb-8">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Pending Tasks</h1>
-                        <p class="mt-2 text-sm text-neutral-70 dark:text-neutral-70">Review and action permissions requiring your approval</p>
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Healthcare Credential Schema</h1>
+            </section>
+
+            <section id="infos-section" class="mb-8">
+                <div class="bg-white dark:bg-surface border border-neutral-20 dark:border-neutral-70 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Information</h2>
+                        <div class="flex items-center gap-3">
+                            <button onclick="viewParticipants()" class="relative p-2 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors">
+                                <i class="fas fa-sitemap"></i>
+                                <span class="ml-1 text-sm font-medium">Participants</span>
+                               <!-- <div class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
+                                    <span class="text-white text-xs font-bold">28</span>
+                                </div>-->
+                            </button>
+                            <button id="edit-btn" onclick="toggleEditMode()" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium">
+                                <i class="fas fa-pencil mr-2"></i>
+                                Edit
+                            </button>
+                        </div>
                     </div>
-                    <div class="flex items-center space-x-2 px-4 py-2 bg-red-50 dark:bg-red-900/20 rounded-xl">
-                        <i class="text-red-600 dark:text-red-400 fas fa-circle-exclamation"></i>
+
+                    <div id="view-mode">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">Credential Schema ID</label>
+                                <p class="text-base text-gray-900 dark:text-white">10001</p>
+                            </div>
+                            
+                            <div>
+                                <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">Issuer Grantor Validation Validity Period</label>
+                                <p class="text-base text-gray-900 dark:text-white">365 days</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">Verifier Grantor Validation Validity Period</label>
+                                <p class="text-base text-gray-900 dark:text-white">365 days</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">Issuer Validation Validity Period</label>
+                                <p class="text-base text-gray-900 dark:text-white">180 days</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">Verifier Validation Validity Period</label>
+                                <p class="text-base text-gray-900 dark:text-white">180 days</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">Holder Validation Validity Period</label>
+                                <p class="text-base text-gray-900 dark:text-white">90 days</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">Issuer Permission Management Mode</label>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300">
+                                    TRUST_REGISTRY
+                                </span>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">Verifier Permission Management Mode</label>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300">
+                                    GRANTOR
+                                </span>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">Total Deposit</label>
+                                <p class="text-base text-gray-900 dark:text-white">VNA 123,456.01</p>
+                            </div>
+                        </div>
+
                         <div>
-                            <p class="text-sm font-medium text-red-900 dark:text-red-100">3 Pending Tasks</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="ecosystem-group-1" class="mb-12">
-                <div class="mb-6">
-                    <div class="flex items-center space-x-3 mb-2">
-                        <i class="text-primary-600 dark:text-primary-400 fas fa-shield-halved"></i>
-                        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Healthcare Trust Registry</h2>
-                    </div>
-                    <div class="flex items-center space-x-2 ml-8">
-                        <i class="text-neutral-70 text-xs fas fa-certificate"></i>
-                        <p class="text-sm text-neutral-70 dark:text-neutral-70">Healthcare Credential Schema</p>
-                        
-                    </div>
-                </div>
-
-                <div class="space-y-4 ml-8">
-                    <div class="bg-white dark:bg-surface border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
-                        <div class="flex items-start justify-between mb-3">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300">
-                                expire in 2 weeks
-                            </span>
-                            <div class="flex items-center gap-2">
-                                <button class="relative p-2 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors">
-                                    <i class="fas fa-users"></i>
-                                    <span class="ml-1 text-sm font-medium">45</span>
-                                    <div class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
-                                        <span class="text-white text-xs font-bold">2</span>
-                                    </div>
-                                </button>
-                                <button onclick="toggleDropdown(event, 'dropdown-task-1')" class="p-2 text-neutral-70 hover:text-gray-500 hover:bg-surface-muted dark:hover:bg-surface-muted rounded-lg transition-colors">
-                                    <i class="fas fa-ellipsis-vertical"></i>
-                                </button>
-                                <div id="dropdown-task-1" class="dropdown-menu absolute right-0 mt-2 w-56 rounded-lg shadow-lg bg-white dark:bg-surface border border-neutral-20 dark:border-neutral-70 z-10">
-                                    <div class="py-1">
-                                        <button onclick="approvePermission(12002)" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-surface-muted dark:hover:bg-surface-muted">
-                                            <i class="fas fa-check mr-2"></i>
-                                            Approve Permission
-                                        </button>
-                                        <button onclick="rejectPermission(12002)" class="w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20">
-                                            <i class="fas fa-xmark mr-2"></i>
-                                            Reject Permission
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">ID</label>
-                            <p class="text-sm font-medium text-gray-900 dark:text-white">12002</p>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
-                            <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkHealthcareVerifier2024</p>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Grantee</label>
-                            <p class="text-sm font-mono text-gray-900 dark:text-white break-all">verana1xyz9uvw8rst7opq6lmn5kji4hgf3edc2ba</p>
-                        </div>
-                        
-                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Created</label>
-                                <p class="text-sm text-gray-900 dark:text-white">2023-11-01</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Extended</label>
-                                <p class="text-sm text-gray-900 dark:text-white">2024-02-15</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective From</label>
-                                <p class="text-sm text-gray-900 dark:text-white">2023-11-01</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective Until</label>
-                                <p class="text-sm text-gray-900 dark:text-white">2024-11-01</p>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-4 border-t border-neutral-20 dark:border-neutral-70">
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Deposit</label>
-                                <p class="text-sm font-mono text-gray-900 dark:text-white">85.00 VNA</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Country</label>
-                                <p class="text-sm text-gray-900 dark:text-white">CA</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Validation Fees</label>
-                                <p class="text-sm font-mono text-gray-900 dark:text-white">2.0 VNA</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Issuance Fees</label>
-                                <p class="text-sm font-mono text-gray-900 dark:text-white">-</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Verification Fees</label>
-                                <p class="text-sm font-mono text-gray-900 dark:text-white">0.8 VNA</p>
+                            <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">JSON Schema</label>
+                            <div class="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 max-h-96 overflow-y-auto border border-neutral-20 dark:border-neutral-70">
+                                <pre class="text-sm text-gray-900 dark:text-white font-mono whitespace-pre-wrap">{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Healthcare Credential",
+  "description": "Schema for healthcare professional credentials",
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "DID of the credential holder"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name of the healthcare professional"
+        },
+        "licenseNumber": {
+          "type": "string",
+          "description": "Professional license number"
+        },
+        "specialty": {
+          "type": "string",
+          "description": "Medical specialty"
+        },
+        "issuedDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expiryDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "name", "licenseNumber", "specialty"]
+    }
+  },
+  "required": ["credentialSubject"]
+}</pre>
                             </div>
                         </div>
                     </div>
 
-                    <div class="bg-white dark:bg-surface border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
-                        <div class="flex items-start justify-between mb-3">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300">
-                                slashed
-                            </span>
-                            <div class="flex items-center gap-2">
-                                <button class="relative p-2 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors">
-                                    <i class="fas fa-users"></i>
-                                    <span class="ml-1 text-sm font-medium">87</span>
-                                    <div class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
-                                        <span class="text-white text-xs font-bold">1</span>
-                                    </div>
-                                </button>
-                                <button onclick="toggleDropdown(event, 'dropdown-task-2')" class="p-2 text-neutral-70 hover:text-gray-500 hover:bg-surface-muted dark:hover:bg-surface-muted rounded-lg transition-colors">
-                                    <i class="fas fa-ellipsis-vertical"></i>
-                                </button>
-                                <div id="dropdown-task-2" class="dropdown-menu absolute right-0 mt-2 w-56 rounded-lg shadow-lg bg-white dark:bg-surface border border-neutral-20 dark:border-neutral-70 z-10">
-                                    <div class="py-1">
-                                        <button onclick="reviewSlash(12004)" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-surface-muted dark:hover:bg-surface-muted">
-                                            <i class="fas fa-eye mr-2"></i>
-                                            Review Slash
-                                        </button>
-                                        <button onclick="repaySlashDeposit(12004)" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-surface-muted dark:hover:bg-surface-muted">
-                                            <i class="fas fa-hand-holding-dollar mr-2"></i>
-                                            Repay Slash Deposit
-                                        </button>
-                                    </div>
-                                </div>
+                    <div id="edit-mode" class="hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">Credential Schema ID</label>
+                                <input type="text" value="10001" disabled class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 cursor-not-allowed">
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">Issuer Grantor Validation Validity Period</label>
+                                <input type="number" value="365" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">Verifier Grantor Validation Validity Period</label>
+                                <input type="number" value="365" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">Issuer Validation Validity Period</label>
+                                <input type="number" value="180" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">Verifier Validation Validity Period</label>
+                                <input type="number" value="180" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">Holder Validation Validity Period</label>
+                                <input type="number" value="90" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">Issuer Permission Management Mode</label>
+                                <input type="text" value="TRUST_REGISTRY" disabled class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 cursor-not-allowed">
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">Verifier Permission Management Mode</label>
+                                <input type="text" value="GRANTOR" disabled class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 cursor-not-allowed">
                             </div>
                         </div>
-                        
-                        <div class="mb-3">
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">ID</label>
-                            <p class="text-sm font-medium text-gray-900 dark:text-white">12004</p>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
-                            <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkHealthcareVerifierGrantor2024</p>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Grantee</label>
-                            <p class="text-sm font-mono text-gray-900 dark:text-white break-all">verana1mnb8vcx7zaq6wsx5edc4rfv3tgb2yhn1ujm</p>
-                        </div>
-                        
-                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Created</label>
-                                <p class="text-sm text-gray-900 dark:text-white">2023-08-20</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Slashed</label>
-                                <p class="text-sm text-gray-900 dark:text-white">2024-01-10</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective From</label>
-                                <p class="text-sm text-gray-900 dark:text-white">2023-08-20</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective Until</label>
-                                <p class="text-sm text-gray-900 dark:text-white">2025-08-20</p>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-4 border-t border-neutral-20 dark:border-neutral-70">
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Deposit</label>
-                                <p class="text-sm font-mono text-gray-900 dark:text-white">200.00 VNA</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Slashed Deposit</label>
-                                <p class="text-sm font-mono text-red-600 dark:text-red-400">50.00 VNA</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Validation Fees</label>
-                                <p class="text-sm font-mono text-gray-900 dark:text-white">5.0 VNA</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Issuance Fees</label>
-                                <p class="text-sm font-mono text-gray-900 dark:text-white">-</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Verification Fees</label>
-                                <p class="text-sm font-mono text-gray-900 dark:text-white">1.0 VNA</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-            <section id="ecosystem-group-2" class="mb-12">
-                <div class="mb-6">
-                    <div class="flex items-center space-x-3 mb-2">
-                        <i class="text-primary-600 dark:text-primary-400 fas fa-shield-halved"></i>
-                        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Financial Services Trust Registry</h2>
-                    </div>
-                    <div class="flex items-center space-x-2 ml-8">
-                        <i class="text-neutral-70 text-xs fas fa-certificate"></i>
-                        <p class="text-sm text-neutral-70 dark:text-neutral-70">KYC Verification Schema</p>
-                        
-                    </div>
-                </div>
+                        <div class="mb-6">
+                            <label class="text-sm font-medium text-neutral-70 dark:text-neutral-70 mb-2 block">JSON Schema</label>
+                            <textarea disabled rows="15" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 cursor-not-allowed font-mono text-sm">{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Healthcare Credential",
+  "description": "Schema for healthcare professional credentials",
+  "properties": {
+    "credentialSubject": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "DID of the credential holder"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name of the healthcare professional"
+        },
+        "licenseNumber": {
+          "type": "string",
+          "description": "Professional license number"
+        },
+        "specialty": {
+          "type": "string",
+          "description": "Medical specialty"
+        },
+        "issuedDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expiryDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "name", "licenseNumber", "specialty"]
+    }
+  },
+  "required": ["credentialSubject"]
+}</textarea>
+                        </div>
 
-                <div class="space-y-4 ml-8">
-                    <div class="bg-white dark:bg-surface border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
-                        <div class="flex items-start justify-between mb-3">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300">
-                                active
-                            </span>
-                            <div class="flex items-center gap-2">
-                                <button class="relative p-2 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors">
-                                    <i class="fas fa-users"></i>
-                                    <span class="ml-1 text-sm font-medium">32</span>
-                                    <div class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
-                                        <span class="text-white text-xs font-bold">1</span>
-                                    </div>
-                                </button>
-                                <button onclick="toggleDropdown(event, 'dropdown-task-3')" class="p-2 text-neutral-70 hover:text-gray-500 hover:bg-surface-muted dark:hover:bg-surface-muted rounded-lg transition-colors">
-                                    <i class="fas fa-ellipsis-vertical"></i>
-                                </button>
-                                <div id="dropdown-task-3" class="dropdown-menu absolute right-0 mt-2 w-56 rounded-lg shadow-lg bg-white dark:bg-surface border border-neutral-20 dark:border-neutral-70 z-10">
-                                    <div class="py-1">
-                                        <button onclick="approvePermission(15001)" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-surface-muted dark:hover:bg-surface-muted">
-                                            <i class="fas fa-check mr-2"></i>
-                                            Approve Permission
-                                        </button>
-                                        <button onclick="rejectPermission(15001)" class="w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20">
-                                            <i class="fas fa-xmark mr-2"></i>
-                                            Reject Permission
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
+                            <p class="text-sm text-blue-800 dark:text-blue-300">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                You'll need approx. 5.900000 VNA to complete the transaction.
+                            </p>
                         </div>
-                        
-                        <div class="mb-3">
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">ID</label>
-                            <p class="text-sm font-medium text-gray-900 dark:text-white">15001</p>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
-                            <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkFinancialKYCIssuer2024</p>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Grantee</label>
-                            <p class="text-sm font-mono text-gray-900 dark:text-white break-all">verana1pqr5stu6vwx7yza8bcd9efg4hij3klm2nop</p>
-                        </div>
-                        
-                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Created</label>
-                                <p class="text-sm text-gray-900 dark:text-white">2024-03-01</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Modified</label>
-                                <p class="text-sm text-gray-900 dark:text-white">2024-03-15</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective From</label>
-                                <p class="text-sm text-gray-900 dark:text-white">2024-03-01</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective Until</label>
-                                <p class="text-sm text-gray-900 dark:text-white">2025-03-01</p>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-4 border-t border-neutral-20 dark:border-neutral-70">
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Deposit</label>
-                                <p class="text-sm font-mono text-gray-900 dark:text-white">150.00 VNA</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Country</label>
-                                <p class="text-sm text-gray-900 dark:text-white">US</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Validation Fees</label>
-                                <p class="text-sm font-mono text-gray-900 dark:text-white">3.5 VNA</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Issuance Fees</label>
-                                <p class="text-sm font-mono text-gray-900 dark:text-white">2.0 VNA</p>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Verification Fees</label>
-                                <p class="text-sm font-mono text-gray-900 dark:text-white">-</p>
-                            </div>
+
+                        <div class="flex gap-3 justify-end">
+                            <button onclick="toggleEditMode()" class="px-6 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-surface-muted dark:hover:bg-surface-muted transition-colors font-medium">
+                                Cancel
+                            </button>
+                            <button onclick="saveChanges()" class="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium">
+                                Save Changes
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -721,94 +627,67 @@
         mobileSidebarOverlay.classList.add('hidden');
     });
 
-    function toggleDropdown(event, dropdownId) {
-        event.stopPropagation();
-        const dropdown = document.getElementById(dropdownId);
-        const allDropdowns = document.querySelectorAll('.dropdown-menu');
+    function toggleEditMode() {
+        const viewMode = document.getElementById('view-mode');
+        const editMode = document.getElementById('edit-mode');
+        const editBtn = document.getElementById('edit-btn');
         
-        allDropdowns.forEach(d => {
-            if (d.id !== dropdownId) {
-                d.classList.remove('show');
-            }
-        });
-        
-        dropdown.classList.toggle('show');
-    }
-
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('button')) {
-            document.querySelectorAll('.dropdown-menu').forEach(d => {
-                d.classList.remove('show');
-            });
-        }
-    });
-
-    function approvePermission(permissionId) {
-        showTransactionPopup('broadcasting', `Approving permission ${permissionId}`);
-        setTimeout(() => {
-            showTransactionPopup('processing', `Approving permission ${permissionId}`, '0xabc123def456');
-            setTimeout(() => {
-                showTransactionPopup('success', `Permission ${permissionId} approved successfully`);
-            }, 2000);
-        }, 1500);
-    }
-
-    function rejectPermission(permissionId) {
-        if (confirm('Are you sure you want to reject this permission?')) {
-            showTransactionPopup('broadcasting', `Rejecting permission ${permissionId}`);
-            setTimeout(() => {
-                showTransactionPopup('processing', `Rejecting permission ${permissionId}`, '0xdef789ghi012');
-                setTimeout(() => {
-                    showTransactionPopup('success', `Permission ${permissionId} rejected`);
-                }, 2000);
-            }, 1500);
+        if (viewMode.classList.contains('hidden')) {
+            viewMode.classList.remove('hidden');
+            editMode.classList.add('hidden');
+            editBtn.innerHTML = '<i class="fas fa-pencil mr-2"></i>Edit';
+        } else {
+            viewMode.classList.add('hidden');
+            editMode.classList.remove('hidden');
+            editBtn.innerHTML = '<i class="fas fa-xmark mr-2"></i>Cancel';
         }
     }
 
-    function reviewSlash(permissionId) {
-        console.log('Review slash for permission:', permissionId);
-    }
-
-    function repaySlashDeposit(permissionId) {
-        showTransactionPopup('broadcasting', `Repaying slash deposit for permission ${permissionId}`);
+    function saveChanges() {
+        showTransactionPopup('broadcasting', 'Updating credential schema configuration');
         setTimeout(() => {
-            showTransactionPopup('processing', `Repaying slash deposit for permission ${permissionId}`, '0xjkl345mno678');
-            setTimeout(() => {
-                showTransactionPopup('success', `Slash deposit repaid for permission ${permissionId}`);
-            }, 2000);
-        }, 1500);
+            const txHash = '0x' + Math.random().toString(16).substr(2, 64);
+            showTransactionPopup('processing', 'Updating credential schema configuration', txHash);
+        }, 2000);
+        setTimeout(() => {
+            showTransactionPopup('success', 'Credential schema configuration updated successfully');
+            toggleEditMode();
+        }, 5000);
     }
 
-    function showTransactionPopup(state, description, txHash = '') {
+    function viewParticipants() {
+        console.log('Navigate to participants page');
+    }
+
+    function navigateTo(page) {
+        console.log(`Navigate to ${page}`);
+    }
+
+    function showTransactionPopup(state, description, txHash = null) {
         const popup = document.getElementById('transaction-popup');
-        const broadcasting = document.getElementById('tx-broadcasting');
-        const processing = document.getElementById('tx-processing');
-        const success = document.getElementById('tx-success');
-        const error = document.getElementById('tx-error');
+        const states = ['tx-broadcasting', 'tx-processing', 'tx-success', 'tx-error'];
         
-        broadcasting.classList.add('hidden');
-        processing.classList.add('hidden');
-        success.classList.add('hidden');
-        error.classList.add('hidden');
+        states.forEach(s => document.getElementById(s).classList.add('hidden'));
         
         popup.classList.remove('hidden');
         
+        document.getElementById(`tx-${state}`).classList.remove('hidden');
+        
         if (state === 'broadcasting') {
-            broadcasting.classList.remove('hidden');
             document.getElementById('tx-description').textContent = description;
         } else if (state === 'processing') {
-            processing.classList.remove('hidden');
             document.getElementById('tx-processing-description').textContent = description;
-            document.getElementById('tx-hash-link').textContent = txHash;
-            document.getElementById('tx-hash-link').onclick = () => window.open(`https://explorer.verana.io/tx/${txHash}`, '_blank');
+            if (txHash) {
+                const link = document.getElementById('tx-hash-link');
+                link.textContent = `${txHash.substring(0, 10)}...${txHash.substring(txHash.length - 10)}`;
+                link.href = `https://explorer.verana.io/tx/${txHash}`;
+            }
         } else if (state === 'success') {
-            success.classList.remove('hidden');
             document.getElementById('tx-success-description').textContent = description;
             setTimeout(() => {
                 hideTransactionPopup();
             }, 5000);
         } else if (state === 'error') {
-            error.classList.remove('hidden');
             document.getElementById('tx-error-description').textContent = description;
         }
     }
@@ -818,6 +697,7 @@
     }
 
     function retryTransaction() {
+        console.log('Retrying transaction...');
         hideTransactionPopup();
     }
 
@@ -826,12 +706,14 @@
         navigator.clipboard.writeText(address).then(() => {
             const accountZone = document.getElementById('account-zone');
             const originalHTML = accountZone.innerHTML;
+            
             accountZone.innerHTML = `
                 <div class="flex items-center space-x-2 px-3 py-2">
-                    <i class="text-success-500 fas fa-check"></i>
-                    <span class="text-sm font-medium text-gray-900 dark:text-white">Address copied!</span>
+                    <i class="fas fa-check text-success-500"></i>
+                    <span class="text-sm text-success-700 dark:text-success-300 font-medium">Address copied!</span>
                 </div>
             `;
+            
             setTimeout(() => {
                 accountZone.innerHTML = originalHTML;
             }, 2000);
@@ -846,6 +728,7 @@
     document.getElementById('header-disconnect-btn').addEventListener('click', function() {
         if (confirm('Are you sure you want to disconnect your wallet?')) {
             console.log('Wallet disconnected');
+            location.reload();
         }
     });
 </script>

@@ -349,82 +349,77 @@
         <main id="participants-page" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             
             <section id="breadcrumbs" class="mb-6">
-                <nav class="flex" aria-label="Breadcrumb">
-                    <ol class="inline-flex items-center space-x-1 md:space-x-3">
-                        <li class="inline-flex items-center">
-                            <a href="#" class="inline-flex items-center text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300">
-                                Healthcare Trust Registry
-                            </a>
-                        </li>
-                        <li>
-                            <div class="flex items-center">
-                                <i class="text-gray-400 text-xs fas fa-chevron-right"></i>
-                                <a href="#" class="ml-1 text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 md:ml-3">
-                                    Healthcare Credential Schema
-                                </a>
-                            </div>
-                        </li>
-                        <li id="breadcrumb-trail"></li>
-                    </ol>
+                <nav class="flex flex-wrap items-center text-sm" aria-label="Breadcrumb">
+                    <a href="#" onclick="navigateTo('ecosystem'); return false;" class="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">Healthcare Trust Registry</a>
+                    <i class="mx-2 text-neutral-70 fas fa-chevron-right text-xs"></i>
+                    <a href="#" onclick="navigateTo('schema'); return false;" class="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">Healthcare Credential Schema</a>
+                    <i class="mx-2 text-neutral-70 fas fa-chevron-right text-xs"></i>
+                    <span id="breadcrumb-current" class="text-gray-900 dark:text-white font-medium">Participants</span>
                 </nav>
             </section>
 
             <section id="page-header" class="mb-8">
-                <h1 class="text-3xl font-bold text-gray-900 dark:text-white" id="page-title">Participants</h1>
-                <p class="mt-2 text-sm text-neutral-70 dark:text-neutral-70">Manage permissions and participants for this credential schema</p>
+                <h1 id="page-title" class="text-3xl font-bold text-gray-900 dark:text-white">Participants</h1>
             </section>
 
             <section id="filters-section" class="mb-6">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Show</label>
-                        <select id="show-select" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
-                            <option value="my-permissions">My Permissions</option>
+                        <select id="show-select" onchange="handleShowChange()" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
+                            <option value="my-permissions" selected>My Permissions</option>
                             <option value="full-tree">Full Permission Tree</option>
                             <option value="search">Search</option>
                         </select>
                     </div>
                     
-                    <div id="search-container" class="hidden">
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Search</label>
+                    <div id="search-input-container" class="hidden">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Search by DID or Account</label>
                         <div class="relative">
-                            <input type="text" id="search-input" placeholder="Search by DID or grantee account..." class="w-full px-4 py-2 pl-10 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
-                            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-70"></i>
+                            <input type="text" id="search-input" placeholder="Enter DID or account address..." class="w-full px-4 py-2 pl-10 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
+                            <i class="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-70 fas fa-search"></i>
                         </div>
                     </div>
                     
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Filter Permissions</label>
                         <select id="filter-select" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
-                            <option value="all">All</option>
+                            <option value="all" selected>All</option>
                             <option value="pending-actions">Pending Actions</option>
                             <option value="active">Active Permissions</option>
-                            <option value="slashed-not-repaid">Slashed not Repaid</option>
+                            <option value="slashed">Slashed not Repaid</option>
                             <option value="expired">Expired Permissions</option>
                             <option value="expired-vp">Expired Validation Process</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Country</label>
+                        <select id="country-select" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
+                            <option value="any" selected>Any</option>
+                            <option value="worldwide">Worldwide</option>
+                            <option value="ar">Argentina</option>
+                            <option value="co">Colombia</option>
+                            <option value="fr">France</option>
+                            <option value="us">USA</option>
                         </select>
                     </div>
                 </div>
             </section>
 
-            <section id="permissions-list" class="space-y-4 mb-6">
+            <section id="permissions-list" class="space-y-4">
                 
-                <div class="border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
+                <div class="bg-white dark:bg-surface border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
                     <div class="flex items-start justify-between mb-3">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300">
+                            active
+                        </span>
                         <div class="flex items-center gap-2">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300">
-                                active
-                            </span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button onclick="navigateToGrantees('ISSUER_GRANTOR', 12001)" class="relative group p-2 text-neutral-70 hover:text-primary-600 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors">
-                                <i class="fas fa-users text-lg"></i>
-                                <span class="ml-1 text-sm font-medium">123</span>
+                            <button onclick="viewGrantees('ISSUER_GRANTOR', 12001)" class="relative p-2 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors">
+                                <i class="fas fa-sitemap"></i>
+                                <span class="ml-1 text-sm font-medium">123 Grantees</span>
                                 <div class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
                                     <span class="text-white text-xs font-bold">12</span>
-                                </div>
-                                <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                                    View Grantees
                                 </div>
                             </button>
                             <button onclick="toggleDropdown(event, 'dropdown-12001')" class="p-2 text-neutral-70 hover:text-gray-500 hover:bg-surface-muted dark:hover:bg-surface-muted rounded-lg transition-colors">
@@ -446,16 +441,21 @@
                     </div>
                     
                     <div class="mb-3">
-                        <div class="mb-2">
-                            <span class="text-sm font-medium text-gray-900 dark:text-white">ID: 12001</span>
-                        </div>
-                        <div>
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
-                            <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkHealthcareIssuerGrantor2024</p>
-                        </div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">ID</label>
+                        <p class="text-sm font-medium text-gray-900 dark:text-white">12001</p>
                     </div>
                     
-                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-4">
+                    <div class="mb-3">
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
+                        <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkHealthcareIssuerGrantor2024</p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Grantee</label>
+                        <p class="text-sm font-mono text-gray-900 dark:text-white break-all">verana1abc2def3ghi4jkl5mno6pqr7stu8vwx9yz</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Created</label>
                             <p class="text-sm text-gray-900 dark:text-white">2024-01-15</p>
@@ -472,16 +472,16 @@
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective Until</label>
                             <p class="text-sm text-gray-900 dark:text-white">2024-12-15</p>
                         </div>
-                        <div>
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Country</label>
-                            <p class="text-sm text-gray-900 dark:text-white">US</p>
-                        </div>
                     </div>
                     
-                    <div class="pt-4 border-t border-neutral-20 dark:border-neutral-70 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-4 border-t border-neutral-20 dark:border-neutral-70">
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Deposit</label>
                             <p class="text-sm font-mono text-gray-900 dark:text-white">125.50 VNA</p>
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Country</label>
+                            <p class="text-sm text-gray-900 dark:text-white">US</p>
                         </div>
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Validation Fees</label>
@@ -498,22 +498,17 @@
                     </div>
                 </div>
                 
-                <div class="border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
+                <div class="bg-white dark:bg-surface border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
                     <div class="flex items-start justify-between mb-3">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300">
+                            expire in 2 weeks
+                        </span>
                         <div class="flex items-center gap-2">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300">
-                                expire in 2 weeks
-                            </span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button onclick="navigateToGrantees('ISSUER', 12002)" class="relative group p-2 text-neutral-70 hover:text-primary-600 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors">
-                                <i class="fas fa-users text-lg"></i>
-                                <span class="ml-1 text-sm font-medium">45</span>
+                            <button onclick="viewGrantees('VERIFIER', 12002)" class="relative p-2 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors">
+                                <i class="fas fa-sitemap"></i>
+                                <span class="ml-1 text-sm font-medium">45 Grantees</span>
                                 <div class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
                                     <span class="text-white text-xs font-bold">3</span>
-                                </div>
-                                <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                                    View Grantees
                                 </div>
                             </button>
                             <button onclick="toggleDropdown(event, 'dropdown-12002')" class="p-2 text-neutral-70 hover:text-gray-500 hover:bg-surface-muted dark:hover:bg-surface-muted rounded-lg transition-colors">
@@ -535,16 +530,21 @@
                     </div>
                     
                     <div class="mb-3">
-                        <div class="mb-2">
-                            <span class="text-sm font-medium text-gray-900 dark:text-white">ID: 12002</span>
-                        </div>
-                        <div>
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
-                            <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkHealthcareIssuer2024</p>
-                        </div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">ID</label>
+                        <p class="text-sm font-medium text-gray-900 dark:text-white">12002</p>
                     </div>
                     
-                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-4">
+                    <div class="mb-3">
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
+                        <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkHealthcareVerifier2024</p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Grantee</label>
+                        <p class="text-sm font-mono text-gray-900 dark:text-white break-all">verana1xyz9uvw8rst7opq6lmn5kji4hgf3edc2ba</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Created</label>
                             <p class="text-sm text-gray-900 dark:text-white">2023-11-01</p>
@@ -561,16 +561,16 @@
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective Until</label>
                             <p class="text-sm text-gray-900 dark:text-white">2024-11-01</p>
                         </div>
-                        <div>
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Country</label>
-                            <p class="text-sm text-gray-900 dark:text-white">CA</p>
-                        </div>
                     </div>
                     
-                    <div class="pt-4 border-t border-neutral-20 dark:border-neutral-70 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-4 border-t border-neutral-20 dark:border-neutral-70">
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Deposit</label>
                             <p class="text-sm font-mono text-gray-900 dark:text-white">85.00 VNA</p>
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Country</label>
+                            <p class="text-sm text-gray-900 dark:text-white">CA</p>
                         </div>
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Validation Fees</label>
@@ -587,20 +587,15 @@
                     </div>
                 </div>
                 
-                <div class="border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
+                <div class="bg-white dark:bg-surface border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
                     <div class="flex items-start justify-between mb-3">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-300">
+                            expired
+                        </span>
                         <div class="flex items-center gap-2">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-300">
-                                expired
-                            </span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button onclick="navigateToGrantees('VERIFIER', 12003)" class="relative group p-2 text-neutral-70 hover:text-primary-600 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors">
-                                <i class="fas fa-users text-lg"></i>
-                                <span class="ml-1 text-sm font-medium">67</span>
-                                <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                                    View Grantees
-                                </div>
+                            <button onclick="viewGrantees('ISSUER', 12003)" class="relative p-2 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors">
+                                <i class="fas fa-sitemap"></i>
+                                <span class="ml-1 text-sm font-medium">0 Grantees</span>
                             </button>
                             <button onclick="toggleDropdown(event, 'dropdown-12003')" class="p-2 text-neutral-70 hover:text-gray-500 hover:bg-surface-muted dark:hover:bg-surface-muted rounded-lg transition-colors">
                                 <i class="fas fa-ellipsis-vertical"></i>
@@ -621,22 +616,27 @@
                     </div>
                     
                     <div class="mb-3">
-                        <div class="mb-2">
-                            <span class="text-sm font-medium text-gray-900 dark:text-white">ID: 12003</span>
-                        </div>
-                        <div>
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
-                            <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkHealthcareVerifierOld2023</p>
-                        </div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">ID</label>
+                        <p class="text-sm font-medium text-gray-900 dark:text-white">12003</p>
                     </div>
                     
-                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-4">
+                    <div class="mb-3">
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
+                        <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkHealthcareIssuerOld2023</p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Grantee</label>
+                        <p class="text-sm font-mono text-gray-900 dark:text-white break-all">verana1qwe2rty3uio4pas5dfg6hjk7lzx8cvm9bn</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Created</label>
                             <p class="text-sm text-gray-900 dark:text-white">2023-06-01</p>
                         </div>
                         <div>
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Revoked</label>
+                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Slashed</label>
                             <p class="text-sm text-gray-900 dark:text-white">2023-12-15</p>
                         </div>
                         <div>
@@ -647,16 +647,16 @@
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective Until</label>
                             <p class="text-sm text-gray-900 dark:text-white">2023-12-01</p>
                         </div>
-                        <div>
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Country</label>
-                            <p class="text-sm text-gray-900 dark:text-white">UK</p>
-                        </div>
                     </div>
                     
-                    <div class="pt-4 border-t border-neutral-20 dark:border-neutral-70 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-4 border-t border-neutral-20 dark:border-neutral-70">
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Deposit</label>
                             <p class="text-sm font-mono text-gray-900 dark:text-white">100.00 VNA</p>
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Slashed Deposit</label>
+                            <p class="text-sm font-mono text-red-600 dark:text-red-400">25.00 VNA</p>
                         </div>
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Validation Fees</label>
@@ -664,31 +664,26 @@
                         </div>
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Issuance Fees</label>
-                            <p class="text-sm font-mono text-gray-900 dark:text-white">-</p>
+                            <p class="text-sm font-mono text-gray-900 dark:text-white">1.5 VNA</p>
                         </div>
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Verification Fees</label>
-                            <p class="text-sm font-mono text-gray-900 dark:text-white">1.2 VNA</p>
+                            <p class="text-sm font-mono text-gray-900 dark:text-white">-</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
+                <div class="bg-white dark:bg-surface border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
                     <div class="flex items-start justify-between mb-3">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300">
+                            slashed
+                        </span>
                         <div class="flex items-center gap-2">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300">
-                                slashed
-                            </span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button onclick="navigateToGrantees('VERIFIER_GRANTOR', 12004)" class="relative group p-2 text-neutral-70 hover:text-primary-600 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors">
-                                <i class="fas fa-users text-lg"></i>
-                                <span class="ml-1 text-sm font-medium">89</span>
+                            <button onclick="viewGrantees('VERIFIER_GRANTOR', 12004)" class="relative p-2 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors">
+                                <i class="fas fa-sitemap"></i>
+                                <span class="ml-1 text-sm font-medium">87 Grantees</span>
                                 <div class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
                                     <span class="text-white text-xs font-bold">7</span>
-                                </div>
-                                <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                                    View Grantees
                                 </div>
                             </button>
                             <button onclick="toggleDropdown(event, 'dropdown-12004')" class="p-2 text-neutral-70 hover:text-gray-500 hover:bg-surface-muted dark:hover:bg-surface-muted rounded-lg transition-colors">
@@ -710,23 +705,28 @@
                     </div>
                     
                     <div class="mb-3">
-                        <div class="mb-2">
-                            <span class="text-sm font-medium text-gray-900 dark:text-white">ID: 12004</span>
-                        </div>
-                        <div>
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
-                            <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkHealthcareVerifierGrantor2024</p>
-                        </div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">ID</label>
+                        <p class="text-sm font-medium text-gray-900 dark:text-white">12004</p>
                     </div>
                     
-                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-4">
+                    <div class="mb-3">
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
+                        <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkHealthcareVerifierGrantor2024</p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Grantee</label>
+                        <p class="text-sm font-mono text-gray-900 dark:text-white break-all">verana1mnb8vcx7zaq6wsx5edc4rfv3tgb2yhn1ujm</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Created</label>
                             <p class="text-sm text-gray-900 dark:text-white">2023-08-20</p>
                         </div>
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Slashed</label>
-                            <p class="text-sm text-red-600 dark:text-red-400">2024-01-10</p>
+                            <p class="text-sm text-gray-900 dark:text-white">2024-01-10</p>
                         </div>
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective From</label>
@@ -736,13 +736,9 @@
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective Until</label>
                             <p class="text-sm text-gray-900 dark:text-white">2025-08-20</p>
                         </div>
-                        <div>
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Country</label>
-                            <p class="text-sm text-gray-900 dark:text-white">DE</p>
-                        </div>
                     </div>
                     
-                    <div class="pt-4 border-t border-neutral-20 dark:border-neutral-70 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-4 border-t border-neutral-20 dark:border-neutral-70">
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Deposit</label>
                             <p class="text-sm font-mono text-gray-900 dark:text-white">200.00 VNA</p>
@@ -756,28 +752,27 @@
                             <p class="text-sm font-mono text-gray-900 dark:text-white">5.0 VNA</p>
                         </div>
                         <div>
+                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Issuance Fees</label>
+                            <p class="text-sm font-mono text-gray-900 dark:text-white">-</p>
+                        </div>
+                        <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Verification Fees</label>
-                            <p class="text-sm font-mono text-gray-900 dark:text-white">1.5 VNA</p>
+                            <p class="text-sm font-mono text-gray-900 dark:text-white">1.0 VNA</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
+                <div class="bg-white dark:bg-surface border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
                     <div class="flex items-start justify-between mb-3">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-200 text-red-700 dark:bg-red-800/20 dark:text-red-400">
+                            repaid
+                        </span>
                         <div class="flex items-center gap-2">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-200 text-red-700 dark:bg-red-800/20 dark:text-red-400">
-                                repaid
-                            </span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button onclick="navigateToGrantees('ECOSYSTEM', 12005)" class="relative group p-2 text-neutral-70 hover:text-primary-600 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors">
-                                <i class="fas fa-users text-lg"></i>
-                                <span class="ml-1 text-sm font-medium">234</span>
+                            <button onclick="viewGrantees('ECOSYSTEM', 12005)" class="relative p-2 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors">
+                                <i class="fas fa-sitemap"></i>
+                                <span class="ml-1 text-sm font-medium">256 Grantees</span>
                                 <div class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
-                                    <span class="text-white text-xs font-bold">5</span>
-                                </div>
-                                <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                                    View Grantees
+                                    <span class="text-white text-xs font-bold">18</span>
                                 </div>
                             </button>
                             <button onclick="toggleDropdown(event, 'dropdown-12005')" class="p-2 text-neutral-70 hover:text-gray-500 hover:bg-surface-muted dark:hover:bg-surface-muted rounded-lg transition-colors">
@@ -799,23 +794,28 @@
                     </div>
                     
                     <div class="mb-3">
-                        <div class="mb-2">
-                            <span class="text-sm font-medium text-gray-900 dark:text-white">ID: 12005</span>
-                        </div>
-                        <div>
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
-                            <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkHealthcareEcosystem2024</p>
-                        </div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">ID</label>
+                        <p class="text-sm font-medium text-gray-900 dark:text-white">12005</p>
                     </div>
                     
-                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-4">
+                    <div class="mb-3">
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
+                        <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkHealthcareEcosystem2024</p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Grantee</label>
+                        <p class="text-sm font-mono text-gray-900 dark:text-white break-all">verana1poi9lkj8uhb7vgy6cft5rdx4sze3waq2nml</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Created</label>
                             <p class="text-sm text-gray-900 dark:text-white">2023-05-10</p>
                         </div>
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Repaid</label>
-                            <p class="text-sm text-green-600 dark:text-green-400">2024-02-20</p>
+                            <p class="text-sm text-gray-900 dark:text-white">2024-02-20</p>
                         </div>
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective From</label>
@@ -825,20 +825,16 @@
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective Until</label>
                             <p class="text-sm text-gray-900 dark:text-white">2025-05-10</p>
                         </div>
-                        <div>
-                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Country</label>
-                            <p class="text-sm text-gray-900 dark:text-white">FR</p>
-                        </div>
                     </div>
                     
-                    <div class="pt-4 border-t border-neutral-20 dark:border-neutral-70 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-4 border-t border-neutral-20 dark:border-neutral-70">
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Deposit</label>
-                            <p class="text-sm font-mono text-gray-900 dark:text-white">300.00 VNA</p>
+                            <p class="text-sm font-mono text-gray-900 dark:text-white">500.00 VNA</p>
                         </div>
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Repaid Deposit</label>
-                            <p class="text-sm font-mono text-green-600 dark:text-green-400">25.00 VNA</p>
+                            <p class="text-sm font-mono text-green-600 dark:text-green-400">30.00 VNA</p>
                         </div>
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Validation Fees</label>
@@ -846,30 +842,28 @@
                         </div>
                         <div>
                             <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Issuance Fees</label>
-                            <p class="text-sm font-mono text-gray-900 dark:text-white">3.0 VNA</p>
+                            <p class="text-sm font-mono text-gray-900 dark:text-white">5.0 VNA</p>
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Verification Fees</label>
+                            <p class="text-sm font-mono text-gray-900 dark:text-white">2.5 VNA</p>
                         </div>
                     </div>
                 </div>
                 
             </section>
 
-            <section id="pagination" class="flex items-center justify-between">
+            <section id="pagination" class="mt-6 flex items-center justify-between">
                 <div class="text-sm text-neutral-70 dark:text-neutral-70">
-                    Showing <span class="font-medium text-gray-900 dark:text-white">1</span> to <span class="font-medium text-gray-900 dark:text-white">5</span> of <span class="font-medium text-gray-900 dark:text-white">12</span> results
+                    Showing <span class="font-medium text-gray-900 dark:text-white">1</span> to <span class="font-medium text-gray-900 dark:text-white">5</span> of <span class="font-medium text-gray-900 dark:text-white">24</span> results
                 </div>
-                <div class="flex space-x-2">
+                <div class="flex gap-2">
                     <button class="px-3 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-surface hover:bg-surface-muted dark:hover:bg-surface-muted transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    <button class="px-3 py-2 border border-primary-600 bg-primary-600 rounded-lg text-sm font-medium text-white">
-                        1
-                    </button>
-                    <button class="px-3 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-surface hover:bg-surface-muted dark:hover:bg-surface-muted transition-colors">
-                        2
-                    </button>
-                    <button class="px-3 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-surface hover:bg-surface-muted dark:hover:bg-surface-muted transition-colors">
-                        3
-                    </button>
+                    <button class="px-3 py-2 border border-primary-600 bg-primary-600 rounded-lg text-sm font-medium text-white">1</button>
+                    <button class="px-3 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-surface hover:bg-surface-muted dark:hover:bg-surface-muted transition-colors">2</button>
+                    <button class="px-3 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-surface hover:bg-surface-muted dark:hover:bg-surface-muted transition-colors">3</button>
                     <button class="px-3 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-surface hover:bg-surface-muted dark:hover:bg-surface-muted transition-colors">
                         <i class="fas fa-chevron-right"></i>
                     </button>
@@ -906,8 +900,6 @@
 </div>
 
 <script>
-    const navigationHistory = [];
-    
     const themeToggle = document.getElementById('theme-toggle');
     const html = document.documentElement;
     
@@ -937,125 +929,342 @@
         mobileSidebarOverlay.classList.add('hidden');
     });
 
-    document.getElementById('show-select').addEventListener('change', (e) => {
-        const searchContainer = document.getElementById('search-container');
-        if (e.target.value === 'search') {
+    let navigationHistory = [];
+
+    function handleShowChange() {
+        const showSelect = document.getElementById('show-select');
+        const searchContainer = document.getElementById('search-input-container');
+        
+        if (showSelect.value === 'search') {
             searchContainer.classList.remove('hidden');
         } else {
             searchContainer.classList.add('hidden');
         }
-    });
+    }
 
-    function navigateToGrantees(type, permissionId) {
+    function viewGrantees(type, permissionId) {
         navigationHistory.push({ type, permissionId });
-        
+        showGranteesView(type, permissionId);
+    }
+
+    function showGranteesView(type, permissionId) {
+        const breadcrumbsNav = document.getElementById('breadcrumbs').querySelector('nav');
         const pageTitle = document.getElementById('page-title');
-        pageTitle.textContent = `Grantees of ${type} permission ${permissionId}`;
+        const filtersSection = document.getElementById('filters-section');
         
-        const breadcrumbTrail = document.getElementById('breadcrumb-trail');
-        let breadcrumbHTML = '';
+        let breadcrumbHTML = `
+            <a href="#" onclick="navigateTo('ecosystem'); return false;" class="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">Healthcare Trust Registry</a>
+            <i class="mx-2 text-neutral-70 fas fa-chevron-right text-xs"></i>
+            <a href="#" onclick="navigateTo('schema'); return false;" class="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">Healthcare Credential Schema</a>
+            <i class="mx-2 text-neutral-70 fas fa-chevron-right text-xs"></i>
+            <a href="#" onclick="backToParticipants(); return false;" class="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">Participants</a>
+        `;
+        
         navigationHistory.forEach((item, index) => {
             breadcrumbHTML += `
-                <li>
-                    <div class="flex items-center">
-                        <i class="text-gray-400 text-xs fas fa-chevron-right"></i>
-                        <a href="#" onclick="navigateToHistoryLevel(${index}); return false;" class="ml-1 text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 md:ml-3">
-                            ${item.type} permission ${item.permissionId}
-                        </a>
-                    </div>
-                </li>
+                <i class="mx-2 text-neutral-70 fas fa-chevron-right text-xs"></i>
             `;
-        });
-        breadcrumbTrail.innerHTML = breadcrumbHTML;
-        
-        const showSelect = document.getElementById('show-select');
-        showSelect.value = 'search';
-        showSelect.disabled = true;
-        document.getElementById('search-container').classList.remove('hidden');
-    }
-
-    function navigateToHistoryLevel(level) {
-        navigationHistory.splice(level + 1);
-        
-        if (level === -1) {
-            navigationHistory.length = 0;
-            document.getElementById('page-title').textContent = 'Participants';
-            document.getElementById('breadcrumb-trail').innerHTML = '';
-            document.getElementById('show-select').disabled = false;
-        } else {
-            const item = navigationHistory[level];
-            document.getElementById('page-title').textContent = `Grantees of ${item.type} permission ${item.permissionId}`;
-            
-            const breadcrumbTrail = document.getElementById('breadcrumb-trail');
-            let breadcrumbHTML = '';
-            navigationHistory.forEach((histItem, index) => {
-                breadcrumbHTML += `
-                    <li>
-                        <div class="flex items-center">
-                            <i class="text-gray-400 text-xs fas fa-chevron-right"></i>
-                            <a href="#" onclick="navigateToHistoryLevel(${index}); return false;" class="ml-1 text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 md:ml-3">
-                                ${histItem.type} permission ${histItem.permissionId}
-                            </a>
-                        </div>
-                    </li>
-                `;
-            });
-            breadcrumbTrail.innerHTML = breadcrumbHTML;
-        }
-    }
-
-    function showTransactionPopup(state, description, txHash = null) {
-        const popup = document.getElementById('transaction-popup');
-        const states = ['tx-broadcasting', 'tx-processing', 'tx-success', 'tx-error'];
-        
-        states.forEach(s => document.getElementById(s).classList.add('hidden'));
-        
-        popup.classList.remove('hidden');
-        
-        document.getElementById(`tx-${state}`).classList.remove('hidden');
-        
-        if (state === 'broadcasting') {
-            document.getElementById('tx-description').textContent = description;
-        } else if (state === 'processing') {
-            document.getElementById('tx-processing-description').textContent = description;
-            if (txHash) {
-                const link = document.getElementById('tx-hash-link');
-                link.textContent = `${txHash.substring(0, 10)}...${txHash.substring(txHash.length - 10)}`;
-                link.href = `https://explorer.verana.io/tx/${txHash}`;
+            if (index === navigationHistory.length - 1) {
+                breadcrumbHTML += `<span class="text-gray-900 dark:text-white font-medium">${item.type} permission ${item.permissionId}</span>`;
+            } else {
+                breadcrumbHTML += `<a href="#" onclick="navigateToGranteeLevel(${index}); return false;" class="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">${item.type} permission ${item.permissionId}</a>`;
             }
-        } else if (state === 'success') {
-            document.getElementById('tx-success-description').textContent = description;
-            setTimeout(() => {
-                hideTransactionPopup();
-            }, 5000);
-        } else if (state === 'error') {
-            document.getElementById('tx-error-description').textContent = description;
-        }
-    }
-
-    function hideTransactionPopup() {
-        document.getElementById('transaction-popup').classList.add('hidden');
-    }
-
-    function retryTransaction() {
-        showTransactionPopup('broadcasting', 'Retrying transaction');
-    }
-
-    function copyAddressFromHeader() {
-        const address = '0x1234567890abcdef1234567890abcdef12345678';
-        navigator.clipboard.writeText(address).then(() => {
-            const element = event.target.closest('div');
-            const originalText = element.querySelector('p').textContent;
-            element.querySelector('p').textContent = 'Copied!';
-            
-            setTimeout(() => {
-                element.querySelector('p').textContent = originalText;
-            }, 2000);
         });
+        
+        breadcrumbsNav.innerHTML = breadcrumbHTML;
+        pageTitle.textContent = `Grantees of ${type} permission ${permissionId}`;
+        
+        filtersSection.innerHTML = `
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Filter Permissions</label>
+                    <select id="filter-select" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
+                        <option value="all" selected>All</option>
+                        <option value="pending-actions">Pending Actions</option>
+                        <option value="active">Active Permissions</option>
+                        <option value="slashed">Slashed not Repaid</option>
+                        <option value="expired">Expired Permissions</option>
+                        <option value="expired-vp">Expired Validation Process</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Country</label>
+                    <select id="country-select" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
+                        <option value="any" selected>Any</option>
+                        <option value="worldwide">Worldwide</option>
+                        <option value="ar">Argentina</option>
+                        <option value="co">Colombia</option>
+                        <option value="fr">France</option>
+                        <option value="us">USA</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Search by DID or Account</label>
+                    <div class="relative">
+                        <input type="text" id="search-input" placeholder="Enter DID or account address..." class="w-full px-4 py-2 pl-10 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
+                        <i class="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-70 fas fa-search"></i>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        renderGranteePermissions();
     }
 
-    function openExplorer() {
-        window.open('https://explorer.verana.io/address/0x1234567890abcdef1234567890abcdef12345678', '_blank');
+    function renderGranteePermissions() {
+        const permissionsList = document.getElementById('permissions-list');
+        permissionsList.innerHTML = `
+            <div class="bg-white dark:bg-surface border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
+                <div class="flex items-start justify-between mb-3">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300">
+                        active
+                    </span>
+                    <div class="flex items-center gap-2">
+                        <button onclick="viewGrantees('ISSUER', 13001)" class="relative p-2 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors">
+                            <i class="fas fa-sitemap"></i>
+                            <span class="ml-1 text-sm font-medium">15</span>
+                            <div class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs font-bold">2</span>
+                            </div>
+                        </button>
+                        <button onclick="toggleDropdown(event, 'dropdown-13001')" class="p-2 text-neutral-70 hover:text-gray-500 hover:bg-surface-muted dark:hover:bg-surface-muted rounded-lg transition-colors">
+                            <i class="fas fa-ellipsis-vertical"></i>
+                        </button>
+                        <div id="dropdown-13001" class="dropdown-menu absolute right-0 mt-2 w-56 rounded-lg shadow-lg bg-white dark:bg-surface border border-neutral-20 dark:border-neutral-70 z-10">
+                            <div class="py-1">
+                                <button onclick="renewPermission(13001)" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-surface-muted dark:hover:bg-surface-muted">
+                                    <i class="fas fa-rotate-right mr-2"></i>
+                                    Renew Permission
+                                </button>
+                                <button onclick="repaySlashDeposit(13001)" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-surface-muted dark:hover:bg-surface-muted">
+                                    <i class="fas fa-hand-holding-dollar mr-2"></i>
+                                    Repay Slash Deposit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">ID</label>
+                    <p class="text-sm font-medium text-gray-900 dark:text-white">13001</p>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
+                    <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkGranteeIssuer001</p>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Grantee</label>
+                    <p class="text-sm font-mono text-gray-900 dark:text-white break-all">verana1ghi7jkl8mno9pqr5stu4vwx3yza2bcd1efg</p>
+                </div>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
+                    <div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Created</label>
+                        <p class="text-sm text-gray-900 dark:text-white">2024-02-01</p>
+                    </div>
+                    <div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Modified</label>
+                        <p class="text-sm text-gray-900 dark:text-white">2024-03-15</p>
+                    </div>
+                    <div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective From</label>
+                        <p class="text-sm text-gray-900 dark:text-white">2024-02-01</p>
+                    </div>
+                    <div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective Until</label>
+                        <p class="text-sm text-gray-900 dark:text-white">2025-02-01</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-4 border-t border-neutral-20 dark:border-neutral-70">
+                    <div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Deposit</label>
+                        <p class="text-sm font-mono text-gray-900 dark:text-white">75.00 VNA</p>
+                    </div>
+                    <div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Country</label>
+                        <p class="text-sm text-gray-900 dark:text-white">US</p>
+                    </div>
+                    <div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Validation Fees</label>
+                        <p class="text-sm font-mono text-gray-900 dark:text-white">1.5 VNA</p>
+                    </div>
+                    <div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Issuance Fees</label>
+                        <p class="text-sm font-mono text-gray-900 dark:text-white">0.8 VNA</p>
+                    </div>
+                    <div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Verification Fees</label>
+                        <p class="text-sm font-mono text-gray-900 dark:text-white">-</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white dark:bg-surface border border-neutral-20 dark:border-neutral-70 rounded-xl p-4 hover:shadow-md transition-shadow">
+                <div class="flex items-start justify-between mb-3">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300">
+                        expire in 2 weeks
+                    </span>
+                    <div class="flex items-center gap-2">
+                        <button onclick="viewGrantees('ISSUER', 13002)" class="relative p-2 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors">
+                            <i class="fas fa-sitemap"></i>
+                            <span class="ml-1 text-sm font-medium">8</span>
+                        </button>
+                        <button onclick="toggleDropdown(event, 'dropdown-13002')" class="p-2 text-neutral-70 hover:text-gray-500 hover:bg-surface-muted dark:hover:bg-surface-muted rounded-lg transition-colors">
+                            <i class="fas fa-ellipsis-vertical"></i>
+                        </button>
+                        <div id="dropdown-13002" class="dropdown-menu absolute right-0 mt-2 w-56 rounded-lg shadow-lg bg-white dark:bg-surface border border-neutral-20 dark:border-neutral-70 z-10">
+                            <div class="py-1">
+                                <button onclick="renewPermission(13002)" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-surface-muted dark:hover:bg-surface-muted">
+                                    <i class="fas fa-rotate-right mr-2"></i>
+                                    Renew Permission
+                                </button>
+                                <button onclick="repaySlashDeposit(13002)" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-surface-muted dark:hover:bg-surface-muted">
+                                    <i class="fas fa-hand-holding-dollar mr-2"></i>
+                                    Repay Slash Deposit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">ID</label>
+                    <p class="text-sm font-medium text-gray-900 dark:text-white">13002</p>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">DID</label>
+                    <p class="text-sm font-mono text-gray-900 dark:text-white break-all">did:verana:mainnet:z6MkGranteeIssuer002</p>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Grantee</label>
+                    <p class="text-sm font-mono text-gray-900 dark:text-white break-all">verana1tuv6wxy7zab8cde9fgh5ijk4lmn3opq2rst</p>
+                </div>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
+                    <div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Created</label>
+                        <p class="text-sm text-gray-900 dark:text-white">2023-12-10</p>
+                    </div>
+                    <div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Extended</label>
+                        <p class="text-sm text-gray-900 dark:text-white">2024-03-05</p>
+                    </div>
+                    <div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective From</label>
+                        <p class="text-sm text-gray-900 dark:text-white">2023-12-10</p>
+                    </div>
+                    <div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Effective Until</label>
+                        <p class="text-sm text-gray-900 dark:text-white">2024-12-10</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-4 border-t border-neutral-20 dark:border-neutral-70">
+                    <div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Deposit</label>
+                        <p class="text-sm font-mono text-gray-900 dark:text-white">60.00 VNA</p>
+                    </div>
+                    <div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Country</label>
+                        <p class="text-sm text-gray-900 dark:text-white">FR</p>
+                    </div>
+                    <div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Validation Fees</label>
+                        <p class="text-sm font-mono text-gray-900 dark:text-white">1.2 VNA</p>
+                    </div>
+                    <div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Issuance Fees</label>
+                        <p class="text-sm font-mono text-gray-900 dark:text-white">0.6 VNA</p>
+                    </div>
+                    <div>
+                        <label class="text-xs font-medium text-neutral-70 dark:text-neutral-70">Verification Fees</label>
+                        <p class="text-sm font-mono text-gray-900 dark:text-white">-</p>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function backToParticipants() {
+        navigationHistory = [];
+        const breadcrumbsNav = document.getElementById('breadcrumbs').querySelector('nav');
+        const pageTitle = document.getElementById('page-title');
+        const filtersSection = document.getElementById('filters-section');
+        
+        breadcrumbsNav.innerHTML = `
+            <a href="#" onclick="navigateTo('ecosystem'); return false;" class="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">Healthcare Trust Registry</a>
+            <i class="mx-2 text-neutral-70 fas fa-chevron-right text-xs"></i>
+            <a href="#" onclick="navigateTo('schema'); return false;" class="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">Healthcare Credential Schema</a>
+            <i class="mx-2 text-neutral-70 fas fa-chevron-right text-xs"></i>
+            <span class="text-gray-900 dark:text-white font-medium">Participants</span>
+        `;
+        
+        pageTitle.textContent = 'Participants';
+        
+        filtersSection.innerHTML = `
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Show</label>
+                    <select id="show-select" onchange="handleShowChange()" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
+                        <option value="my-permissions" selected>My Permissions</option>
+                        <option value="full-tree">Full Permission Tree</option>
+                        <option value="search">Search</option>
+                    </select>
+                </div>
+                
+                <div id="search-input-container" class="hidden">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Search by DID or Account</label>
+                    <div class="relative">
+                        <input type="text" id="search-input" placeholder="Enter DID or account address..." class="w-full px-4 py-2 pl-10 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
+                        <i class="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-70 fas fa-search"></i>
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Filter Permissions</label>
+                    <select id="filter-select" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
+                        <option value="all" selected>All</option>
+                        <option value="pending-actions">Pending Actions</option>
+                        <option value="active">Active Permissions</option>
+                        <option value="slashed">Slashed not Repaid</option>
+                        <option value="expired">Expired Permissions</option>
+                        <option value="expired-vp">Expired Validation Process</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Country</label>
+                    <select id="country-select" class="w-full px-4 py-2 border border-neutral-20 dark:border-neutral-70 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-surface text-gray-900 dark:text-white">
+                        <option value="any" selected>Any</option>
+                        <option value="worldwide">Worldwide</option>
+                        <option value="ar">Argentina</option>
+                        <option value="co">Colombia</option>
+                        <option value="fr">France</option>
+                        <option value="us">USA</option>
+                    </select>
+                </div>
+            </div>
+        `;
+        
+        window.location.reload();
+    }
+
+    function navigateToGranteeLevel(index) {
+        navigationHistory = navigationHistory.slice(0, index + 1);
+        const lastItem = navigationHistory[index];
+        showGranteesView(lastItem.type, lastItem.permissionId);
+    }
+
+    function navigateTo(page) {
+        console.log('Navigate to:', page);
     }
 
     function toggleDropdown(event, dropdownId) {
@@ -1072,54 +1281,101 @@
         dropdown.classList.toggle('show');
     }
 
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('button')) {
+            document.querySelectorAll('.dropdown-menu').forEach(d => {
+                d.classList.remove('show');
+            });
+        }
+    });
+
     function renewPermission(permissionId) {
-        closeAllDropdowns();
         showTransactionPopup('broadcasting', `Renewing permission ${permissionId}`);
-        
         setTimeout(() => {
-            showTransactionPopup('processing', `Renewing permission ${permissionId}`, 'tx987654321fedcba');
-        }, 2000);
-        
-        setTimeout(() => {
-            showTransactionPopup('success', `Permission ${permissionId} successfully renewed`);
-        }, 4000);
+            showTransactionPopup('processing', `Renewing permission ${permissionId}`, '0xabc123def456');
+            setTimeout(() => {
+                showTransactionPopup('success', `Permission ${permissionId} renewed successfully`);
+            }, 2000);
+        }, 1500);
     }
 
     function repaySlashDeposit(permissionId) {
-        closeAllDropdowns();
         showTransactionPopup('broadcasting', `Repaying slash deposit for permission ${permissionId}`);
-        
         setTimeout(() => {
-            showTransactionPopup('processing', `Repaying slash deposit for permission ${permissionId}`, 'txabcdef123456789');
-        }, 2000);
-        
-        setTimeout(() => {
-            showTransactionPopup('success', `Slash deposit for permission ${permissionId} successfully repaid`);
-        }, 4000);
+            showTransactionPopup('processing', `Repaying slash deposit for permission ${permissionId}`, '0xdef789ghi012');
+            setTimeout(() => {
+                showTransactionPopup('success', `Slash deposit repaid for permission ${permissionId}`);
+            }, 2000);
+        }, 1500);
     }
 
-    function closeAllDropdowns() {
-        const allDropdowns = document.querySelectorAll('.dropdown-menu');
-        allDropdowns.forEach(d => d.classList.remove('show'));
+    function showTransactionPopup(state, description, txHash = '') {
+        const popup = document.getElementById('transaction-popup');
+        const broadcasting = document.getElementById('tx-broadcasting');
+        const processing = document.getElementById('tx-processing');
+        const success = document.getElementById('tx-success');
+        const error = document.getElementById('tx-error');
+        
+        broadcasting.classList.add('hidden');
+        processing.classList.add('hidden');
+        success.classList.add('hidden');
+        error.classList.add('hidden');
+        
+        popup.classList.remove('hidden');
+        
+        if (state === 'broadcasting') {
+            broadcasting.classList.remove('hidden');
+            document.getElementById('tx-description').textContent = description;
+        } else if (state === 'processing') {
+            processing.classList.remove('hidden');
+            document.getElementById('tx-processing-description').textContent = description;
+            document.getElementById('tx-hash-link').textContent = txHash;
+            document.getElementById('tx-hash-link').onclick = () => window.open(`https://explorer.verana.io/tx/${txHash}`, '_blank');
+        } else if (state === 'success') {
+            success.classList.remove('hidden');
+            document.getElementById('tx-success-description').textContent = description;
+            setTimeout(() => {
+                hideTransactionPopup();
+            }, 5000);
+        } else if (state === 'error') {
+            error.classList.remove('hidden');
+            document.getElementById('tx-error-description').textContent = description;
+        }
     }
 
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.relative')) {
-            closeAllDropdowns();
-        }
-    });
+    function hideTransactionPopup() {
+        document.getElementById('transaction-popup').classList.add('hidden');
+    }
 
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            document.getElementById('qr-modal').classList.add('hidden');
-            mobileSidebarOverlay.classList.add('hidden');
-            closeAllDropdowns();
-        }
-    });
+    function retryTransaction() {
+        hideTransactionPopup();
+    }
 
-    document.getElementById('qr-modal').addEventListener('click', (e) => {
-        if (e.target === e.currentTarget) {
-            document.getElementById('qr-modal').classList.add('hidden');
+    function copyAddressFromHeader() {
+        const address = '0x1234567890abcdef1234567890abcdef12345678';
+        navigator.clipboard.writeText(address).then(() => {
+            const accountZone = document.getElementById('account-zone');
+            const originalHTML = accountZone.innerHTML;
+            accountZone.innerHTML = `
+                <div class="flex items-center space-x-2 px-3 py-2">
+                    <i class="text-success-500 fas fa-check"></i>
+                    <span class="text-sm font-medium text-gray-900 dark:text-white">Address copied!</span>
+                </div>
+            `;
+            setTimeout(() => {
+                accountZone.innerHTML = originalHTML;
+            }, 2000);
+        });
+    }
+
+    function openExplorer() {
+        const address = '0x1234567890abcdef1234567890abcdef12345678';
+        window.open(`https://explorer.verana.io/address/${address}`, '_blank');
+    }
+
+    document.getElementById('header-disconnect-btn').addEventListener('click', function() {
+        if (confirm('Are you sure you want to disconnect your wallet?')) {
+            console.log('Wallet disconnected');
         }
     });
 </script>
