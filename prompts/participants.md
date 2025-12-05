@@ -77,18 +77,21 @@ Each directory (Issuer Grantors, Verifier Grantors, Issuers, Verifiers, Holders)
 Each permission tree node must show:
 
 - on the left centered, the chevron that rotates depending on expended/collapsed,
-- aligned on the right of the chevron: Icon indicating authority Full control (gold crown) or Read-only (grey eye) + name + Permission state badge.
+- aligned on the right of the chevron: Icon indicating authority Full control (gold crown) or Read-only (grey eye) + name + Permission state badge
+
+Append on the right side of the card, when ticked:
+ + (if weight enabled: scale-balanced icon using the role badge text color and the text 234kVNA) + (if business rules enabled: coins icon using the role badge text color and the text issuance: 0.25 VNA verification: 0.25 VNA) + (if stats enabled: chart-column icon using the role badge text color and the text issued: 1234 verified: 789)
 
 Do NOT show the role badge.
 
-#### Adds-on
+=> click on the chevron: open/collapse only, do not slect the node
+=> click on the name: select the node, do not open/collapse
 
-Append to both node types, Directory nodes and Permission tree nodes when ticked:
- + (if weight enabled: scale-balanced icon using the role badge text color and the text 234kVNA) + (if business rules enabled: coins icon using the role badge text color and the text issuance: 0.25 VNA verification: 0.25 VNA) + (if stats enabled: chart-column icon using the role badge text color and the text issued: 1234 verified: 789)
+nodes of a same subtree must be aligned vertically. If they have no chevron, Icons indicating authority must be aligned vertically.
 
 ### Collapsing Rules:
 - First Ecosystem Permission expanded by default
-- IssuerGrantors, VerifierGrantors, Issuers, Verifiers, Holders collapsed by default if >5 items. When opened,if more than 10 items, show First 10 items and “Show more…” button that loads more on demand
+- IssuerGrantors, VerifierGrantors, Issuers, Verifiers, Holders collapsed by default. When opened,if more than 10 items, show First 10 items and “Show more…” button that loads more on demand
 
 ## Permission Detail Card
 Background of the card must be white. Opens when a node is clicked. Clicked node should be highlighted on the Permission tree (slight purple background).
@@ -99,13 +102,12 @@ Background of the card must be white. Opens when a node is clicked. Clicked node
 - Role badge
 - State badge
 - full breadcrumbs from root permission until excluding current node, example if the role of the shown node is HOLDER: show: "Holder under Ecosystem Permission 1 -> Issuer Grantor 1A -> Issuer 1", example if the role of the shown node is ISSUER: show: "Issuer under Ecosystem Permission 1 -> Issuer Grantor 1A"
+- credential schema name
 
 **Body:**
-
 for each attribute, use data between => and ; for generating a tooltip for the corresponding attribute (tooltip shown only when I put the mouse over the attribute name, not the content. do not put a help icon). What's after the ; if present describes the button to show and their corresponding actions. All link button must be aligned to the right of the card. When no links are presents for attribute, several attributes can be shown per row (must work with responsive). When actions are defined, they must go at the end of the section.
 
 1. Key metadata section:
-
 - truncated DID (string) (monospace) => DID of the related verifiable service; links: copy link, link to the visualizer (external service), link to go to the service (external service), on mouse over show a tooltip with the full DID.
 - grantee (string) (monospace) => Verana account; links: copy link, link to the visualizer (external service), link to the block explorer (external service).
 - id: uint64 => id; links: copy link, link to the visualizer (external service)
@@ -117,7 +119,6 @@ for each attribute, use data between => and ; for generating a tooltip for the c
 - verified credentials: integer => verified credentials
 
 2. Permission Lifecycle section:
-
 - created: timestamp => date of creation
 - created_by: Verana account; links: copy link, link to the visualizer (external service), link to the block explorer (external service).
 - modified: timestamp => modified
@@ -128,14 +129,12 @@ for each attribute, use data between => and ; for generating a tooltip for the c
 - revoked_by: Verana account; links: copy link, link to the visualizer (external service), link to the block explorer (external service).
 
 Lifecycle related Actions:
-
 - Extend Permission: popup: a text explaining what will do the transaction, a form requesting user to input the new effective_until; the message that shows the approx transaction cost, cancel / confirm button. Cancel clears the popup, confirm executes the Extend Permission transaction.
 - Revoke Permission: popup: short text explaining, the approx transaction cost message, cancel / confirm button. Cancel clears the popup, confirm executes the Revoke Permission transaction.
 
 3. Validation Process section:
 
 show a validation process State badge: PENDING (yellow), VALIDATED (green), TERMINATED (grey)
-
 - vp_exp: timestamp => date the validation process of this permission will expire
 - vp_last_state_change: timestamp => date the validation process of this permission last changed state
 - vp_validator_deposit: number => deposit managed by this validation process
@@ -144,33 +143,27 @@ show a validation process State badge: PENDING (yellow), VALIDATED (green), TERM
 - vp_summary_digest_sri: digest_sri => checksum of the documentation linked to this permission
 
 Validation Process related possible Actions
-
 - Start (Validation Process) (never shown here, these transactions are used in other pages. Provided for the Activity Timeline only.)
 - Renew (Validation Process): popup: short explanation,  the approx transaction cost message, cancel / confirm button. Cancel clears the popup, confirm executes the Renew transaction.
 - Cancel Request (Validation Process): popup: short explanation, the approx transaction cost message, cancel / confirm button. Cancel clears the popup, confirm executes the Renew transaction.
 - Accept and Set Validated (Validation Process): popup: short explanation, a form requesting user to input the validation_fees, issuance_fees, verification_fees; the approx transaction cost message, cancel / confirm button. Cancel clears the popup, confirm executes the Accept and Set Validated.
 
 4. Business Models section:
-
 - validation_fees: number => fees that must pay applicants that want to run a validation process
 - issuance_fees: number => fees charged by this participant when a child permission issues a credential
 - verification_fees: number => fees charged by this participant when a child permission verifies a credential of this schema
 
 5. Slashing
-
-- slashed_deposit: number => amount of deposit that has been slashed
-- repaid_deposit: number => amount of deposit that has been repaid
-- slashed: timestamp => date the permission was last slashed
-- slashed_by: Verana account which controls this permission; links: copy link, link to the visualizer (external service), link to the block explorer (external service).
-- repaid: timestamp => date the permission was last repaid
-- repaid_by: Verana account which controls this permission; links: copy link, link to the visualizer (external service), link to the block explorer (external service).
+- slashed_deposit: number => slashed
+- repaid_deposit: number => repaid
+- slashed: timestamp => date last slashed
+- slashed_by: Verana account; links: copy link, link to the visualizer (external service), link to the block explorer (external service).
+- repaid: timestamp => date repaid
+- repaid_by: Verana account; links: copy link, link to the visualizer (external service), link to the block explorer (external service).
 
 Deposit related Actions
-
 - Slash Deposit: popup: short explanation showing it is a dangerous and irreversible action, the approx transaction cost message, cancel / confirm button. Cancel clears the popup, confirm executes the Slash Deposit transaction.
 - Repay Slashed Deposit: popup: short explanation, the approx transaction cost message, cancel / confirm button. Cancel clears the popup, confirm executes the Renew transaction.
 
 **Activity Timeline:**
-
 Show a full log of all changes (Actions named above) that have affected the permission since its creation, ordered by modified descending.
-
