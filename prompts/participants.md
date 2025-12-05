@@ -3,11 +3,8 @@ Build the "Participants" page.
 background of the page: same color than other pages (light grey).
 on the top a breadcrumbs indicating:
 ecosystem name, credential schema title, "Participants"
-
 then the page title "Participants".
-
 Then 2 cards:
-
 1. **Permission Tree Card**  
 2. **Permission Detail Card** (opens BELOW the permission tree card when a node is selected)
 
@@ -17,21 +14,15 @@ It must be responsive.
 ## Role and Permission state Badges
 
 - Role badges: ECOSYSTEM: text purple-800, bg purple-100, ISSUER_GRANTOR: text blue-800, bg blue-100, VERIFIER_GRANTOR: text slate-800, bg slate-100, ISSUER: text green-800, bg green-100, VERIFIER: text orange-800, bg orange-100, HOLDER: text pink-800, bg pink-100
-
 - Permission state badges: pending approbation: bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300, expire soon: bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300, expired / revoked / inactive: bg-grey-100 text-grey-800 dark:bg-grey-900/20 dark:text-grey-300, repaid: bg-grey-100 text-red-800 dark:bg-grey-900/20 dark:text-red-300, slashed: bg-red-900 text-red-100 dark:bg-red-300/20 dark:text-red-800, active: bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300
 
 ## Permission Tree Card
-
 background of the card must be white.
-
 ### Overview:
-
 Displays the hierarchical permission structure with collapsible branches, lazy loading for large subsections, and scoped search inside each subtree.
-
 ### Options to tick
 
 Show tickable options before the tree, on the right side of the card, default to none ticked.
-
 - weight
 - business rules
 - stats
@@ -65,18 +56,16 @@ Ecosystem Permission 2
 └── VerifierGrantors
 
 ### Title
-
 Permission Tree
-
 ### Node Design
 #### Directory nodes
 Each directory (Issuer Grantors, Verifier Grantors, Issuers, Verifiers, Holders) node must show:
-- chevron that rotates depending on expended/collapsed, directory icon using the role badge background color, directory name + number of elements it contains.
+- chevron that must rotate depending on expended/collapsed, directory icon using the role badge background color, directory name + number of elements it contains.
 
 #### Permission tree nodes
 Each permission tree node must show:
 
-- on the left centered, the chevron that rotates depending on expended/collapsed,
+- on the left centered, the chevron that must rotates depending on expended/collapsed,
 - aligned on the right of the chevron: Icon indicating authority Full control (gold crown) or Read-only (grey eye) + name + Permission state badge
 
 Append on the right side of the card, when ticked:
@@ -84,8 +73,8 @@ Append on the right side of the card, when ticked:
 
 Do NOT show the role badge.
 
-=> click on the chevron: open/collapse only, do not slect the node
-=> click on the name: select the node, do not open/collapse
+=> click on the chevron and icon authority: open/collapse only, do not slect the node
+=> click on the name or data located on the right of the name: select the node, do not open/collapse
 
 nodes of a same subtree must be aligned vertically. If they have no chevron, Icons indicating authority must be aligned vertically.
 
@@ -94,7 +83,7 @@ nodes of a same subtree must be aligned vertically. If they have no chevron, Ico
 - IssuerGrantors, VerifierGrantors, Issuers, Verifiers, Holders collapsed by default. When opened,if more than 10 items, show First 10 items and “Show more…” button that loads more on demand
 
 ## Permission Detail Card
-Background of the card must be white. Opens when a node is clicked. Clicked node should be highlighted on the Permission tree (slight purple background).
+Background of the card must be white. Opens when a node is clicked. Clicked node should be highlighted on the Permission tree (slight purple background). Highlight only the selected node.
 
 ### Content:
 **Header:**
@@ -105,7 +94,7 @@ Background of the card must be white. Opens when a node is clicked. Clicked node
 - credential schema name
 
 **Body:**
-for each attribute, use data between => and ; for generating a tooltip for the corresponding attribute (tooltip shown only when I put the mouse over the attribute name, not the content. do not put a help icon). What's after the ; if present describes the button to show and their corresponding actions. All link button must be aligned to the right of the card. When no links are presents for attribute, several attributes can be shown per row (must work with responsive). When actions are defined, they must go at the end of the section.
+for each attribute, use data between => and ; for generating a tooltip for the corresponding attribute (tooltip shown only when I put the mouse over the attribute name, not the content. do not put a help icon). What's after the ; if present describes the button to show and their corresponding actions. All link button must be aligned to the right of the card. When no links are presents for attribute, several attributes can be shown per row (must work with responsive). When actions are defined, they must go at the end of the section. Each section must have a thin separator.
 
 1. Key metadata section:
 - truncated DID (string) (monospace) => DID of the related verifiable service; links: copy link, link to the visualizer (external service), link to go to the service (external service), on mouse over show a tooltip with the full DID.
@@ -143,10 +132,10 @@ show a validation process State badge: PENDING (yellow), VALIDATED (green), TERM
 - vp_summary_digest_sri: digest_sri => checksum of the documentation linked to this permission
 
 Validation Process related possible Actions
-- Start (Validation Process) (never shown here, these transactions are used in other pages. Provided for the Activity Timeline only.)
-- Renew (Validation Process): popup: short explanation,  the approx transaction cost message, cancel / confirm button. Cancel clears the popup, confirm executes the Renew transaction.
-- Cancel Request (Validation Process): popup: short explanation, the approx transaction cost message, cancel / confirm button. Cancel clears the popup, confirm executes the Renew transaction.
-- Accept and Set Validated (Validation Process): popup: short explanation, a form requesting user to input the validation_fees, issuance_fees, verification_fees; the approx transaction cost message, cancel / confirm button. Cancel clears the popup, confirm executes the Accept and Set Validated.
+- Start (Validation Process) (never shown here. Provided for the Activity Timeline only.)
+- Renew (Validation Process): popup: short explanation,  the approx transaction cost message, cancel / confirm button. Cancel clears the popup, confirm executes transaction.
+- Cancel Request (Validation Process): popup: short explanation, the approx transaction cost message, cancel / confirm button. Cancel clears the popup, executes transaction.
+- Accept and Set Validated (Validation Process): popup: short explanation, a form requesting user to input the validation_fees, issuance_fees, verification_fees; the approx transaction cost message, cancel / confirm button. Cancel clears the popup, confirm executes transaction.
 
 4. Business Models section:
 - validation_fees: number => fees that must pay applicants that want to run a validation process
@@ -164,6 +153,5 @@ Validation Process related possible Actions
 Deposit related Actions
 - Slash Deposit: popup: short explanation showing it is a dangerous and irreversible action, the approx transaction cost message, cancel / confirm button. Cancel clears the popup, confirm executes the Slash Deposit transaction.
 - Repay Slashed Deposit: popup: short explanation, the approx transaction cost message, cancel / confirm button. Cancel clears the popup, confirm executes the Renew transaction.
-
 **Activity Timeline:**
-Show a full log of all changes (Actions named above) that have affected the permission since its creation, ordered by modified descending.
+Show full log of all changes(Actions named above) that have affected the permission since its creation, ordered by modified descending.
