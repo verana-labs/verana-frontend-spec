@@ -77,7 +77,9 @@ Each directory (Issuer Grantors, Verifier Grantors, Issuers, Verifiers, Holders)
 Each permission tree node must show:
 
 - on the left centered, the chevron that rotates depending on expended/collapsed,
-- aligned on the right of the chevron: Icon indicating authority Full control (gold crown) or Read-only (grey eye) + name + Permission state badge
+- aligned on the right of the chevron: Icon indicating authority Full control (gold crown) or Read-only (grey eye) + name + Permission state badge.
+
+Do NOT show the role badge.
 
 #### Adds-on
 
@@ -171,5 +173,4 @@ Deposit related Actions
 **Activity Timeline:**
 
 Show a full log of all changes (Actions named above) that have affected the permission since its creation, ordered by modified descending.
-If there are more than 10 actions, show a link show more... to display the next 10 actions.
 
