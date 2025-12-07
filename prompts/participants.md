@@ -59,12 +59,13 @@ Permission Tree
 #### Directory nodes
 Each directory (Issuer Grantors, Verifier Grantors, Issuers, Verifiers, Holders) node must show:
 - chevron that must rotate depending on expended/collapsed, directory icon with no background using the Role badge color (500), directory name + number of elements it contains.
+- Append on the right side of the card a small link of the same color of the icon: "join"
 
 #### Permission tree nodes
 Each permission tree node must show:
 
 - on the left centered, the chevron that must rotates depending on expended/collapsed,
-- aligned on the right of the chevron: Icon indicating authority Full control (gold crown) or Read-only (grey eye) + name + Permission state badge
+- aligned on the right of the chevron: Icon indicating authority Full control (yellow-500 crown) or Read-only (grey-500 eye) + name + Permission state badge
 
 Append on the right side of the card, when ticked:
  + (if weight enabled: scale-balanced icon using the role badge text color and the text 234kVNA) + (if business rules enabled: coins icon using the role badge text color and the text issuance: 0.25 VNA verification: 0.25 VNA) + (if stats enabled: chart-column icon using the role badge text color and the text issued: 1234 verified: 789)
@@ -74,14 +75,18 @@ Do NOT show the role badge.
 => click on the chevron and icon authority: open/collapse only, do not select the node
 => click on the name or data located on the right of the name: select the node, do not open/collapse
 
-nodes of a same subtree must be aligned vertically. If they have no chevron, Icons indicating authority must be aligned vertically.
+All nodes of the same Role must be vertically aligned.
+Nodes that display a chevron and nodes that do not must still start at the exact same horizontal position.
+If a node does not have a chevron, insert a placeholder element (same width as the chevron) so that its icon and label align vertically with nodes that do have a chevron. Make sure that there is no space between nodes.
 
 ### Collapsing Rules:
 - First Ecosystem Permission expanded by default
 - IssuerGrantors, VerifierGrantors, Issuers, Verifiers, Holders collapsed by default. When opened,if more than 10 items, show First 10 items and “Show more…” button that loads more on demand
 
+### Create a root permission
+- Just below the last "Ecosystem Permission", add a link with icon: + new Ecosystem Permission
 ## Permission Detail Card
-Background of the card must be white. Opens when a node is clicked. Clicked node must be highlighted on the Permission tree (slight purple background), but only highlight the leaf (background on the selected node, not on all nodes from the tree branch).
+Background of the card must be white. Opens when a node is clicked. Clicked node must be highlighted on the Permission tree (slight purple background), but only put the purple background on the leaf node, not on all nodes from the tree branch.
 
 ### Content:
 **Header:**
@@ -90,7 +95,7 @@ Background of the card must be white. Opens when a node is clicked. Clicked node
 - credential schema name
 
 **Body:**
-for each attribute, use data between => and ; for generating a tooltip for the corresponding attribute (tooltip shown only when I put the mouse over the attribute name, not the content. do not put a help icon). What's after the ; if present describes the button to show and their corresponding actions. All link buttons must be aligned to the right of the card. When no links are presents for attribute, several attributes can be shown per row (must work with responsive). When actions are defined, they must go at the end of the section. Action button should be represented with an icon and a text of a given color, with no background (small background on mouse over). Each section must have a thin separator below the section name.
+for each attribute, use data between => and ; for generating a tooltip for the corresponding attribute (tooltip shown only when I put the mouse over the attribute name, not the content. do not put a help icon). What's after the ; if present describes the button to show and their corresponding actions. All link buttons (icons + text) must be shown below their corresponding attributes. When actions are defined, they must go at the end of the section. Action button should include an icon and the action text. Each section must have a thin separator below the section name.
 
 1. Key metadata section (maximum 2 attributes per row):
 - truncated DID (hover: show full DID) (string) (monospace) => DID of the related verifiable service; icon links with hover: copy, visualizer, service.
