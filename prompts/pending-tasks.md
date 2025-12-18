@@ -83,7 +83,7 @@ Pending Tasks - Flat Mode, or: Pending Tasks - Tree Mode
 ### Node Design
 #### Directory nodes
 Each directory (Ecosystem, Credential Schema, Root Permissions, Issuer Grantors, Verifier Grantors, Issuers, Verifiers, Holders) node must show:
-- chevron that must rotate depending on expended/collapsed, directory icon with no background using the Role badge color (500), directory name + number of elements it contains.
+- chevron that must rotate depending on expended/collapsed, directory icon with no background using the Role badge color (500), directory name + number of elements it contains. For credential schema directory icon, use color text-purple-200.
 
 #### Permission tree nodes
 Each permission tree node must show:
@@ -91,10 +91,10 @@ Each permission tree node must show:
 - on the left centered, the chevron that must rotates depending on expended/collapsed,
 - aligned on the right of the chevron: Icon indicating authority Full control (yellow-500 crown) or Read-only (grey-500 eye) + name + Permission state badge
 
-Do NOT show the role badge.
+Do NOT show the role badge when in tree mode, MUST show the badge on the right of Permission state badge when in flat mode.
 
 => click on the chevron and icon authority: open/collapse only, do not select the node
-=> click on the name or data located on the right of the name: select the node, do not open/collapse
+=> click on the name or data located on the right of the name: select the node and show the permission in "Permission Detail Card" and scroll to it, do not open/collapse the node
 
 All nodes of the same Role must be vertically aligned.
 Nodes that display a chevron and nodes that do not must still start at the exact same horizontal position.
