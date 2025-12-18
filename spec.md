@@ -124,7 +124,7 @@ The Verana App MUST be delivered as a container.
 |--------------------------------|---------------------------------------|----------------------------------|----------------------------------|
 | General                        | APP_NAME                              |                                  | Veranito                         |
 |                                | APP_LOGO                              |                                  | logo.svg                        |
-|                                | ADDRESS_EXPLORER                      |                                  | https://www.mintscan.io/verana/address/VERANA_ADDRESS   |
+|                                | ADDRESS_EXPLORER                      |                                  | https://explorer.verana.network/Verana%20Mainnet/account/VERANA_ADDRESS   |
 | Network Configuration          | API_ENDPOINT                  |                                  | https://api.verana.network       |
 |                                | RPC_ENDPOINT                  |                                  | https://rpc.verana.network       |
 |                                | IDX_ENDPOINT                  |                                  | https://idx.verana.network       |
@@ -134,6 +134,7 @@ The Verana App MUST be delivered as a container.
 | Internationalization           | DEFAULT_LOCALE                        |   Failover locale | en_US       |
 |                                | SUPPORTED_LOCALES                     |                                  | en_US, fr_FR, en:en_US, fr:fr_FR       |
 |                                | SESSION_LIFETIME_SECONDS                     |                                  | 86400       |
+|                                | SHOW_PERMISSION_EXPIRE_BEFORE_DAYS                     |                                  | 30       |
 
 #### General - Fee Calculation and Preview
 
