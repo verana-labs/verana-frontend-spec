@@ -85,6 +85,8 @@ If a node does not have a chevron, insert a placeholder element (same width as t
 
 ### Create a root permission
 - Just below the last "Ecosystem Permission", add a link with icon: + new Ecosystem Permission
+
+
 ## Permission Detail Card
 Background of the card must be white. Opens when a node is clicked. Clicked node must be highlighted on the Permission tree (slight purple background), but only put the purple background on the leaf node, not on all nodes from the tree branch.
 
